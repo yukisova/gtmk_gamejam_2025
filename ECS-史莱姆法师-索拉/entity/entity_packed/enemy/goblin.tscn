@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://iu5obxqprcpd"]
+
+[ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_en6au"]
+[ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_sh6rx"]
+[ext_resource type="PackedScene" uid="uid://cm1y3qybnsk5w" path="res://component/c_animation/c_animation_ez.tscn" id="3_sh6rx"]
+
+[node name="Goblin" node_paths=PackedStringArray("main_control", "component_container") instance=ExtResource("1_en6au")]
+main_control = NodePath("CharacterBody")
+component_container = NodePath("CharacterBody/ComponentContainer")
+
+[node name="CharacterBody" parent="." index="0" instance=ExtResource("2_sh6rx")]
+
+[node name="CAnimationEz" parent="CharacterBody/ComponentContainer" index="0" instance=ExtResource("3_sh6rx")]
+
+[editable path="CharacterBody"]

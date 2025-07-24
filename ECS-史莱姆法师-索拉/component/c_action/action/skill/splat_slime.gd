@@ -1,0 +1,38 @@
+## 玩家使用: 发射史莱姆
+## 一个曲线发射的球体，落到地面会爆炸，并生成一个区域
+extends Action
+
+@export var shoot_offset: float = 20
+
+@export var projectile_scene: PackedScene
+@export var spend_magic: float
+
+var timer: Timer
+
+func _ready() -> void:
+	timer = Timer.new()
+	timer.wait_time = 0.1
+	timer.one_shot = true
+	add_child(timer)
+
+func _effect(..._args):
+	if timer.is_stopped():
+		var status = c_action.component_owner.list_base_components[IComponent.ComponentName.c_status] as C_Status
+		var magic = status.status_list[SoraConstant.StatusEnum.Magic]
+		if magic.value > spend_magic: ## 消耗法力
+			magic.value = magic.value - spend_magic
+			var mouse_global = get_global_mouse_position()
+			var projectile = projectile_scene.instantiate() as CharacterBody2D
+			var start_direction = global_position.direction_to(mouse_global).normalized()
+			var start_position = global_position + start_direction * shoot_offset
+			
+			var context = {
+				"start_position": start_position,
+				"start_direction": start_direction,
+				"target_position": mouse_global
+			}
+			projectile._launch(context)
+			
+			Main.s_object_pool.add_child(projectile)
+			timer.start()
+		
