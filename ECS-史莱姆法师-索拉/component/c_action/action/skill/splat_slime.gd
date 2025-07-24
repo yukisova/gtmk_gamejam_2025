@@ -33,6 +33,6 @@ func _effect(..._args):
 			}
 			projectile._launch(context)
 			
-			Main.s_object_pool.add_child(projectile)
+			SObjectPool.add_child(projectile)
 			timer.start()
 		

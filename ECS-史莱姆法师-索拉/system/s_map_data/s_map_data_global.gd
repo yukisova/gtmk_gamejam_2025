@@ -1,4 +1,3 @@
-class_name S_Mapdata
 extends ISystem
 
 signal factor_added(new_factor: Entity, start_position: Vector2)
@@ -9,8 +8,6 @@ signal map_info_registered(map: PackedScene)
 var current_level: Level
 
 func _enter_tree() -> void:
-	Main.s_map_data = self
-	
 	factor_added.connect(_on_factor_added)
 	map_info_registered.connect(_on_map_info_registered)
 
@@ -23,13 +20,12 @@ func _on_map_info_registered(map_scene: PackedScene):
 	var map = map_scene.instantiate()
 	Launcher.main.game_view.add_child(map)
 
-	var s_player_static = Main.s_player_static
 	var spawn = map.player_spawn
 	if (spawn != null):
 		current_level = spawn.current_level
-		s_player_static.player_located.emit.call_deferred(spawn.current_level , spawn.global_position)
+		SPlayerStatic.player_located.emit.call_deferred(spawn.current_level , spawn.global_position)
 		spawn.queue_free()
-	Main.s_game_state.emit_signal("gamedata_loaded")
+	SGameState.emit_signal("gamedata_loaded")
 
 ## 地图元素新建
 func _on_factor_added(new_factor: Entity, start_position: Vector2):

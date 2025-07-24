@@ -1,5 +1,4 @@
 ## 存档系统， 
-class_name S_LoadAndSave
 extends ISystem
 
 ## 游戏保存
@@ -14,8 +13,6 @@ signal loading_refreshed(data: Dictionary)
 const SAVE_PATH := "user://data.sav"
 
 func _enter_tree() -> void:
-	Main.s_load_and_save = self
-	
 	
 	saving_started.connect(_data_saving)
 	loading_started.connect(_data_loading)

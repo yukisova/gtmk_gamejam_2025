@@ -1,5 +1,4 @@
 ## 游戏设置系统: 与存档系统类似，但是设置信息是预加载的
-class_name S_GlobalConfig
 extends ISystem
 
 ## 此处会将游戏的内容
@@ -13,7 +12,6 @@ const CONFIG_PATH := "user://config.sav"
 static var is_initialized = false
 
 func _enter_tree() -> void:
-	Main.s_global_config = self
 
 	preloading_started.connect(_config_info_parser)
 	presaving_started.connect(_config_changed)

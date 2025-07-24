@@ -13,7 +13,7 @@ func 过场1_玩家苏醒(_context: Dictionary):
 	
 	## 镜头一，询问玩家控制信息
 	## 1. 视角缩小，
-	var player = Main.s_player_static.player_static
+	var player = SPlayerStatic.player_static
 	var c_camera = player.list_base_components[IComponent.ComponentName.c_camera] as C_Camera
 	c_camera.camera.zoom = Vector2(5,5) ## 对视野进行缩小
 	

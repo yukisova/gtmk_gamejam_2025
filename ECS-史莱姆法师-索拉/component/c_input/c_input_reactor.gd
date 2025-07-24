@@ -28,7 +28,7 @@ func _enter_tree() -> void:
 func _initialize(_owner: Entity):
 	super._initialize(_owner)
 	
-	Main.s_player_static.input_listener.binding_input_component = self
+	SPlayerStatic.input_listener.binding_input_component = self
 
 func _validate_property(property: Dictionary) -> void:
 	if !is_main_controller:
@@ -36,7 +36,7 @@ func _validate_property(property: Dictionary) -> void:
 			property.usage = PROPERTY_USAGE_NO_EDITOR
 
 func validate_control(key_string: StringName, control_mode: ControlMode = ControlMode.just_pressed) -> bool:
-	if (S_GlobalConfig.is_initialized):
+	if (SGlobalConfig.is_initialized):
 		match control_mode:
 			ControlMode.just_pressed:
 				return Input.is_action_just_pressed(key_string)
@@ -85,7 +85,7 @@ func _vec_input_a_toward() -> Dictionary:
 	return vec_info
 
 func try_input_vector() -> Dictionary:
-	if (S_GlobalConfig.is_initialized):
+	if (SGlobalConfig.is_initialized):
 		match award_mode:
 			"横版":
 				pass
@@ -100,7 +100,7 @@ func try_input_vector() -> Dictionary:
 	return {}
 
 func _try_vector_control() -> Vector2:
-	if (S_GlobalConfig.is_initialized):
+	if (SGlobalConfig.is_initialized):
 		var input_move_info: Dictionary = try_input_vector()
 		var input_move_vector: Vector2 = input_move_info["vec"] as Vector2
 		return input_move_vector
@@ -111,7 +111,7 @@ func _try_vector_control() -> Vector2:
 #region 测试用触发功能
 func _try_save_game():
 	if (Input.is_action_just_pressed("test_saving")):
-		Main.s_load_and_save.emit_signal("saving_started")
+		SLoadAndSave.emit_signal("saving_started")
 		print("文件已经完成存储")
 
 #endregion
@@ -131,9 +131,9 @@ func _avaliable_in_gaming():
 	input_vector_dict.move = _try_vector_control()
 
 	if validate_control("brain_trigger", ControlMode.just_pressed):
-		Main.s_ui_spawner.call("_spawn_ui", brain_ui)
+		SUiSpawner._spawn_ui(brain_ui)
 	elif validate_control("pause_game", ControlMode.just_pressed):
-		Main.s_ui_spawner.call("_spawn_ui", pause_ui)
+		SUiSpawner._spawn_ui(pause_ui)
 
 	elif validate_control("interact", ControlMode.just_pressed):
 		if interact_obj != null:

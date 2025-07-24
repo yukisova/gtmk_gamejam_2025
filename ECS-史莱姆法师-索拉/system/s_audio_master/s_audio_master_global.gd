@@ -1,6 +1,5 @@
 ## 音频总线系统，负责管理游戏中应当出现的背景音乐，音效等的混合
 ## sfx存在
-class_name S_AudioMaster
 extends ISystem
 
 enum AudioBusEnum {
@@ -19,9 +18,6 @@ const sfx_player_num: int = 6
 var sfx_players: Array[AudioStreamPlayer] = []
 
 const fade_duration = 1.0
-
-func _enter_tree() -> void:
-	Main.s_audio_master = self
 
 func _setup():
 	for i in bgm_player_num:

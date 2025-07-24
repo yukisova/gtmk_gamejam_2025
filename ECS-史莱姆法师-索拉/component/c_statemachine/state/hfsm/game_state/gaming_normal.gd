@@ -9,9 +9,9 @@ class_name GamingStateNormal
 extends State
 
 func _enter():
-	Main.s_ui_spawner.current_hud[&""]._refresh()
-	Main.s_ui_spawner.current_hud[&""].show()
+	SUiSpawner.current_hud[&""]._refresh()
+	SUiSpawner.current_hud[&""].show()
 	
 
 func _exit():
-	Main.s_ui_spawner.current_hud[&""].hide()
+	SUiSpawner.current_hud[&""].hide()

@@ -9,6 +9,6 @@ func _process(delta: float) -> void:
 		_listen()
 
 func _listen():
-	var current_gaming_state = Main.s_game_state.state_machine._get_leaf_state()
+	var current_gaming_state = SGameState.state_machine._get_leaf_state()
 	if current_gaming_state is GamingStateNormal:
 		binding_input_component._avaliable_in_gaming()

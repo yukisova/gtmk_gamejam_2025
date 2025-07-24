@@ -28,15 +28,15 @@ var current_setting: Dictionary = {}
 
 func _enter_tree() -> void:
 	confirm.pressed.connect(Callable(func(_args):
-		Main.s_global_config.emit_signal("presaving_started", current_config)
+		SGlobalConfig.presaving_started.emit(current_config)
 		window_closed.emit()
 		).bind(confirm.args)
 	)
 	reset.pressed.connect(Callable(func(_args):
-		Main.s_global_config._resetup()
+		SGlobalConfig._resetup()
 		).bind(reset.args)
 	)
-	current_config = Main.s_global_config.call("_config_return") as Dictionary
+	current_config = SGlobalConfig._config_return()
 	current_config = current_config.duplicate(true)
 
 func _ready() -> void:
@@ -68,15 +68,15 @@ func __init_audio():
 	var audio = current_config["audio"]
 	audio_setting_master.drag_ended.connect(func(is_changed: bool):
 		if is_changed:
-			Main.s_audio_master._set_volume(S_AudioMaster.AudioBusEnum.MASTER, audio_setting_master.value)
+			SAudioMaster._set_volume(SAudioMaster.AudioBusEnum.MASTER, audio_setting_master.value)
 		)
 	audio_setting_bgm.drag_ended.connect(func(is_changed: bool):
 		if is_changed:
-			Main.s_audio_master._set_volume(S_AudioMaster.AudioBusEnum.MUSIC, audio_setting_bgm.value)
+			SAudioMaster._set_volume(SAudioMaster.AudioBusEnum.MUSIC, audio_setting_bgm.value)
 		)
 	audio_setting_sfx.drag_ended.connect(func(is_changed: bool):
 		if is_changed:
-			Main.s_audio_master._set_volume(S_AudioMaster.AudioBusEnum.SFX, audio_setting_sfx.value)
+			SAudioMaster._set_volume(SAudioMaster.AudioBusEnum.SFX, audio_setting_sfx.value)
 		)
 #endregion
 

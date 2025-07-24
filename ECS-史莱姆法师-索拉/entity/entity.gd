@@ -34,7 +34,7 @@ func _initialize(...args):
 				list_base_components[component.component_name] = component
 
 	if !args.is_empty():
-		Main.s_signal_bus.game_data_loaded_compelete.connect(_initialize)
+		SSignalBus.game_data_loaded_compelete.connect(_initialize)
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():

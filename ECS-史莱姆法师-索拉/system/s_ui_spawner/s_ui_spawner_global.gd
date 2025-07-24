@@ -1,4 +1,3 @@
-class_name S_UiSpawner
 extends ISystem
 
 @export var main_menu_scene: PackedScene
@@ -6,9 +5,6 @@ extends ISystem
 
 var current_hud: Dictionary[StringName, IHud] = {}
 var current_ui: IUi
-
-func _enter_tree() -> void:
-	Main.s_ui_spawner = self
 
 func _setup():
 	for key in all_hud:

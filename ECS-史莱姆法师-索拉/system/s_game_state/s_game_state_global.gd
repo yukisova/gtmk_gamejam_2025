@@ -1,4 +1,3 @@
-class_name S_GameState
 extends ISystem
 
 signal gamedata_loaded
@@ -6,8 +5,6 @@ signal gamedata_loaded
 @export var state_machine: StateMachine
 var is_setup = false
 
-func _enter_tree() -> void:
-	Main.s_game_state = self
 
 func _setup():
 	gamedata_loaded.connect(func():
