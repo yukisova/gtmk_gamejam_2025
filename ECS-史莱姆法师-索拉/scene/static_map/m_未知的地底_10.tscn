@@ -9,6 +9,9 @@
 
 [node name="M未知的地底_10" node_paths=PackedStringArray("player_spawn") instance=ExtResource("1_cmxr7")]
 player_spawn = NodePath("Levels/Level/PlayerSpawn")
+cutscene_ref = Dictionary[String, Variant]({
+"洞穴滤镜": NodePath("Levels/CanvasModulate")
+})
 
 [node name="Level" parent="Levels" index="0" instance=ExtResource("2_bolcs")]
 

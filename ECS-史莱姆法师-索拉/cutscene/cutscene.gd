@@ -7,9 +7,12 @@ signal cutscene_started ## 过场剧情开始执行信号
 signal cutscene_ended(return_context: Dictionary) ## 过场剧情结束信号
 
 ## 过场剧情依赖项检查
-func cutscene_dependencies_check(check_list: Array, check_dict: Dictionary) -> Array:
+func cutscene_dependencies_check(check_list: Array, check_dict: Dictionary) -> bool:
 	var result = []
 	for info in check_list:
 		if !check_dict.has(info):
 			result.append(info)
-	return result
+	if !result.is_empty():
+		push_error("依赖项", result, "缺失，需要检查传入参数")
+		return false
+	return true

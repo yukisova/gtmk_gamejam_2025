@@ -46,8 +46,8 @@ func _initialize(_owner: Entity):
 							interact_activated.emit()
 						else:
 							var entity = _body.owner as Entity
-							if entity.list_base_components.has(IComponent.ComponentName.c_input):
-								var c_input = entity.list_base_components[IComponent.ComponentName.c_input]
+							if entity.list_base_components.has(IComponent.ComponentName.c_input_reactor):
+								var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
 								c_input.interact_obj = self
 			)
 			final_body.body_exited.connect(
@@ -56,8 +56,8 @@ func _initialize(_owner: Entity):
 						interact_deactivated.emit()
 						if not area_is_passive:
 							var entity = _body.owner as Entity
-							if entity.list_base_components.has(IComponent.ComponentName.c_input):
-								var c_input = entity.list_base_components[IComponent.ComponentName.c_input]
+							if entity.list_base_components.has(IComponent.ComponentName.c_input_reactor):
+								var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
 								c_input.interact_obj = null
 			)
 	else:
@@ -70,8 +70,8 @@ func _initialize(_owner: Entity):
 							interact_activated.emit()
 						else:
 							var entity = _body.owner as Entity
-							if entity.list_base_components.has(IComponent.ComponentName.c_input):
-								var c_input = entity.list_base_components[IComponent.ComponentName.c_input]
+							if entity.list_base_components.has(IComponent.ComponentName.c_input_reactor):
+								var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
 								c_input.interact_obj = self
 			)
 			final_body.body_exited.connect(
@@ -80,8 +80,8 @@ func _initialize(_owner: Entity):
 						interact_deactivated.emit()
 						if not area_is_passive:
 							var entity = _body.owner as Entity
-							if entity.list_base_components.has(IComponent.ComponentName.c_input):
-								var c_input = entity.list_base_components[IComponent.ComponentName.c_input]
+							if entity.list_base_components.has(IComponent.ComponentName.c_input_reactor):
+								var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
 								c_input.interact_obj = null
 			)
 

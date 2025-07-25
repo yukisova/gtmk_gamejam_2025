@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" uid="uid://cbu2gcdkcjssj" path="res://component/c_statemachine/c_state.gd" id="1_ylpjt"]
 
-[node name="CHfsm" type="Node" node_paths=PackedStringArray("root_state_machine")]
+[node name="CState" type="Node"]
 script = ExtResource("1_ylpjt")
-root_state_machine = NodePath("")

@@ -8,10 +8,10 @@ enum ComponentName {
 	c_texture,
 	c_camera,
 	c_collision,
-	c_input,
+	c_input_reactor,
 	c_interaction,
 	c_movement,
-	c_statemachine,
+	c_state,
 	c_status,
 	c_weapon,
 	c_navigation
@@ -68,7 +68,7 @@ func _trigger_update():
 
 
 func get_controller() -> IComponent :
-	var input = component_owner.list_base_components.get(ComponentName.c_input)
+	var input = component_owner.list_base_components.get(ComponentName.c_input_reactor)
 	return input
 
 func _exit_tree() -> void:

@@ -2,7 +2,7 @@
 class_name InputListener
 extends Node
 
-var binding_input_component : C_Input = null
+var binding_input_component : C_InputReactor = null
 
 func _process(delta: float) -> void:
 	if binding_input_component != null:

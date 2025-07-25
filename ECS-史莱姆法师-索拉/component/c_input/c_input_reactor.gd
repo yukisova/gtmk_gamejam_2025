@@ -1,6 +1,6 @@
 ## 控制组件，拥有该组件，目标可以被移动
 @tool
-class_name C_Input
+class_name C_InputReactor
 extends IComponent
 
 
@@ -23,7 +23,7 @@ var input_vector_dict: Dictionary[String, Vector2] = {
 enum ControlMode{ just_pressed = 0, pressed, just_release }
 
 func _enter_tree() -> void:
-	component_name = ComponentName.c_input
+	component_name = ComponentName.c_input_reactor
 
 func _initialize(_owner: Entity):
 	super._initialize(_owner)

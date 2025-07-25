@@ -1,6 +1,6 @@
 @tool
 ## 移动组件, 让目标实现移动功能，或是飞行物的飞行轨迹
-class_name C_Move
+class_name C_Movement
 extends IComponent
 
 @export var move_strategy: MoveStrategy

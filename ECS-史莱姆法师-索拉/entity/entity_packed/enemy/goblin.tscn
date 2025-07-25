@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://iu5obxqprcpd"]
+[gd_scene load_steps=11 format=3 uid="uid://iu5obxqprcpd"]
 
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_en6au"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_sh6rx"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cm1y3qybnsk5w" path="res://component/c_texture/c_texture_ez.tscn" id="3_sh6rx"]
 [ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/engine_template/sprite/animated_sprite/player_frame.tres" id="5_al2bc"]
 [ext_resource type="PackedScene" uid="uid://b3vbfhugiqyva" path="res://component/c_action/c_action.tscn" id="6_vr1xp"]
+[ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_statemachine/c_state.tscn" id="7_al2bc"]
+[ext_resource type="Script" uid="uid://b5ywitjyd2ccg" path="res://component/c_statemachine/state/hfsm/state_machine_h.gd" id="8_k7t3d"]
+[ext_resource type="Script" uid="uid://djl6r7p66f7on" path="res://component/c_statemachine/state/pda/state_machine_p.gd" id="9_q627x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5jjb"]
 size = Vector2(8, 4)
@@ -25,6 +28,18 @@ modulate = Color(1, 0.10196078, 1, 1)
 sprite_frames = ExtResource("5_al2bc")
 
 [node name="CAction" parent="CharacterBody/ComponentContainer" index="2" instance=ExtResource("6_vr1xp")]
+
+[node name="CState" parent="CharacterBody/ComponentContainer" index="3" node_paths=PackedStringArray("root_state_machine", "ai_state_machine") instance=ExtResource("7_al2bc")]
+root_state_machine = NodePath("StateMachineHfsm")
+ai_state_machine = NodePath("StateMachinePda")
+
+[node name="StateMachineHfsm" type="Node" parent="CharacterBody/ComponentContainer/CState" index="0"]
+script = ExtResource("8_k7t3d")
+metadata/_custom_type_script = "uid://b5ywitjyd2ccg"
+
+[node name="StateMachinePda" type="Node" parent="CharacterBody/ComponentContainer/CState" index="1"]
+script = ExtResource("9_q627x")
+metadata/_custom_type_script = "uid://djl6r7p66f7on"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody" index="1"]
 position = Vector2(0, 6)

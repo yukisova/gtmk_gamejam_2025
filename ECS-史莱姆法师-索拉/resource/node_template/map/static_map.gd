@@ -19,7 +19,7 @@ func _ready() -> void:
 			level_count += 1
 	
 	for cutscene in autoload_cutscene.get_children():
-		SSignalBus.game_data_loaded_compelete.connect(cutscene._start)
+		SSignalBus.game_data_loaded_compelete.connect(cutscene._start.bind(cutscene_ref))
 
 func _on_level_fully_loaded():
 	level_loaded_count += 1

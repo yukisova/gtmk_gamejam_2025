@@ -16,14 +16,16 @@
 			"uuid": "eeee1522-ac5a-41f1-8ede-014b54231f02",
 			"title": "Todo",
 			"tasks": [
-				"36e8aaa4-1a2f-4e54-880c-33c0beb68f5d"
+				"36e8aaa4-1a2f-4e54-880c-33c0beb68f5d",
+				"5b4eb1d1-e4b3-40d9-92e4-fa10f4f4b324"
 			]
 		},
 		{
 			"uuid": "31ae34de-c661-4e46-a361-c1297d43704b",
 			"title": "Doing",
 			"tasks": [
-				"7648058b-30bf-41b2-87b4-433002fd8a00"
+				"7648058b-30bf-41b2-87b4-433002fd8a00",
+				"95868473-75c1-4d95-b025-c5865da1d685"
 			]
 		},
 		{
@@ -167,6 +169,20 @@
 					"done": false
 				}
 			]
+		},
+		{
+			"uuid": "5b4eb1d1-e4b3-40d9-92e4-fa10f4f4b324",
+			"title": "设计交互对话",
+			"description": "使用的是DialogueManager，因此要想办法让DialogueManager可以兼容当前框架的需求",
+			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
+			"steps": []
+		},
+		{
+			"uuid": "95868473-75c1-4d95-b025-c5865da1d685",
+			"title": "状态机的升级",
+			"description": "",
+			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
+			"steps": []
 		}
 	],
 	"layout": {

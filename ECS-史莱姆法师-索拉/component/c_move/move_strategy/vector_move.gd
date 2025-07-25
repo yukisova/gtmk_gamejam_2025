@@ -2,7 +2,7 @@
 extends MoveStrategy
 
 
-@export var c_input: C_Input = null ## 是否拥有Input组件,
+@export var c_input: C_InputReactor = null ## 是否拥有Input组件,
 ## 移动方向
 var move_vector: Vector2:
 	get:
