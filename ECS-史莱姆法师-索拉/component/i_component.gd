@@ -5,12 +5,12 @@ extends Node
 enum ComponentType { BASE = 0, INTERFACE = 1 }
 enum ComponentName {
 	c_action = 0,
-	c_animation,
+	c_texture,
 	c_camera,
 	c_collision,
 	c_input,
 	c_interaction,
-	c_move,
+	c_movement,
 	c_statemachine,
 	c_status,
 	c_weapon,

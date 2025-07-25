@@ -1,8 +1,8 @@
 @tool
-extends State
+extends StateHfsm
 
 @export var animated_sprite: AnimatedSprite2D
-@export var c_move: IComponent
+@export var vector_move: MoveStrategy
 @export var idle_state_time_range: Vector2 = Vector2(3.0, 5.0)
 
 @onready var idle_state_timer: Timer = Timer.new()
@@ -23,7 +23,7 @@ func _enter() -> void:
 	animated_sprite.play("idle")
 	
 func _update(delta: float) -> void:
-	var _vector = c_move.get("move_vector") as Vector2
+	var _vector = vector_move.get("move_vector") as Vector2
 	if (idle_transition_trigger):
 		state_transition.emit(parent_to_self)
 	

@@ -5,7 +5,7 @@
 ## 2. 游戏退出
 @tool
 class_name GameStartState
-extends State
+extends StateHfsm
 var update_trigger = false
 
 func _update(_delta: float) -> void:

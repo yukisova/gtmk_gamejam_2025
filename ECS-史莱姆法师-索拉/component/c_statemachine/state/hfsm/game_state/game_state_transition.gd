@@ -4,7 +4,7 @@
 ## 1. MapData加载完毕，并发送了相关的信号
 @tool
 class_name GameStartTransition
-extends State
+extends StateHfsm
 
 var update_trigger = false
 
@@ -17,5 +17,4 @@ func _update(_delta: float) -> void:
 
 func _exit():
 	update_trigger = false
-	
 	Main.entity_initialzable = true

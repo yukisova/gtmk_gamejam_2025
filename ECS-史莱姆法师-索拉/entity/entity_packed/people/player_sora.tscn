@@ -1,55 +1,59 @@
-[gd_scene load_steps=28 format=3 uid="uid://chcm2vu8h6bs1"]
+[gd_scene load_steps=30 format=3 uid="uid://chcm2vu8h6bs1"]
 
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_mgbw6"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_a24ad"]
 [ext_resource type="PackedScene" uid="uid://bo5de2ow6bqjo" path="res://component/c_camera/c_camera.tscn" id="3_nmcyj"]
 [ext_resource type="Script" uid="uid://b1kgwv70jiajt" path="res://component/c_camera/follow_strategy/cfs_mouse_follow.gd" id="4_a24ad"]
-[ext_resource type="PackedScene" uid="uid://cm1y3qybnsk5w" path="res://component/c_animation/c_animation_ez.tscn" id="4_hqihq"]
+[ext_resource type="PackedScene" uid="uid://cm1y3qybnsk5w" path="res://component/c_texture/c_texture_ez.tscn" id="4_hqihq"]
 [ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/engine_template/sprite/animated_sprite/player_frame.tres" id="5_x78nq"]
-[ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_move/c_move.tscn" id="6_qcfhx"]
+[ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_move/c_movement.tscn" id="6_qcfhx"]
 [ext_resource type="PackedScene" uid="uid://caj56l0yail7q" path="res://component/c_status/c_status.tscn" id="7_4q10d"]
+[ext_resource type="Script" uid="uid://dwt0prmf31a5" path="res://component/c_move/move_strategy/vector_move.gd" id="8_4q10d"]
 [ext_resource type="PackedScene" uid="uid://bwirxc82f24gv" path="res://component/c_status/status_extension/equipment/equipment.tscn" id="8_i6fj4"]
-[ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_statemachine/c_hfsm.tscn" id="9_tui75"]
+[ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_statemachine/c_state.tscn" id="9_tui75"]
 [ext_resource type="Script" uid="uid://dh0lerokskmi3" path="res://component/c_statemachine/state/hfsm/state/player/state_idle.gd" id="11_gmva3"]
 [ext_resource type="Script" uid="uid://dnmlb5kw5y7u3" path="res://component/c_statemachine/state/hfsm/state/player/sm_sora_root.gd" id="11_nmcyj"]
 [ext_resource type="Script" uid="uid://c84h4bwfj007x" path="res://component/c_statemachine/hfsm_transition_state.gd" id="12_nmcyj"]
 [ext_resource type="Script" uid="uid://bsspef4eb5bx1" path="res://component/c_statemachine/state/hfsm/state/player/state_move.gd" id="12_ulwfh"]
 [ext_resource type="Script" uid="uid://caum0vdmqrfd4" path="res://component/c_statemachine/state/hfsm/state/player/state_using.gd" id="13_nh2ah"]
 [ext_resource type="PackedScene" uid="uid://cps21xspaovit" path="res://component/c_collision/c_collision.tscn" id="14_lty83"]
-[ext_resource type="PackedScene" uid="uid://dgykredd3ey6r" path="res://component/c_collision/collision/hitbox.tscn" id="15_vc4eq"]
+[ext_resource type="PackedScene" uid="uid://dgykredd3ey6r" path="res://component/c_collision/box_collision/hitbox/hitbox.tscn" id="15_vc4eq"]
 [ext_resource type="PackedScene" uid="uid://lu3gu1tfxdey" path="res://component/c_input/c_input_reactor.tscn" id="16_pakgu"]
 [ext_resource type="PackedScene" uid="uid://b3vbfhugiqyva" path="res://component/c_action/c_action.tscn" id="17_6pmss"]
 [ext_resource type="Script" uid="uid://drtm0lb4o8s8v" path="res://component/c_action/action/skill/splat_slime.gd" id="20_hqihq"]
-[ext_resource type="PackedScene" uid="uid://db2uwkup4lywe" path="res://resource/node_template/temp/projectile/projectile.tscn" id="21_x78nq"]
+[ext_resource type="PackedScene" uid="uid://n4p12hxn4c4n" path="res://entity/entity_packed/temp/projectile/projectile.tscn" id="22_4q10d"]
 [ext_resource type="Script" uid="uid://c67a8nhbdrtlh" path="res://component/c_action/action/skill/charge_magic.gd" id="22_qcfhx"]
 
 [sub_resource type="Resource" id="Resource_hqihq"]
 script = ExtResource("12_nmcyj")
-from_state = NodePath("idle")
-to_state = NodePath("move")
+from_state = NodePath("Idle")
+to_state = NodePath("Move")
 metadata/_custom_type_script = "uid://c84h4bwfj007x"
 
 [sub_resource type="Resource" id="Resource_x78nq"]
 script = ExtResource("12_nmcyj")
-from_state = NodePath("move")
-to_state = NodePath("idle")
+from_state = NodePath("Move")
+to_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://c84h4bwfj007x"
 
 [sub_resource type="Resource" id="Resource_qcfhx"]
 script = ExtResource("12_nmcyj")
 keyword = &"using"
-from_state = NodePath("idle")
-to_state = NodePath("using")
+from_state = NodePath("Idle")
+to_state = NodePath("Using")
 metadata/_custom_type_script = "uid://c84h4bwfj007x"
 
 [sub_resource type="Resource" id="Resource_4q10d"]
 script = ExtResource("12_nmcyj")
-from_state = NodePath("using")
-to_state = NodePath("idle")
+from_state = NodePath("Using")
+to_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://c84h4bwfj007x"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bu1qv"]
 radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcfhx"]
+size = Vector2(8, 4)
 
 [node name="PlayerSora" node_paths=PackedStringArray("main_control", "component_container") instance=ExtResource("1_mgbw6")]
 main_control = NodePath("CharacterBody")
@@ -71,8 +75,14 @@ smoothing = null
 sprite_frames = ExtResource("5_x78nq")
 autoplay = "default"
 
-[node name="CMove" parent="CharacterBody/ComponentContainer" index="2" instance=ExtResource("6_qcfhx")]
-move_speed = 500.0
+[node name="CMovement" parent="CharacterBody/ComponentContainer" index="2" node_paths=PackedStringArray("move_strategy") instance=ExtResource("6_qcfhx")]
+move_strategy = NodePath("VectorMove")
+
+[node name="VectorMove" type="Node" parent="CharacterBody/ComponentContainer/CMovement" index="0" node_paths=PackedStringArray("c_input", "blackboard")]
+script = ExtResource("8_4q10d")
+c_input = NodePath("../../CInput")
+move_speed = 1000.0
+blackboard = NodePath("../..")
 
 [node name="CStatus" parent="CharacterBody/ComponentContainer" index="3" instance=ExtResource("7_4q10d")]
 basic_info = Dictionary[int, float]({
@@ -92,24 +102,23 @@ script = ExtResource("11_nmcyj")
 splat = NodePath("../../CAction/SplatSlime")
 charge = NodePath("../../CAction/ChargeMagic")
 transition_list = Array[ExtResource("12_nmcyj")]([SubResource("Resource_hqihq"), SubResource("Resource_x78nq"), SubResource("Resource_qcfhx"), SubResource("Resource_4q10d")])
-init_state = NodePath("idle")
+init_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://b5ywitjyd2ccg"
 
-[node name="idle" type="Node" parent="CharacterBody/ComponentContainer/CHfsm/PlayerSoraSM" index="0" node_paths=PackedStringArray("c_move", "c_animation_ez", "test_c_input")]
+[node name="Idle" type="Node" parent="CharacterBody/ComponentContainer/CHfsm/PlayerSoraSM" index="0" node_paths=PackedStringArray("vector_move", "c_animation_ez", "test_c_input")]
 script = ExtResource("11_gmva3")
-c_move = NodePath("../../../CMove")
+vector_move = NodePath("../../../CMovement/VectorMove")
 c_animation_ez = NodePath("../../../CAnimationEz")
 test_c_input = NodePath("../../../CInput")
 
-[node name="move" type="Node" parent="CharacterBody/ComponentContainer/CHfsm/PlayerSoraSM" index="1" node_paths=PackedStringArray("c_move", "c_animation_ez")]
+[node name="Move" type="Node" parent="CharacterBody/ComponentContainer/CHfsm/PlayerSoraSM" index="1" node_paths=PackedStringArray("vector_move", "c_animation_ez")]
 script = ExtResource("12_ulwfh")
-c_move = NodePath("../../../CMove")
+vector_move = NodePath("../../../CMovement/VectorMove")
 c_animation_ez = NodePath("../../../CAnimationEz")
 
-[node name="using" type="Node" parent="CharacterBody/ComponentContainer/CHfsm/PlayerSoraSM" index="2" node_paths=PackedStringArray("c_status", "c_move", "c_animation_ez", "hitbox")]
+[node name="Using" type="Node" parent="CharacterBody/ComponentContainer/CHfsm/PlayerSoraSM" index="2" node_paths=PackedStringArray("c_status", "c_animation_ez", "hitbox")]
 script = ExtResource("13_nh2ah")
 c_status = NodePath("../../../CStatus")
-c_move = NodePath("../../../CMove")
 c_animation_ez = NodePath("../../../CAnimationEz")
 hitbox = NodePath("../../../CCollision/Hitbox")
 metadata/_custom_type_script = "uid://ccqx0ki11sww8"
@@ -120,24 +129,28 @@ metadata/_custom_type_script = "uid://ccqx0ki11sww8"
 equipment = NodePath("../../CStatus/Equipment")
 status = NodePath("../../CStatus")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/ComponentContainer/CCollision/Hitbox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/ComponentContainer/CCollision/Hitbox/Area2D" index="0"]
 shape = SubResource("CircleShape2D_bu1qv")
 debug_color = Color(0.6880525, 0.33171237, 0.93363196, 0.41960785)
 
 [node name="CInput" parent="CharacterBody/ComponentContainer" index="6" instance=ExtResource("16_pakgu")]
-award_mode = "全向"
 is_main_controller = true
 
 [node name="CAction" parent="CharacterBody/ComponentContainer" index="7" instance=ExtResource("17_6pmss")]
 
 [node name="SplatSlime" type="Node2D" parent="CharacterBody/ComponentContainer/CAction" index="0"]
 script = ExtResource("20_hqihq")
-projectile_scene = ExtResource("21_x78nq")
+projectile_scene = ExtResource("22_4q10d")
 spend_magic = 1.0
 
 [node name="ChargeMagic" type="Node2D" parent="CharacterBody/ComponentContainer/CAction" index="1"]
 script = ExtResource("22_qcfhx")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody" index="1"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_qcfhx")
+
 [editable path="CharacterBody"]
 [editable path="CharacterBody/ComponentContainer/CAnimationEz"]
 [editable path="CharacterBody/ComponentContainer/CHfsm"]
+[editable path="CharacterBody/ComponentContainer/CCollision/Hitbox"]

@@ -27,7 +27,7 @@ func _ready() -> void:
 		#
 	#)
 	start_game_button.pressed.connect(Callable(func(_args):
-		var game_state_machine = SGameState.state_machine as StateMachine 
+		var game_state_machine = SGameState.state_machine as StateMachineHfsm 
 		
 		var current_state = game_state_machine._get_active_state()
 		if current_state is GameStartState:

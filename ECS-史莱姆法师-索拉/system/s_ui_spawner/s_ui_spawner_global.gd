@@ -9,7 +9,7 @@ var current_ui: IUi
 func _setup():
 	for key in all_hud:
 		var hud = all_hud[key].instantiate()
-		Launcher.main.ui_view.add_child(hud)
+		Main.ui_view.add_child(hud)
 		current_hud[key] = hud as IHud
 		current_hud[key].hide()
 
@@ -21,7 +21,7 @@ func _spawn_ui(scene: PackedScene, context: Dictionary = {}) -> IUi:
 		if current_ui:
 			current_ui.queue_free()
 		current_ui = canvas
-		Launcher.main.ui_view.add_child(current_ui)
+		Main.ui_view.add_child(current_ui)
 		current_ui.unspawned.connect(_unspawn_ui)
 		canvas._initilize_info(context)
 		return canvas
@@ -41,7 +41,7 @@ func _unspawn_ui(target_ui: IUi):
 		target_ui.queue_free()
 
 func _all_unspawn():
-	for i in Launcher.main.ui_view.get_children():
+	for i in Main.ui_view.get_children():
 		i.queue_free()
 
 ## 当系统完成加载的时候，进入主场景

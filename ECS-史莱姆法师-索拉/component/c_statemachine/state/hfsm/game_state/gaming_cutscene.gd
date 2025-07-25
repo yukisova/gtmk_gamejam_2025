@@ -1,3 +1,3 @@
 @tool
-extends State
+extends StateHfsm
 	

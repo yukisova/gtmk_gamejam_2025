@@ -5,7 +5,7 @@
 ## @init: 游戏暂停
 @tool
 class_name GamingChildStateMachine
-extends StateMachine
+extends StateMachineHfsm
 
 var update_trigger = false
 

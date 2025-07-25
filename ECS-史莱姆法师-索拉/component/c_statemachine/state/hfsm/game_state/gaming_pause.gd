@@ -4,4 +4,4 @@
 ## 1. 游戏主场景加载，并发送了相关的信号
 ## 2. 游戏退出
 @tool
-extends State
+extends StateHfsm

@@ -21,17 +21,19 @@ func _effect(..._args):
 		var magic = status.status_list[SoraConstant.StatusEnum.Magic]
 		if magic.value > spend_magic: ## 消耗法力
 			magic.value = magic.value - spend_magic
+			var projectile = projectile_scene.instantiate() as Entity
+			
 			var mouse_global = get_global_mouse_position()
-			var projectile = projectile_scene.instantiate() as CharacterBody2D
 			var start_direction = global_position.direction_to(mouse_global).normalized()
 			var start_position = global_position + start_direction * shoot_offset
 			
 			var context = {
-				"start_position": start_position,
+				"global_position": start_position,
 				"start_direction": start_direction,
 				"target_position": mouse_global
 			}
-			projectile._launch(context)
+			
+			projectile._init_data_binding(context)
 			
 			SObjectPool.add_child(projectile)
 			timer.start()

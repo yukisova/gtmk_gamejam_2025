@@ -3,7 +3,7 @@
 class_name C_Collision
 extends IComponent
 
-var collision: Dictionary[StringName, Area2D] = {}
+var collision: Dictionary[StringName, BoxCollision] = {}
 
 
 func _enter_tree() -> void:

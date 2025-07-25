@@ -1,8 +1,8 @@
 @tool
-extends State
+extends StateHfsm
 
 @export var animated_sprite: AnimatedSprite2D
-@export var c_move: IComponent
+@export var vector_move: MoveStrategy
 @export var c_navigation: C_Navigation
 
 @export var walk_state_time_range: Vector2 = Vector2(3.0, 5.0)
@@ -41,7 +41,7 @@ func _fixed_update(delta: float) -> void:
 	var target_position: Vector2 = c_navigation.nav_agent.get_next_path_position()
 	var target_direction: Vector2 = c_navigation.component_body.global_position.direction_to(target_position).normalized()
 	animated_sprite.flip_h = target_direction.x < 0
-	var _owner_body = c_move.component_body as CharacterBody2D
+	var _owner_body = vector_move.component_body as CharacterBody2D
 	var _velocity = target_direction * current_speed
 	
 	if c_navigation.nav_agent.avoidance_enabled:

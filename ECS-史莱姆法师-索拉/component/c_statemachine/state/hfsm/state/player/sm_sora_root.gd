@@ -1,5 +1,5 @@
 @tool
-extends StateMachine
+extends StateMachineHfsm
 
 @export var splat: Action ## 史莱姆发射
 @export var charge: Action ## 魔力补充行为
@@ -9,7 +9,7 @@ func _update(delta: float) -> void:
 	
 
 func _listen():
-	if _get_active_state() != $using:
+	if _get_active_state() != $Using:
 		if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)): ## 发射
 			splat._effect()
 			print("按住了发射按钮")

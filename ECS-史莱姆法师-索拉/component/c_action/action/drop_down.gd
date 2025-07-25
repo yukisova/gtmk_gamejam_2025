@@ -10,4 +10,4 @@ func _ready() -> void:
 func _effect(..._args):
 	if _args[0] == SoraConstant.StatusEnum.Health:
 		var item = drop_item.instantiate() as Entity
-		SMapData.factor_added(item, c_action.component_owner.main_control.global_position)
+		SMapData.factor_added.emit(item, c_action.component_owner.main_control.global_position)

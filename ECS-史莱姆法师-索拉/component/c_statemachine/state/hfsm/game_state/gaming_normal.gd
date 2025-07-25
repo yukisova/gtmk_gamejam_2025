@@ -6,7 +6,7 @@
 ## 2. 进入过场剧情
 @tool
 class_name GamingStateNormal
-extends State
+extends StateHfsm
 
 func _enter():
 	SUiSpawner.current_hud[&""]._refresh()

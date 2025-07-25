@@ -1,9 +1,8 @@
 ## state_using
 @tool
-extends State
+extends StateHfsm
 
 @export var c_status: C_Status
-@export var c_move: IComponent
 @export var c_animation_ez: IComponent
 @export var hitbox: Hitbox
 

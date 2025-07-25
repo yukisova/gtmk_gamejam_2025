@@ -2,7 +2,7 @@
 @tool
 class_name Launcher
 extends Node
-enum GameMode {Main_Game, Test_Game}
+enum GameMode{Main_Game = 0, Test_Game}
 
 @export var mode: GameMode :
 	set(value):
@@ -14,11 +14,12 @@ enum GameMode {Main_Game, Test_Game}
 @export var test_game: PackedScene
 
 static var main: Main ## 主游戏进程
-
+static var mode_setted: GameMode
 
 func _ready() -> void:
 	if (Engine.is_editor_hint()):
 		return
+	mode_setted = mode
 	match mode:
 		GameMode.Main_Game:
 			main = main_game.instantiate()
