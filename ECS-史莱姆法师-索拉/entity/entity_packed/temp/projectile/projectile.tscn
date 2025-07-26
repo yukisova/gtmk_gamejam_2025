@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_hdxy7"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_xyu1e"]
 [ext_resource type="PackedScene" uid="uid://bvjy63fua1sx2" path="res://component/c_texture/c_texture.tscn" id="3_vpm3q"]
-[ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_move/c_movement.tscn" id="4_0o871"]
-[ext_resource type="Script" uid="uid://cn6q2f0x31g2l" path="res://component/c_move/move_strategy/striangth.gd" id="5_xyu1e"]
+[ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_movement/c_movement.tscn" id="4_0o871"]
+[ext_resource type="Script" uid="uid://cn6q2f0x31g2l" path="res://component/c_movement/move_strategy/striangth.gd" id="5_xyu1e"]
 
 [sub_resource type="Gradient" id="Gradient_g4yk5"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)

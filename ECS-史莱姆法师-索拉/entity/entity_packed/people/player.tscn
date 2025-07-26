@@ -5,20 +5,20 @@
 [ext_resource type="PackedScene" uid="uid://bo5de2ow6bqjo" path="res://component/c_camera/c_camera.tscn" id="3_7opqx"]
 [ext_resource type="Script" uid="uid://b1kgwv70jiajt" path="res://component/c_camera/follow_strategy/cfs_mouse_follow.gd" id="4_5hv6v"]
 [ext_resource type="PackedScene" uid="uid://cm1y3qybnsk5w" path="res://component/c_texture/c_texture_ez.tscn" id="5_d3wpe"]
-[ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/engine_template/sprite/animated_sprite/player_frame.tres" id="6_wtt8g"]
-[ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_move/c_movement.tscn" id="7_tjnqw"]
-[ext_resource type="Script" uid="uid://dwt0prmf31a5" path="res://component/c_move/move_strategy/vector_move.gd" id="8_oqud2"]
+[ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/resource_template/sprite/animated_sprite/player_frame.tres" id="6_wtt8g"]
+[ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_movement/c_movement.tscn" id="7_tjnqw"]
+[ext_resource type="Script" uid="uid://dwt0prmf31a5" path="res://component/c_movement/move_strategy/vector_move.gd" id="8_oqud2"]
 [ext_resource type="PackedScene" uid="uid://caj56l0yail7q" path="res://component/c_status/c_status.tscn" id="9_0m78x"]
 [ext_resource type="PackedScene" uid="uid://bwirxc82f24gv" path="res://component/c_status/status_extension/equipment/equipment.tscn" id="10_e151v"]
-[ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_statemachine/c_state.tscn" id="11_65cdk"]
-[ext_resource type="Script" uid="uid://dnmlb5kw5y7u3" path="res://component/c_statemachine/state/hfsm/state/player/sm_sora_root.gd" id="12_t8ncc"]
-[ext_resource type="Script" uid="uid://c84h4bwfj007x" path="res://component/c_statemachine/transition_state.gd" id="13_8ldu4"]
-[ext_resource type="Script" uid="uid://dh0lerokskmi3" path="res://component/c_statemachine/state/hfsm/state/player/state_idle.gd" id="14_5yvyf"]
-[ext_resource type="Script" uid="uid://bsspef4eb5bx1" path="res://component/c_statemachine/state/hfsm/state/player/state_move.gd" id="15_hpj0e"]
-[ext_resource type="Script" uid="uid://caum0vdmqrfd4" path="res://component/c_statemachine/state/hfsm/state/player/state_using.gd" id="16_dcmyi"]
+[ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_state/c_state.tscn" id="11_65cdk"]
+[ext_resource type="Script" uid="uid://dnmlb5kw5y7u3" path="res://component/c_state/state/hfsm/state/player/sm_sora_root.gd" id="12_t8ncc"]
+[ext_resource type="Script" uid="uid://c84h4bwfj007x" path="res://component/c_state/transition_state.gd" id="13_8ldu4"]
+[ext_resource type="Script" uid="uid://dh0lerokskmi3" path="res://component/c_state/state/hfsm/state/player/state_idle.gd" id="14_5yvyf"]
+[ext_resource type="Script" uid="uid://bsspef4eb5bx1" path="res://component/c_state/state/hfsm/state/player/state_move.gd" id="15_hpj0e"]
+[ext_resource type="Script" uid="uid://caum0vdmqrfd4" path="res://component/c_state/state/hfsm/state/player/state_using.gd" id="16_dcmyi"]
 [ext_resource type="PackedScene" uid="uid://cps21xspaovit" path="res://component/c_collision/c_collision.tscn" id="17_7jliu"]
 [ext_resource type="PackedScene" uid="uid://dgykredd3ey6r" path="res://component/c_collision/box_collision/hitbox/hitbox.tscn" id="18_qkab5"]
-[ext_resource type="PackedScene" uid="uid://lu3gu1tfxdey" path="res://component/c_input/c_input_reactor.tscn" id="19_eht1i"]
+[ext_resource type="PackedScene" uid="uid://lu3gu1tfxdey" path="res://component/c_input_reactor/c_input_reactor.tscn" id="19_eht1i"]
 [ext_resource type="PackedScene" uid="uid://b3vbfhugiqyva" path="res://component/c_action/c_action.tscn" id="20_olbqg"]
 [ext_resource type="Script" uid="uid://drtm0lb4o8s8v" path="res://component/c_action/action/skill/splat_slime.gd" id="21_dbhy3"]
 [ext_resource type="PackedScene" uid="uid://n4p12hxn4c4n" path="res://entity/entity_packed/temp/projectile/projectile.tscn" id="22_870l4"]
@@ -80,8 +80,8 @@ move_strategy = NodePath("VectorMove")
 
 [node name="VectorMove" type="Node" parent="CharacterBody/ComponentContainer/CMovement" index="0" node_paths=PackedStringArray("c_input", "blackboard")]
 script = ExtResource("8_oqud2")
-move_speed = 1000.0
 c_input = NodePath("../../CInputReactor")
+move_speed = 1000.0
 blackboard = NodePath("../..")
 
 [node name="CStatus" parent="CharacterBody/ComponentContainer" index="3" instance=ExtResource("9_0m78x")]

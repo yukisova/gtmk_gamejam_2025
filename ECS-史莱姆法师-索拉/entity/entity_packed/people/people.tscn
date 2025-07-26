@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://djglhr34yxc4x" path="res://component/c_interaction/interaction/interaction_dialogue.gd" id="4_uye1c"]
 [ext_resource type="PackedScene" uid="uid://cm1y3qybnsk5w" path="res://component/c_texture/c_texture_ez.tscn" id="5_vhvyo"]
 [ext_resource type="Resource" uid="uid://dj7funx2bqofn" path="res://resource/plugins_resource/dialogue/test_dialogue.dialogue" id="6_i1lqe"]
-[ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/engine_template/sprite/animated_sprite/player_frame.tres" id="7_vhvyo"]
+[ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/resource_template/sprite/animated_sprite/player_frame.tres" id="7_vhvyo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vhvyo"]
 size = Vector2(32, 32)

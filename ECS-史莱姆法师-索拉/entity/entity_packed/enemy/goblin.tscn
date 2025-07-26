@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_sh6rx"]
 [ext_resource type="PackedScene" uid="uid://cl2k6r335pke0" path="res://component/c_navigation/c_navigation.tscn" id="3_n5jjb"]
 [ext_resource type="PackedScene" uid="uid://cm1y3qybnsk5w" path="res://component/c_texture/c_texture_ez.tscn" id="3_sh6rx"]
-[ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/engine_template/sprite/animated_sprite/player_frame.tres" id="5_al2bc"]
+[ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/resource_template/sprite/animated_sprite/player_frame.tres" id="5_al2bc"]
 [ext_resource type="PackedScene" uid="uid://b3vbfhugiqyva" path="res://component/c_action/c_action.tscn" id="6_vr1xp"]
-[ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_statemachine/c_state.tscn" id="7_al2bc"]
-[ext_resource type="Script" uid="uid://b5ywitjyd2ccg" path="res://component/c_statemachine/state/hfsm/state_machine_h.gd" id="8_k7t3d"]
-[ext_resource type="Script" uid="uid://djl6r7p66f7on" path="res://component/c_statemachine/state/pda/state_machine_p.gd" id="9_q627x"]
+[ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_state/c_state.tscn" id="7_al2bc"]
+[ext_resource type="Script" uid="uid://b5ywitjyd2ccg" path="res://component/c_state/state/hfsm/state_machine_h.gd" id="8_k7t3d"]
+[ext_resource type="Script" uid="uid://djl6r7p66f7on" path="res://component/c_state/state/pda/state_machine_p.gd" id="9_q627x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5jjb"]
 size = Vector2(8, 4)

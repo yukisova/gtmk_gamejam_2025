@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dmt6bwi1q78e4" path="res://cutscene/cu_000_游戏开场.gd" id="3_bolcs"]
 [ext_resource type="PackedScene" uid="uid://tufppmw8gluy" path="res://resource/node_template/map/tilemap/floating/wall.tscn" id="3_qeueo"]
 [ext_resource type="PackedScene" uid="uid://de3o6pll5kxdx" path="res://resource/node_template/map/player_spawn.tscn" id="3_u4jtt"]
-[ext_resource type="TileSet" uid="uid://claf7ny4rcbup" path="res://resource/engine_template/tileset/float/building_tile_set.tres" id="4_u32on"]
+[ext_resource type="TileSet" uid="uid://claf7ny4rcbup" path="res://resource/resource_template/tileset/float/building_tile_set.tres" id="4_u32on"]
 
 [node name="M未知的地底_10" node_paths=PackedStringArray("player_spawn") instance=ExtResource("1_cmxr7")]
 player_spawn = NodePath("Levels/Level/PlayerSpawn")
