@@ -1,4 +1,6 @@
-## state_idle
+##@editing:	Sora
+##@describe:	玩家的站立(播放对应的动画)
+##			state_idle.gd
 @tool
 extends StateHfsm
 

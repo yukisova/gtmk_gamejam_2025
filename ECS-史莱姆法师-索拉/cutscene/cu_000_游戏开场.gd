@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	测试用, 游戏入场的脚本, 基于Tween节点
 extends Cutscene
 
 ## 在进入GamingNormal状态时自动调用

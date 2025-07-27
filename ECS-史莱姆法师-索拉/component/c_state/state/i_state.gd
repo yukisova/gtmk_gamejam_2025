@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	状态基类
 @abstract class_name State
 extends Node
 

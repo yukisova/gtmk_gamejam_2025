@@ -1,6 +1,7 @@
+##@editing:	Sora
+##@describe:	更简单的纹理(基于AnimatedSprite)
 @tool
 class_name C_TextureEz
-## 动画组件, 统一化显示目标的
 extends IComponent
 
 @export_subgroup("依赖")

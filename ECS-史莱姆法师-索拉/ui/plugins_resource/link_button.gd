@@ -1,4 +1,5 @@
-## 用于打开其他界面的按钮
+##@editing:	Sora
+##@describe:	用于打开其他界面的按钮
 @tool
 class_name LinkageButton
 extends BaseButton

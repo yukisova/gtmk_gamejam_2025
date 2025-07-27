@@ -1,4 +1,5 @@
-## 装备系统，
+##@editing:	Sora
+##@describe:	装备系统扩展
 class_name StatusEquipment
 extends StatusExtension
 

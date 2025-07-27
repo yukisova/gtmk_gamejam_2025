@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	角色的基础hud
 extends IHud
 
 var binding_entity: Entity

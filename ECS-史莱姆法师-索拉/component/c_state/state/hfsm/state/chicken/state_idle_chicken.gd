@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	小鸡NPC的站立AI，但可以用PDA来代替，怎么个代替法没想好
 @tool
 extends StateHfsm
 

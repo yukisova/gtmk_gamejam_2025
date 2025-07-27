@@ -1,4 +1,5 @@
-## 交互组件，分为主动交互与被动交互两种，同时，又分为
+##@editing:	Sora
+##@describe:	交互组件，可以实现基于被动或主动的交互
 @tool
 class_name C_Interactable
 extends IComponent

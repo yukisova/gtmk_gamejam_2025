@@ -1,4 +1,5 @@
-## 静态地图的管理
+##@editing:	Sora
+##@describe:	静态地图类, s_map_data处理的主要对象
 class_name StaticMap
 extends Node
 

@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	人物状态界面UI
 extends IUi
 
 @export_subgroup("测试用")

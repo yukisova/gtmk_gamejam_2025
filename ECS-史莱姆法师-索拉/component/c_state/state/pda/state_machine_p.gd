@@ -1,5 +1,6 @@
-## 栈状态机: 用于Ui交互与敌人的AI（目前对LimboAI存在保留意见，在AI不复杂的情况下没有使用的必要）
-## 因为要实现栈的特性，需要有个头栈
+##@editing:	Sora
+##@describe:	栈状态机: 用于Ui交互与敌人的AI（目前对LimboAI存在保留意见，在AI不复杂的情况下没有使用的必要）
+##			因为要实现栈的特性，需要有个头栈
 @tool
 class_name StateMachinePda
 extends State

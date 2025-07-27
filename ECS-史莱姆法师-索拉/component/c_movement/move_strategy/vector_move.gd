@@ -1,4 +1,5 @@
-## 以向量的方式进行移动，分为输入控制和AI控制两种，对应玩家与其他实体
+##@editing:	Sora
+##@describe:	以向量的方式进行移动，分为输入控制和AI控制两种，对应玩家与其他实体
 extends MoveStrategy
 
 

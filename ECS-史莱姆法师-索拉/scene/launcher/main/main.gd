@@ -1,4 +1,5 @@
-## 主场景，存放一些需要静态存储的变量
+##@editing:	Sora
+##@describe:	主进程场景
 class_name Main
 extends Node
 

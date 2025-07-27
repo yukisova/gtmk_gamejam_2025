@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	可过渡状态关系记录类
 @tool
 class_name TransitionState
 extends Resource

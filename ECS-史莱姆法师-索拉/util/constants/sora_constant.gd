@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	静态的常量调用类
 class_name SoraConstant
 extends RefCounted
 

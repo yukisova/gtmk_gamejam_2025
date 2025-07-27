@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	Hud类
 @abstract class_name IHud
 extends CanvasLayer
 

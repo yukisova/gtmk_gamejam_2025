@@ -1,8 +1,9 @@
-## 游戏进行子状态机
-## 其下有两个状态
-## 1. 正常游戏: 允许玩家操控自己的角色，进行游戏场景内的互动
-## 2. 游戏暂停: 游戏冻结，只允许UI继续运行
-## @init: 游戏暂停
+##@editing:	Sora
+##@describe:	游戏进行时子状态机
+##			其下有两个状态
+##			1. 正常游戏: 允许玩家操控自己的角色，进行游戏场景内的互动
+##			2. 游戏暂停: 游戏冻结，只允许UI继续运行
+##			想法: 游戏开始运行时默认为cutscene状态
 @tool
 class_name GamingChildStateMachine
 extends StateMachineHfsm

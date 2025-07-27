@@ -1,4 +1,5 @@
-## HurtBox
+##@editing:	Sora
+##@describe:	用于可受伤的实体，与HitBox进行对接，计算来自目标的伤害并作用于Status组件
 class_name Hurtbox
 extends BoxCollision
 

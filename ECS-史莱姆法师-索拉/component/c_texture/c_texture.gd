@@ -1,6 +1,7 @@
+##@editing:	Sora
+##@describe:纹理组件,标明实体所使用的纹理
 @tool
 class_name C_Texture
-## 动画组件, 统一化显示目标的
 extends IComponent
 
 @export_subgroup("依赖")

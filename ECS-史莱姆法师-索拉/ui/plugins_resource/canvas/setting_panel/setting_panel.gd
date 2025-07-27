@@ -1,4 +1,5 @@
-## 设置界面
+##@editing:	Sora
+##@describe:	设置界面(子canvas)
 extends Control
 
 signal window_closed

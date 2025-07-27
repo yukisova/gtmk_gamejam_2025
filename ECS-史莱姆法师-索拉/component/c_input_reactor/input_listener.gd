@@ -1,4 +1,5 @@
-## 用于静态处理玩家的指令的输入监听系统
+##@editing:	Sora
+##@describe:	FIXME 位于PlayerStatic系统中的用于静态处理玩家的指令的输入监听系统，需要优化
 class_name InputListener
 extends Node
 

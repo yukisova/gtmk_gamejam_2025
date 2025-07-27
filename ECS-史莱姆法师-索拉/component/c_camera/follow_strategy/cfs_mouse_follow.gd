@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	类孤胆枪手-根据鼠标的位置对镜头进行偏移
 extends CameraFollowStrategy
 
 @export_range(0.0, 1.0, 0.01) var smoothing: float = 0.1

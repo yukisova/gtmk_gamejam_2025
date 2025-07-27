@@ -1,4 +1,6 @@
-## state_using
+##@editing:	Sora
+##@describe:	玩家的使用(播放对应的动画)
+##			state_using
 @tool
 extends StateHfsm
 

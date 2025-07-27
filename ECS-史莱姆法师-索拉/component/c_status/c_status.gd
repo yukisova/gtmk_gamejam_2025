@@ -1,4 +1,9 @@
-## 状态组件, 目标是
+##@editing:	Sora
+##@describe:	实体的状态组件，可以使用status_extension类进行扩展,
+##			分为三种主要状态
+##			1. StatusInfo: 如血量, 魔力这些需要时刻监控的经常发生变化的信息，并有对应的临界值与临界值触发信号
+##			2. NumInfo: 如攻击力, 这些会影响玩家的战斗体验的数值信息, 不会经常发生改变, 只作为装饰器的量
+##			3. BuffInfo: FIXME 可以做在status_extension中 即临时状态, 有着时间限制或信号限制，限制过后消失,有自身的一套_effect方法
 @tool
 class_name C_Status
 extends IComponent

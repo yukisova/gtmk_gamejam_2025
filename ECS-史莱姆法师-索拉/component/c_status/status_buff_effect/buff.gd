@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	Buff的基类
 @abstract class_name Buff
 extends RefCounted
 

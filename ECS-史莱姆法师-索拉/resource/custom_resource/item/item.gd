@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	物品的基类
 @abstract class_name Item
 extends Resource
 

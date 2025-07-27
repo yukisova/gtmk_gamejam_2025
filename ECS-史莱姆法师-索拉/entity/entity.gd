@@ -1,5 +1,6 @@
+## @editing: Sora
+## @describe: 实体类，以组合形式，实现一组逻辑，可以当作是一个平台
 @tool
-## 实体组件, 本身是一个平台
 class_name Entity
 extends Node2D
 

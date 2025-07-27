@@ -1,5 +1,7 @@
 ## 层级子场景
 class_name Level
+##@editing:	Sora
+##@describe:静态地图里的层级系统
 extends Node2D
 
 signal level_fully_loaded

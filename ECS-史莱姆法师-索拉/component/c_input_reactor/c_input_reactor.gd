@@ -1,4 +1,5 @@
-## 控制组件，拥有该组件，目标可以被移动
+##@editing:	Sora
+##@describe:	可控制组件，拥有该组件的实体可以被操控，但细节层面可以进行优化
 @tool
 class_name C_InputReactor
 extends IComponent

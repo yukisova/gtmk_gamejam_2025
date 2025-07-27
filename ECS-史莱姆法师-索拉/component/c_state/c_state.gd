@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	状态机组件,包含行为状态机(hfsm)与ai状态机(pda)，前者效果类似动画状态机，后者用于模拟简单的行为树(非玩家)
 @tool
 class_name C_State
 extends IComponent

@@ -1,4 +1,5 @@
-## 游戏的主菜单，包含自动加载的开场动画，与游戏的所有选项，以后肯定会经常用到，因此现在先开始
+##@editing:	Sora
+##@describe:	游戏的主菜单，包含自动加载的开场动画，与游戏的所有选项，以后肯定会经常用到，因此现在先开始
 extends IUi
 
 @export var bgm: AudioStream

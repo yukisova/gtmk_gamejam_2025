@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	小鸡NPC的我行走AI，用到了导航节点
 @tool
 extends StateHfsm
 

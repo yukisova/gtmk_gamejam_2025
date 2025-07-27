@@ -1,3 +1,5 @@
+##@editing:	Sora
+##@describe:	玩家的hfsm根状态机,主要用于实现一些特殊的按键监听 
 @tool
 extends StateMachineHfsm
 

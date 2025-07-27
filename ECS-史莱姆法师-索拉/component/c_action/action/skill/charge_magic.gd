@@ -1,4 +1,5 @@
-## 积蓄法力，好重新进行
+##@editing:	Sora
+##@describe:	用于玩家Entity的，积蓄法力行为，每一次_effect间隔0.1s,+1点魔力
 extends Action
 
 var timer: Timer
