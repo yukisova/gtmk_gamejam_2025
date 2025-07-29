@@ -6,16 +6,17 @@ extends IComponent
 
 
 @export_enum("横版", "四向", "八向", "全向") var award_mode: String = "四向"
-@export_flags("向量监听") var enable_flag: int
+@export_flags("向量监听","主控") var disable_flag: int:
+	set(v):
+		disable_flag = v
+		notify_property_list_changed()
 ## 游戏的装备等游戏内信息相关的设置菜单
 @export var brain_ui: PackedScene
 ## 游戏的设置，游戏的退出等游戏外相关的设置菜单
 @export var pause_ui: PackedScene
-## 是否是主控制器
-@export var is_main_controller: bool = false:
-	set(v):
-		is_main_controller = v
-		notify_property_list_changed()
+
+@export var aim_texture: Sprite2D
+@export var weapon_texture: Sprite2D
 
 var input_vector_dict: Dictionary[String, Vector2] = {
 	"move" : Vector2.ZERO
@@ -31,7 +32,9 @@ func _enter_tree() -> void:
 func _initialize(_owner: Entity):
 	super._initialize(_owner)
 	
-	SMainController.input_listener.binding_input_component = self
+	if component_owner == SMainController.player_static:
+		SMainController.input_listener.binding_input_component = self
+		disable_flag |= 0b010
 
 func validate_control(key_string: StringName, control_mode: ControlMode = ControlMode.just_pressed) -> bool:
 	if (SGlobalConfig.is_initialized):
@@ -91,7 +94,11 @@ var interact_obj: C_Interactable = null:
 func _avaliable_in_gaming():
 	
 	input_vector_dict.move = _try_vector_control()
-
+	
+	aim_texture.global_position = aim_texture.get_global_mouse_position()
+	weapon_texture.rotation = (Vector2.ZERO).direction_to(aim_texture.position).normalized().angle()
+	
+	
 	if validate_control("brain_trigger", ControlMode.just_pressed):
 		SUiSpawner._spawn_ui(brain_ui)
 	elif validate_control("pause_game", ControlMode.just_pressed):
@@ -103,9 +110,9 @@ func _avaliable_in_gaming():
 #endregion
 
 func _validate_property(property: Dictionary) -> void:
-	if !is_main_controller:
+	if disable_flag & 0b010 != 0:
 		if property.name == "brain_ui" or property.name == "pause_ui":
 			property.usage = PROPERTY_USAGE_NO_EDITOR
-	if enable_flag & 0b001 != 0:
+	if disable_flag & 0b001 != 0:
 		if property.name == "award_mode":
 			property.usage = PROPERTY_USAGE_NO_EDITOR

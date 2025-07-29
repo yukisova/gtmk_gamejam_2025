@@ -6,7 +6,7 @@ extends StateHfsm
 
 signal state_transition_finished
 
-@export_node_path() var init_state: NodePath:
+@export_node_path("StateHfsm") var init_state: NodePath:
 	set(value):
 		if value.is_empty():
 			init_state = NodePath()
