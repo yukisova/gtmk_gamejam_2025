@@ -1,4 +1,5 @@
-## 组件基类, 分为插件组件和固定组件
+## @editing: Sora [br]
+## @describe: 组件基类, 分为插件组件和固定组件
 @abstract class_name IComponent
 extends Node
 

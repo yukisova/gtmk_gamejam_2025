@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	用于子弹或近战，与目标实体的HurtBox进行对接，对目标造成伤害
+## @editing: Sora [br]
+## @describe: 用于子弹或近战，与目标实体的HurtBox进行对接，对目标造成伤害
 class_name Hitbox
 extends BoxCollision
 

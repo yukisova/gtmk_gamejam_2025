@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	基于Hfsm的状态机类，本身也属于一个状态，基于此实现多层有限状态机
+## @editing: Sora [br]
+## @describe: 基于Hfsm的状态机类，本身也属于一个状态，基于此实现多层有限状态机
 @tool
 class_name StateMachineHfsm
 extends StateHfsm

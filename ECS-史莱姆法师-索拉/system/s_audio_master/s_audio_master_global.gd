@@ -1,5 +1,5 @@
-## 音频总线系统，负责管理游戏中应当出现的背景音乐，音效等的混合
-## sfx存在
+## @editing: Sora [br]
+## @describe: 音频总线系统，负责管理游戏中应当出现的背景音乐，音效等的混合
 extends ISystem
 
 enum AudioBusEnum {

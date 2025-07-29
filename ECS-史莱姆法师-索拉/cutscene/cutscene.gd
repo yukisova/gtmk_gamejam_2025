@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	是专门进行过场剧情的，会根据传入的逻辑参数进行指定的剧情处理
+## @editing: Sora [br]
+## @describe: 是专门进行过场剧情的，会根据传入的逻辑参数进行指定的剧情处理 [br]
 ##			可能存在多个剧情，因此没有需要继承的方法，根据需要进行动态的运行
 @abstract class_name Cutscene
 extends Node

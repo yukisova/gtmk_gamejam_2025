@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	针对components容器的黑板变量，在entity被代码自动创建时，用来确定entity的基本信息
+## @editing: Sora [br]
+## @describe: 针对components容器的黑板变量，在entity被代码自动创建时，用来确定entity的基本信息
 class_name ContainerBlackboard
 extends Node
 

@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	交互逻辑的基类
+## @editing: Sora [br]
+## @describe: 交互逻辑的基类
 @abstract class_name Interaction
 extends Node
 

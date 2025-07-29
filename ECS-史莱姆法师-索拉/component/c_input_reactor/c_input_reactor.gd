@@ -1,12 +1,12 @@
-##@editing:	Sora
-##@describe:	可控制组件，拥有该组件的实体可以被操控，但细节层面可以进行优化
+## @editing: Sora [br]
+## @describe: 可控制组件，拥有该组件的实体可以被操控，但细节层面可以进行优化
 @tool
 class_name C_InputReactor
 extends IComponent
 
 
 @export_enum("横版", "四向", "八向", "全向") var award_mode: String = "四向"
-
+@export_flags("向量监听") var enable_flag: int
 ## 游戏的装备等游戏内信息相关的设置菜单
 @export var brain_ui: PackedScene
 ## 游戏的设置，游戏的退出等游戏外相关的设置菜单
@@ -25,16 +25,13 @@ enum ControlMode{ just_pressed = 0, pressed, just_release }
 
 func _enter_tree() -> void:
 	component_name = ComponentName.c_input_reactor
+	
+	notify_property_list_changed()
 
 func _initialize(_owner: Entity):
 	super._initialize(_owner)
 	
-	SPlayerStatic.input_listener.binding_input_component = self
-
-func _validate_property(property: Dictionary) -> void:
-	if !is_main_controller:
-		if property.name == "brain_ui" or property.name == "pause_ui":
-			property.usage = PROPERTY_USAGE_NO_EDITOR
+	SMainController.input_listener.binding_input_component = self
 
 func validate_control(key_string: StringName, control_mode: ControlMode = ControlMode.just_pressed) -> bool:
 	if (SGlobalConfig.is_initialized):
@@ -47,55 +44,19 @@ func validate_control(key_string: StringName, control_mode: ControlMode = Contro
 				return Input.is_action_just_released(key_string)
 	return false
 
-#region 移动
-func _vec_input_2_toward() -> Dictionary:
-	return {}
 
-## 4向移动
-func _vec_input_4_toward() -> Dictionary:
-	var vec_info : Dictionary = {}
-	if Input.is_action_pressed("move_l"):
-		vec_info["vec"] = Vector2.LEFT
-	elif Input.is_action_pressed("move_r"):
-		vec_info["vec"] = Vector2.RIGHT
-	elif Input.is_action_pressed("move_u"):
-		vec_info["vec"] = Vector2.UP
-	elif Input.is_action_pressed("move_d"):
-		vec_info["vec"] = Vector2.DOWN
-	else:
-		vec_info["vec"] = Vector2.ZERO
-	if (!vec_info["vec"].is_zero_approx()):
-		vec_info["pre_vec"] = vec_info["vec"]
-	return vec_info
-
-func _vec_input_8_toward() -> Dictionary:
-	var vec_info: Dictionary = {}
-	vec_info["vec"] = Input.get_vector("move_l","move_r","move_u","move_d").sign()
-	
-	if (!vec_info["vec"].is_zero_approx()):
-		vec_info["pre_vec"] = vec_info["vec"]
-	return vec_info
-
-## 全向移动
-func _vec_input_a_toward() -> Dictionary:
-	var vec_info : Dictionary = {}
-	vec_info["vec"] = Input.get_vector("move_l","move_r","move_u","move_d")
-	
-	if (!vec_info["vec"].is_zero_approx()):
-		vec_info["pre_vec"] = vec_info["vec"]
-	return vec_info
-
+#region 是否监听向量
 func try_input_vector() -> Dictionary:
 	if (SGlobalConfig.is_initialized):
 		match award_mode:
 			"横版":
-				pass
+				return SMainController._vec_input_2_toward()
 			"四向":
-				return _vec_input_4_toward()
+				return SMainController._vec_input_4_toward()
 			"八向":
-				return _vec_input_8_toward()
+				return SMainController._vec_input_8_toward()
 			"全向":
-				return _vec_input_a_toward()
+				return SMainController._vec_input_a_toward()
 			_:
 				push_error("输入有问题")
 	return {}
@@ -141,5 +102,10 @@ func _avaliable_in_gaming():
 			interact_obj.interact_activated.emit()
 #endregion
 
-#region 动态触发逻辑
-#endregion
+func _validate_property(property: Dictionary) -> void:
+	if !is_main_controller:
+		if property.name == "brain_ui" or property.name == "pause_ui":
+			property.usage = PROPERTY_USAGE_NO_EDITOR
+	if enable_flag & 0b001 != 0:
+		if property.name == "award_mode":
+			property.usage = PROPERTY_USAGE_NO_EDITOR

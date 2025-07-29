@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	可过渡状态关系记录类(放在状态而非放在状态机中)
+## @editing: Sora [br]
+## @describe: 可过渡状态关系记录类(放在状态而非放在状态机中)
 @tool
 class_name TrainsitionRecord
 extends Resource

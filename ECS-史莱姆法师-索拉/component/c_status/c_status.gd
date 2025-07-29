@@ -1,7 +1,7 @@
-##@editing:	Sora
-##@describe:	实体的状态组件，可以使用status_extension类进行扩展,
-##			分为三种主要状态
-##			1. StatusInfo: 如血量, 魔力这些需要时刻监控的经常发生变化的信息，并有对应的临界值与临界值触发信号
+## @editing: Sora [br]
+## @describe: 实体的状态组件，可以使用status_extension类进行扩展, [br]
+##			分为两种主要状态 [br]
+##			1. StatusInfo: 如血量, 魔力这些需要时刻监控的经常发生变化的信息，并有对应的临界值与临界值触发信号 [br]
 ##			2. NumInfo: 如攻击力, 这些会影响玩家的战斗体验的数值信息, 不会经常发生改变, 只作为装饰器的量
 @tool
 class_name C_Status

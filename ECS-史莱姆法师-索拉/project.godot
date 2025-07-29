@@ -29,11 +29,12 @@ SAudioMaster="*res://system/s_audio_master/s_audio_master_global.tscn"
 SGameState="*res://system/s_game_state/s_game_state_global.tscn"
 SLoadAndSave="*res://system/s_load_save/s_load_and_save_global.tscn"
 SMapData="*res://system/s_map_data/s_map_data_global.tscn"
-SPlayerStatic="*res://system/s_player_static/s_player_static_global.tscn"
+SMainController="*res://system/s_main_controller/s_main_controller_global.tscn"
 SSignalBus="*res://system/s_signal_bus/s_signal_bus_global.tscn"
 SUiSpawner="*res://system/s_ui_spawner/s_ui_spawner_global.tscn"
 SGlobalConfig="*res://system/s_global_config/s_global_config_global.tscn"
 SObjectPool="*res://system/s_object_pool/s_object_pool_global.tscn"
+SCommandParser="*res://system/s_command_parser/s_command_parser.tscn"
 
 [dialogue_manager]
 

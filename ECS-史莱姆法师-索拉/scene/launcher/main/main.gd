@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	主进程场景
+## @editing: Sora [br]
+## @describe: 主进程场景
 class_name Main
 extends Node
 
@@ -25,7 +25,7 @@ func register_system():
 	SGlobalConfig._setup()
 	SLoadAndSave._setup()
 	SMapData._setup()
-	SPlayerStatic._setup()
+	SMainController._setup()
 	SSignalBus._setup()
 	SUiSpawner._setup()
 

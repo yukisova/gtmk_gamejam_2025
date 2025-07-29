@@ -1,6 +1,6 @@
-##@editing:	Sora
-##@describe:	玩家的移动(播放对应的动画)
-##			state_move
+## @editing: Sora [br]
+## @describe: 玩家的移动(播放对应的动画)
+## @filename: state_move
 @tool
 extends StateHfsm
 

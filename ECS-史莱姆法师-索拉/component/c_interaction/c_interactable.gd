@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	交互组件，可以实现基于被动或主动的交互
+## @editing: Sora [br]
+## @describe: 交互组件，可以实现基于被动或主动的交互
 @tool
 class_name C_Interactable
 extends IComponent

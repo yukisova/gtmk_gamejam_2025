@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	死亡后尸体掉落物品(所谓的物品本身应为实体，具体的数据依靠相关的Resource类进行初始化)
+## @editing: Sora [br]
+## @describe: 死亡后尸体掉落物品(所谓的物品本身应为实体，具体的数据依靠相关的Resource类进行初始化)
 extends Action
 
 @export var drop_item: PackedScene

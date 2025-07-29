@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	拾取交互，之后会更加生动
+## @editing: Sora [br]
+## @describe: 拾取交互，之后会更加生动
 extends Interaction
 
 func _on_interact_activated(_component: IComponent):

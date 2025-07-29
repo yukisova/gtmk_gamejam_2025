@@ -1,4 +1,4 @@
-## @editing:	 Sora
+## @editing: Sora [br]
 ## @describe: 状态机组件
 @tool
 class_name C_State

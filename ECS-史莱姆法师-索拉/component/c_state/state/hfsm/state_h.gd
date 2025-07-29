@@ -1,4 +1,4 @@
-## @editing: Sora
+## @editing: Sora [br]
 ## @describe: 基于Hfsm的状态基类, 包含过渡与状态拥有者
 
 @tool

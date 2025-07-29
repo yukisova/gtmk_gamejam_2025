@@ -1,4 +1,4 @@
-## @editing: Sora
+## @editing: Sora [br]
 ## @describe: 实体类，以组合形式，实现一组逻辑，可以当作是一个平台
 @tool
 class_name Entity

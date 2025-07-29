@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	测试用, 游戏入场的脚本, 基于Tween节点
+## @editing: Sora [br]
+## @describe: 测试用, 游戏入场的脚本, 基于Tween节点
 extends Cutscene
 
 ## 在进入GamingNormal状态时自动调用
@@ -14,7 +14,7 @@ func _start(_context: Dictionary):
 func 过场1_玩家苏醒(_context: Dictionary):
 	## 镜头一，询问玩家控制信息
 	## 1. 视角缩小，
-	var player = SPlayerStatic.player_static
+	var player = SMainController.player_static
 	var c_camera = player.list_base_components[IComponent.ComponentName.c_camera] as C_Camera
 	c_camera.camera.zoom = Vector2(5,5) ## 对视野进行缩小
 	

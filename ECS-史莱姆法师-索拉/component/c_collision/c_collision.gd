@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	实体额外碰撞体组件, 所有的碰撞体基于Area2D, 方便进行引用, 命名为BoxCollision
+## @editing: Sora [br]
+## @describe: 实体额外碰撞体组件, 所有的碰撞体基于Area2D, 方便进行引用, 命名为BoxCollision
 @tool
 class_name C_Collision
 extends IComponent

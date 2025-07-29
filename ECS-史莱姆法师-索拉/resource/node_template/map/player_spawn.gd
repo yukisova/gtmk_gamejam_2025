@@ -1,5 +1,6 @@
-##@editing:	Sora
-##@describe:	未指定玩家出生点的地图内，玩家的出生点，主要的点是指定玩家所在的层级与所在的global_position
+## @editing: Sora [br]
+## @describe: 未指定玩家出生点的地图内，玩家的出生点 [br]
+##			  主要的点是指定玩家所在的层级与所在的global_position
 class_name PlayerSpawn
 extends Node2D
 

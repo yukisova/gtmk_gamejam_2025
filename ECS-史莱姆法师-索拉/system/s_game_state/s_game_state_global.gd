@@ -1,3 +1,5 @@
+## @editing: Sora [br]
+## @describe: 游戏的状态机系统
 extends ISystem
 
 @export var state_machine: StateMachineHfsm

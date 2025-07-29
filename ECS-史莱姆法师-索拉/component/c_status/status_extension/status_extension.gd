@@ -1,4 +1,6 @@
-## 背包等复杂特殊状态的状态
+## @editing: Sora [br]
+## @describe: 背包等复杂特殊状态的状态
+
 class_name StatusExtension
 extends Node
 

@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	静态地图类, s_map_data处理的主要对象
+## @editing: Sora [br]
+## @describe: 静态地图类, s_map_data处理的主要对象
 class_name StaticMap
 extends Node
 
