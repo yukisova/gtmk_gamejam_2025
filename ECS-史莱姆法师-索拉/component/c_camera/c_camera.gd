@@ -1,5 +1,5 @@
-##@editing:	Sora
-##@describe:	聚焦于实体的Camera组件，包含Camera的跟随策略
+## @editing: Sora
+## @describe: 聚焦于实体的Camera组件，包含Camera的跟随策略
 @tool
 class_name C_Camera
 extends IComponent

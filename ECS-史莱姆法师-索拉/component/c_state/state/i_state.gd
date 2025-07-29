@@ -7,7 +7,7 @@ func _enter():
 	pass
 
 func _update(_delta: float) -> void:
-	_listen()
+	pass
 
 func _fixed_update(_delta: float) -> void:
 	pass

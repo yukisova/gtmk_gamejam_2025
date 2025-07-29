@@ -3,7 +3,6 @@
 ##			分为三种主要状态
 ##			1. StatusInfo: 如血量, 魔力这些需要时刻监控的经常发生变化的信息，并有对应的临界值与临界值触发信号
 ##			2. NumInfo: 如攻击力, 这些会影响玩家的战斗体验的数值信息, 不会经常发生改变, 只作为装饰器的量
-##			3. BuffInfo: FIXME 可以做在status_extension中 即临时状态, 有着时间限制或信号限制，限制过后消失,有自身的一套_effect方法
 @tool
 class_name C_Status
 extends IComponent
@@ -39,13 +38,6 @@ class StatusInfo:
 		max_value = _max_value
 		value = _value
 
-class BuffInfo:
-	signal status_overed(status_enum: SoraConstant.StatusEnum)
-	
-	func _init(_status_enum: SoraConstant.StatusEnum) -> void:
-		
-		pass
-
 class NumInfo:
 	var status_enum: SoraConstant.StatusEnum
 	var value: int
@@ -54,7 +46,6 @@ class NumInfo:
 		value = _value
 
 var status_list: Dictionary[SoraConstant.StatusEnum, StatusInfo] = {} ## 血量，耐力等需要频繁变动的状态信息
-var buff_list: Dictionary[SoraConstant.StatusEnum, BuffInfo] = {} ## 睡眠，晕眩等Buff信息
 var numinfo_list: Dictionary[SoraConstant.StatusEnum, NumInfo] = {} ## 攻击力，防御力等基础数值信息
 
 var status_extension: Dictionary[String, StatusExtension] = {} ## 
@@ -75,12 +66,13 @@ func _initialize(_owner: Entity):
 			0: ## 状态信息
 				status_list[key] = StatusInfo.new(key, info, info)
 				status_list[key].status_overed.connect(_on_status_overed)
-			1: ## Buff信息
-				pass
-			2: ## 数值信息
+			1: ## 数值信息
 				numinfo_list[key] = NumInfo.new(key, info)
 				pass
-			
+
+func _update(_delta: float):
+	for i in status_extension.values():
+		i._effect()
 
 func _on_status_overed(_status_enum: SoraConstant.StatusEnum):
 	status_overred.emit(_status_enum)

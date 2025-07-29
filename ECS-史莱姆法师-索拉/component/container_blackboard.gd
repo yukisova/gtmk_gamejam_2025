@@ -20,7 +20,7 @@ func set_value(key: Variant, value, type: Variant.Type = TYPE_NIL) -> bool:
 func get_value(key: Variant, default = null):
 	return data.get(key, {"value": default}).value
 
-## TODO 使用黑板来更好的初始化实体
+## 使用黑板来更好的初始化实体
 func initilize_data_parse(context: Dictionary):
 	for key in context.keys():
 		match key:

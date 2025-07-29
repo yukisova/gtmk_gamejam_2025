@@ -1,5 +1,7 @@
-##@editing:	Sora
-##@describe:	更简单的纹理(基于AnimatedSprite)
+## @deprecated: 已弃用
+
+## @editing: Sora
+## @describe: 更简单的纹理(基于AnimatedSprite) 
 @tool
 class_name C_TextureEz
 extends IComponent

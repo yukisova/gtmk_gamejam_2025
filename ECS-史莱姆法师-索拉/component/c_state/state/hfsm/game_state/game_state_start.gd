@@ -11,8 +11,7 @@ var update_trigger = false
 
 func _update(_delta: float) -> void:
 	if update_trigger:
-		state_transition.emit(parent_to_self)
-
+		state_transition.emit(get_transition_state())
 
 func _exit():
 	update_trigger = false

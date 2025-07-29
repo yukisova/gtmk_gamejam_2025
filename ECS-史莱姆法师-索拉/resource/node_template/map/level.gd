@@ -20,6 +20,7 @@ func _enter_tree() -> void:
 			layer.ready.connect(_on_layer_ready, CONNECT_DEFERRED)
 			layers_count += 1
 		elif layer is Entity:
+			layer.initialize_complete.connect(_on_entity_initialize)
 			entity_count += 1
 	_check_all_layers_loaded()
 

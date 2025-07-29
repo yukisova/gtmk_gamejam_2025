@@ -4,7 +4,8 @@
 class_name StateMachineHfsm
 extends StateHfsm
 
-@export var transition_list: Array[TransitionState]
+signal state_transition_finished
+
 @export_node_path() var init_state: NodePath:
 	set(value):
 		if value.is_empty():
@@ -29,37 +30,36 @@ extends StateHfsm
 
 var current_state: StateHfsm
 
+func _enter_tree() -> void:
+	if Engine.is_editor_hint():
+		notify_property_list_changed()
+
 func _setup() -> void:
 	for i in get_children():
 		if i is StateHfsm:
 			i.state_transition.connect(_on_state_transition)
-			if i is StateMachineHfsm:
-				i._setup()
+			i._setup()
 
-func _on_state_transition(from: NodePath, transition_keyword: StringName = &""):
-	var filter_result = transition_list.filter(func(a: TransitionState):
-		return a.keyword == transition_keyword && a.from_state == from
-		)
-	if (filter_result.size() > 0):
-		var a = filter_result[0] as TransitionState
-		var to_state = get_node(a.to_state) as StateHfsm
-		current_state._exit()
+func _on_state_transition(to_state: StateHfsm):
+	var from_state = current_state
+	from_state._clear_stack_and_exit()
+	if to_state != from_state:
 		current_state = to_state
 		current_state._enter()
 	else:
-		printerr("节点%s不存在关键字为%s的过渡" % [from, transition_keyword])
-	transition_finished.emit()
+		push_error("不可与自身进行过渡")
+	state_transition_finished.emit()
 
 func _enter():
 	current_state = get_node(init_state)
 	current_state._enter()
 
 func _fixed_update(delta: float) -> void:
-	current_state._fixed_update(delta)
+	current_state._f_u(delta)
 
 func _update(delta: float) -> void:
-	super._update(delta)
-	current_state._update(delta)
+	_listen()
+	current_state._u(delta)
 
 func _get_active_state() -> StateHfsm:
 	return current_state

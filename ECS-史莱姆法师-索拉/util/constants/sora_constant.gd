@@ -10,9 +10,7 @@ enum StatusEnum{
 	Magic, ## 魔力
 	Fitness, ## 耐力
 	
-	Sleep = 100,
-	
-	AttackPoint = 200,
+	AttackPoint = 100,
 	DefendPoint,
 } ## 状态枚举
 
@@ -51,7 +49,6 @@ enum {
 	SHD
 }
 #endregion
-
 
 enum InputType{
 	Pressed = 0,

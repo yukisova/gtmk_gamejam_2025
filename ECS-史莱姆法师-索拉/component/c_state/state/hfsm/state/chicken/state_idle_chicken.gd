@@ -27,7 +27,7 @@ func _enter() -> void:
 func _update(delta: float) -> void:
 	var _vector = vector_move.get("move_vector") as Vector2
 	if (idle_transition_trigger):
-		state_transition.emit(parent_to_self)
+		state_transition.emit(get_transition_state())
 	
 func _fixed_update(delta: float) -> void:
 	pass

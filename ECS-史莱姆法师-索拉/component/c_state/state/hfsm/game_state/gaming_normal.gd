@@ -9,6 +9,19 @@
 class_name GamingStateNormal
 extends StateHfsm
 
+signal game_paused
+signal game_cutscene_started
+
+func _ready() -> void:
+	game_paused.connect(func():
+		await get_tree().process_frame
+		state_transition.emit(get_transition_state("pause"))
+		)
+	game_cutscene_started.connect(func():
+		await get_tree().process_frame
+		state_transition.emit(get_transition_state("cutscene"))
+		)
+
 func _enter():
 	SUiSpawner.current_hud[&""]._refresh()
 	SUiSpawner.current_hud[&""].show()

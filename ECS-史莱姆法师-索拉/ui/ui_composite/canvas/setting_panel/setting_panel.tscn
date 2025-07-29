@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckmbalibndnve"]
 
-[ext_resource type="Script" uid="uid://cnbl0806w3oj7" path="res://ui/plugins_resource/canvas/setting_panel/setting_panel.gd" id="1_uhrsv"]
-[ext_resource type="Script" uid="uid://b77vti74tgrbe" path="res://ui/plugins_resource/func_button.gd" id="2_vsn45"]
+[ext_resource type="Script" uid="uid://cnbl0806w3oj7" path="res://ui/ui_composite/canvas/setting_panel/setting_panel.gd" id="1_uhrsv"]
+[ext_resource type="Script" uid="uid://b77vti74tgrbe" path="res://ui/ui_composite/func_button.gd" id="2_vsn45"]
 
 [node name="SettingPanel" type="Control" node_paths=PackedStringArray("keymap_container", "display_setting", "audio_setting", "audio_setting_master", "audio_setting_sfx", "audio_setting_bgm", "display_setting_window", "display_setting_definition", "confirm", "reset")]
 layout_mode = 3

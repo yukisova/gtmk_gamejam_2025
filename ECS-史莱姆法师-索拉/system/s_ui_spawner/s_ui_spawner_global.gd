@@ -24,6 +24,11 @@ func _spawn_ui(scene: PackedScene, context: Dictionary = {}) -> IUi:
 		Main.ui_view.add_child(current_ui)
 		current_ui.unspawned.connect(_unspawn_ui)
 		canvas._initilize_info(context)
+		
+		var current_game_state = SGameState.state_machine._get_leaf_state()
+		if current_game_state is GamingStateNormal:
+			current_game_state.game_paused.emit()
+			
 		return canvas
 	else:
 		canvas.queue_free()
@@ -39,6 +44,11 @@ func _hide_hud(except_hud_name: Array[StringName]):
 func _unspawn_ui(target_ui: IUi):
 	if target_ui == current_ui:
 		target_ui.queue_free()
+	current_ui = null
+	
+	var current_game_state = SGameState.state_machine._get_leaf_state()
+	if current_game_state is GamingStatePause:
+		current_game_state.game_retry.emit()
 
 func _all_unspawn():
 	for i in Main.ui_view.get_children():

@@ -6,13 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_movement/c_movement.tscn" id="4_0o871"]
 [ext_resource type="Script" uid="uid://cn6q2f0x31g2l" path="res://component/c_movement/move_strategy/striangth.gd" id="5_xyu1e"]
 
-[sub_resource type="Gradient" id="Gradient_g4yk5"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_xyfaq"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4ytlk"]
-gradient = SubResource("Gradient_g4yk5")
-width = 16
-height = 16
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_53bj0"]
+gradient = SubResource("Gradient_xyfaq")
 
 [node name="Projectile" node_paths=PackedStringArray("main_control", "component_container") instance=ExtResource("1_hdxy7")]
 main_control = NodePath("CharacterBody")
@@ -21,10 +18,10 @@ component_container = NodePath("CharacterBody/ComponentContainer")
 [node name="CharacterBody" parent="." index="0" instance=ExtResource("2_xyu1e")]
 
 [node name="CTexture" parent="CharacterBody/ComponentContainer" index="0" instance=ExtResource("3_vpm3q")]
+texture_path = NodePath("Sprite2D")
 
-[node name="BaseSprite" parent="CharacterBody/ComponentContainer/CTexture" index="0"]
-z_index = 1
-texture = SubResource("GradientTexture2D_4ytlk")
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody/ComponentContainer/CTexture" index="0"]
+texture = SubResource("GradientTexture2D_53bj0")
 
 [node name="CMovement" parent="CharacterBody/ComponentContainer" index="1" node_paths=PackedStringArray("move_strategy") instance=ExtResource("4_0o871")]
 move_strategy = NodePath("Straight")

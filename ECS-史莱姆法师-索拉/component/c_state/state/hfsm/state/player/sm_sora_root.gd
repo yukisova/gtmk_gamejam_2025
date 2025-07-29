@@ -11,13 +11,12 @@ func _update(delta: float) -> void:
 	
 
 func _listen():
-	if _get_active_state() != $Using:
-		if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)): ## 发射
-			splat._effect()
-			print("按住了发射按钮")
-		elif (Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)): ## 框选
-			print("按住了框选按钮")
-		elif (Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE)):
-			print("按住了充能按钮")
-			charge._effect()
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)): ## 发射
+		splat._effect()
+		print("按住了发射按钮")
+	elif (Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)): ## 框选
+		print("按住了框选按钮")
+	elif (Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE)):
+		print("按住了充能按钮")
+		charge._effect()
 		

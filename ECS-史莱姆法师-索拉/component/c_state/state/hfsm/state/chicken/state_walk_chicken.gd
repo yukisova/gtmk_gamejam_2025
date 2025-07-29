@@ -32,7 +32,7 @@ func _enter() -> void:
 	
 func _update(delta: float) -> void:
 	if (walk_transition_trigger):
-		state_transition.emit(parent_to_self)
+		state_transition.emit(get_transition_state())
 	
 func _fixed_update(delta: float) -> void:
 	if c_navigation.nav_agent.is_navigation_finished():

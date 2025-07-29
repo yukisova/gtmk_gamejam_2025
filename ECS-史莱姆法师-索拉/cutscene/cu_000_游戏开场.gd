@@ -4,10 +4,11 @@ extends Cutscene
 
 ## 在进入GamingNormal状态时自动调用
 func _start(_context: Dictionary):
-	if cutscene_dependencies_check(["洞穴滤镜"], _context):
-		return
-	
-	过场1_玩家苏醒(_context)
+	#if cutscene_dependencies_check(["洞穴滤镜"], _context):
+		#return
+	#
+	#过场1_玩家苏醒(_context)
+	pass
 
 ## 入场之后，先要进行基础故事开场的说明
 func 过场1_玩家苏醒(_context: Dictionary):

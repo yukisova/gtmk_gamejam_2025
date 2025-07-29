@@ -126,7 +126,7 @@ var interact_obj: C_Interactable = null:
 			print("可交互对象更新: ", v.component_owner.name)
 		interact_obj = v
 		
-## TODO 玩家Ui触发: 在input组件内设计了Ui触发的逻辑，只允许在gaming_normal的阶段运行
+## 玩家Ui触发: 在input组件内设计了Ui触发的逻辑，只允许在gaming_normal的阶段运行
 func _avaliable_in_gaming():
 	
 	input_vector_dict.move = _try_vector_control()

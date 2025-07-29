@@ -1,10 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://chcm2vu8h6bs1"]
+[gd_scene load_steps=27 format=3 uid="uid://chcm2vu8h6bs1"]
 
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_osnnt"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_fd2kr"]
 [ext_resource type="PackedScene" uid="uid://bo5de2ow6bqjo" path="res://component/c_camera/c_camera.tscn" id="3_7opqx"]
 [ext_resource type="Script" uid="uid://b1kgwv70jiajt" path="res://component/c_camera/follow_strategy/cfs_mouse_follow.gd" id="4_5hv6v"]
-[ext_resource type="PackedScene" uid="uid://cm1y3qybnsk5w" path="res://component/c_texture/c_texture_ez.tscn" id="5_d3wpe"]
+[ext_resource type="PackedScene" uid="uid://bvjy63fua1sx2" path="res://component/c_texture/c_texture.tscn" id="5_fd2kr"]
 [ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/resource_template/sprite/animated_sprite/player_frame.tres" id="6_wtt8g"]
 [ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_movement/c_movement.tscn" id="7_tjnqw"]
 [ext_resource type="Script" uid="uid://dwt0prmf31a5" path="res://component/c_movement/move_strategy/vector_move.gd" id="8_oqud2"]
@@ -12,10 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://bwirxc82f24gv" path="res://component/c_status/status_extension/equipment/equipment.tscn" id="10_e151v"]
 [ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_state/c_state.tscn" id="11_65cdk"]
 [ext_resource type="Script" uid="uid://dnmlb5kw5y7u3" path="res://component/c_state/state/hfsm/state/player/sm_sora_root.gd" id="12_t8ncc"]
-[ext_resource type="Script" uid="uid://c84h4bwfj007x" path="res://component/c_state/transition_state.gd" id="13_8ldu4"]
 [ext_resource type="Script" uid="uid://dh0lerokskmi3" path="res://component/c_state/state/hfsm/state/player/state_idle.gd" id="14_5yvyf"]
+[ext_resource type="Script" uid="uid://cpdkw72ahtbjj" path="res://component/c_state/transition_record.gd" id="14_osnnt"]
 [ext_resource type="Script" uid="uid://bsspef4eb5bx1" path="res://component/c_state/state/hfsm/state/player/state_move.gd" id="15_hpj0e"]
-[ext_resource type="Script" uid="uid://caum0vdmqrfd4" path="res://component/c_state/state/hfsm/state/player/state_using.gd" id="16_dcmyi"]
 [ext_resource type="PackedScene" uid="uid://cps21xspaovit" path="res://component/c_collision/c_collision.tscn" id="17_7jliu"]
 [ext_resource type="PackedScene" uid="uid://dgykredd3ey6r" path="res://component/c_collision/box_collision/hitbox/hitbox.tscn" id="18_qkab5"]
 [ext_resource type="PackedScene" uid="uid://lu3gu1tfxdey" path="res://component/c_input_reactor/c_input_reactor.tscn" id="19_eht1i"]
@@ -24,30 +23,15 @@
 [ext_resource type="PackedScene" uid="uid://n4p12hxn4c4n" path="res://entity/entity_packed/temp/projectile/projectile.tscn" id="22_870l4"]
 [ext_resource type="Script" uid="uid://c67a8nhbdrtlh" path="res://component/c_action/action/skill/charge_magic.gd" id="23_pwue1"]
 
-[sub_resource type="Resource" id="Resource_hqihq"]
-script = ExtResource("13_8ldu4")
-from_state = NodePath("Idle")
-to_state = NodePath("Move")
-metadata/_custom_type_script = "uid://c84h4bwfj007x"
+[sub_resource type="Resource" id="Resource_fd2kr"]
+script = ExtResource("14_osnnt")
+to_state = NodePath("../Move")
+metadata/_custom_type_script = "uid://cpdkw72ahtbjj"
 
-[sub_resource type="Resource" id="Resource_x78nq"]
-script = ExtResource("13_8ldu4")
-from_state = NodePath("Move")
-to_state = NodePath("Idle")
-metadata/_custom_type_script = "uid://c84h4bwfj007x"
-
-[sub_resource type="Resource" id="Resource_qcfhx"]
-script = ExtResource("13_8ldu4")
-keyword = &"using"
-from_state = NodePath("Idle")
-to_state = NodePath("Using")
-metadata/_custom_type_script = "uid://c84h4bwfj007x"
-
-[sub_resource type="Resource" id="Resource_4q10d"]
-script = ExtResource("13_8ldu4")
-from_state = NodePath("Using")
-to_state = NodePath("Idle")
-metadata/_custom_type_script = "uid://c84h4bwfj007x"
+[sub_resource type="Resource" id="Resource_7opqx"]
+script = ExtResource("14_osnnt")
+to_state = NodePath("../Idle")
+metadata/_custom_type_script = "uid://cpdkw72ahtbjj"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bu1qv"]
 radius = 3.0
@@ -69,11 +53,11 @@ strategy = NodePath("MouseFollow")
 script = ExtResource("4_5hv6v")
 smoothing = null
 
-[node name="CAnimationEz" parent="CharacterBody/ComponentContainer" index="1" instance=ExtResource("5_d3wpe")]
+[node name="CTexture" parent="CharacterBody/ComponentContainer" index="1" instance=ExtResource("5_fd2kr")]
+texture_path = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" parent="CharacterBody/ComponentContainer/CAnimationEz" index="0"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody/ComponentContainer/CTexture" index="0"]
 sprite_frames = ExtResource("6_wtt8g")
-autoplay = "default"
 
 [node name="CMovement" parent="CharacterBody/ComponentContainer" index="2" node_paths=PackedStringArray("move_strategy") instance=ExtResource("7_tjnqw")]
 move_strategy = NodePath("VectorMove")
@@ -101,27 +85,25 @@ root_state_machine = NodePath("PlayerSM")
 script = ExtResource("12_t8ncc")
 splat = NodePath("../../CAction/SplatSlime")
 charge = NodePath("../../CAction/ChargeMagic")
-transition_list = Array[ExtResource("13_8ldu4")]([SubResource("Resource_hqihq"), SubResource("Resource_x78nq"), SubResource("Resource_qcfhx"), SubResource("Resource_4q10d")])
 init_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://b5ywitjyd2ccg"
 
-[node name="Idle" type="Node" parent="CharacterBody/ComponentContainer/CState/PlayerSM" index="0" node_paths=PackedStringArray("vector_move", "c_animation_ez", "test_c_input")]
+[node name="Idle" type="Node" parent="CharacterBody/ComponentContainer/CState/PlayerSM" index="0" node_paths=PackedStringArray("vector_move", "c_texture", "test_c_input")]
 script = ExtResource("14_5yvyf")
 vector_move = NodePath("../../../CMovement/VectorMove")
-c_animation_ez = NodePath("../../../CAnimationEz")
+c_texture = NodePath("../../../CTexture")
 test_c_input = NodePath("../../../CInputReactor")
+hfsm_state_transition = Dictionary[StringName, ExtResource("14_osnnt")]({
+&"": SubResource("Resource_fd2kr")
+})
 
 [node name="Move" type="Node" parent="CharacterBody/ComponentContainer/CState/PlayerSM" index="1" node_paths=PackedStringArray("vector_move", "c_animation_ez")]
 script = ExtResource("15_hpj0e")
 vector_move = NodePath("../../../CMovement/VectorMove")
-c_animation_ez = NodePath("../../../CAnimationEz")
-
-[node name="Using" type="Node" parent="CharacterBody/ComponentContainer/CState/PlayerSM" index="2" node_paths=PackedStringArray("c_status", "c_animation_ez", "hitbox")]
-script = ExtResource("16_dcmyi")
-c_status = NodePath("../../../CStatus")
-c_animation_ez = NodePath("../../../CAnimationEz")
-hitbox = NodePath("../../../CCollision/Hitbox")
-metadata/_custom_type_script = "uid://ccqx0ki11sww8"
+c_animation_ez = NodePath("../../../CTexture")
+hfsm_state_transition = Dictionary[StringName, ExtResource("14_osnnt")]({
+&"": SubResource("Resource_7opqx")
+})
 
 [node name="CCollision" parent="CharacterBody/ComponentContainer" index="5" instance=ExtResource("17_7jliu")]
 
@@ -151,6 +133,5 @@ position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_qcfhx")
 
 [editable path="CharacterBody"]
-[editable path="CharacterBody/ComponentContainer/CAnimationEz"]
 [editable path="CharacterBody/ComponentContainer/CState"]
 [editable path="CharacterBody/ComponentContainer/CCollision/Hitbox"]

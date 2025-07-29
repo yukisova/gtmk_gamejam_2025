@@ -2,5 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cbu2gcdkcjssj" path="res://component/c_state/c_state.gd" id="1_ylpjt"]
 
-[node name="CState" type="Node"]
+[node name="CState" type="Node" node_paths=PackedStringArray("pda_states")]
 script = ExtResource("1_ylpjt")
+pda_states = NodePath("PdaStates")
+
+[node name="PdaStates" type="Node" parent="."]
