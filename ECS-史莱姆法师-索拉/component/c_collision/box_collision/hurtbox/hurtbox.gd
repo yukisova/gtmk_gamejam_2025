@@ -15,11 +15,12 @@ func _ready() -> void:
 	hurted.connect(_on_hurted)
 
 
+## FIXME 过时的代码, 需要进行修正
 func _on_area_entered(area: Area2D):
 	if area.get_parent() is Hitbox:
 		if hitbox_type.size() == 0 || hitbox_type.has(area.equipment.current_tool):
-			var numinfos = area.status.numinfo_list
-			if numinfos.has(SoraConstant.StatusEnum.AttackPoint):
+			var num_infos = area.status.numinfo_list
+			if num_infos.has(SoraConstant.StatusEnum.AttackPoint):
 				hurted.emit(area.status.numinfo_list[SoraConstant.StatusEnum.AttackPoint].value)
 			
 

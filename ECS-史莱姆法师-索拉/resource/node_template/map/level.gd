@@ -3,16 +3,18 @@
 class_name Level
 extends Node2D
 
-signal level_fully_loaded
+signal level_fully_loaded ## 当前层级的所有TilemapLayer加载完毕后发出
 signal level_entity_fully_initialize ## 判断当前层级的实体是否初始化完毕
 
+## 当前层中, 瓦片Tilemap的数目
 var layers_count = 0
 var layers_loaded_count = 0
 
+## 当前层中，预定义Entity的数目
 var entity_count = 0
 var entity_loaded_count = 0
 
-# 附加到TileMap节点的脚本
+# 进入场景树: 对接瓦片的加载逻辑和预定义实体的初始化监听逻辑
 func _enter_tree() -> void:
 	for layer in get_children():
 		if layer is TileMapLayer:

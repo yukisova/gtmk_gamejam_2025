@@ -4,6 +4,7 @@
 class_name PlayerSpawn
 extends Node2D
 
+## 用于确定玩家初始化时所在的楼层
 var current_level: Level
 
 func _enter_tree() -> void:

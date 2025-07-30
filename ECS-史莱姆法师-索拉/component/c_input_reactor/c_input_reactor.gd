@@ -5,15 +5,17 @@ class_name C_InputReactor
 extends IComponent
 
 
+enum ControlMode{ just_pressed = 0, pressed, just_release }
 @export_enum("横版", "四向", "八向", "全向") var award_mode: String = "四向"
-@export_flags("向量监听","主控") var disable_flag: int:
-	set(v):
-		disable_flag = v
-		notify_property_list_changed()
 ## 游戏的装备等游戏内信息相关的设置菜单
 @export var brain_ui: PackedScene
 ## 游戏的设置，游戏的退出等游戏外相关的设置菜单
 @export var pause_ui: PackedScene
+
+@export_flags("向量监听","主控") var disable_flag: int:
+	set(v):
+		disable_flag = v
+		notify_property_list_changed()
 
 @export var aim_texture: Sprite2D
 @export var weapon_texture: Sprite2D
@@ -22,12 +24,16 @@ var input_vector_dict: Dictionary[String, Vector2] = {
 	"move" : Vector2.ZERO
 }
 
-enum ControlMode{ just_pressed = 0, pressed, just_release }
+var interact_obj: C_Interactable = null:
+	set(v):
+		if v == null:
+			print("可交互对象重置")
+		else:
+			print("可交互对象更新: ", v.component_owner.name)
+		interact_obj = v
 
 func _enter_tree() -> void:
 	component_name = ComponentName.c_input_reactor
-	
-	notify_property_list_changed()
 
 func _initialize(_owner: Entity):
 	super._initialize(_owner)
@@ -46,7 +52,6 @@ func validate_control(key_string: StringName, control_mode: ControlMode = Contro
 			ControlMode.just_release:
 				return Input.is_action_just_released(key_string)
 	return false
-
 
 #region 是否监听向量
 func try_input_vector() -> Dictionary:
@@ -78,18 +83,9 @@ func _try_save_game():
 	if (Input.is_action_just_pressed("test_saving")):
 		SLoadAndSave.emit_signal("saving_started")
 		print("文件已经完成存储")
-
 #endregion
 
 #region 固定触发逻辑
-var interact_obj: C_Interactable = null:
-	set(v):
-		if v == null:
-			print("可交互对象重置")
-		else:
-			print("可交互对象更新: ", v.component_owner.name)
-		interact_obj = v
-		
 ## 玩家Ui触发: 在input组件内设计了Ui触发的逻辑，只允许在gaming_normal的阶段运行
 func _avaliable_in_gaming():
 	
@@ -97,7 +93,6 @@ func _avaliable_in_gaming():
 	
 	aim_texture.global_position = aim_texture.get_global_mouse_position()
 	weapon_texture.rotation = (Vector2.ZERO).direction_to(aim_texture.position).normalized().angle()
-	
 	
 	if validate_control("brain_trigger", ControlMode.just_pressed):
 		SUiSpawner._spawn_ui(brain_ui)

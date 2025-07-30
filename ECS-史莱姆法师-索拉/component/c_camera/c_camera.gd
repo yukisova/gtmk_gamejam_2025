@@ -4,12 +4,9 @@
 class_name C_Camera
 extends IComponent
 
-@export_subgroup("镜头控制策略")
-
-@export var strategy: CameraFollowStrategy
-
-@export_subgroup("依赖")
-@export var camera: Camera2D
+@export_group("镜头控制策略","camera")
+@export var camera_strategy: CameraFollowStrategy
+@export var camera_source: Camera2D
 
 
 func _enter_tree() -> void:
@@ -18,7 +15,7 @@ func _enter_tree() -> void:
 func _initialize(_owner: Entity):
 	super(_owner)
 	
-	strategy.c_camera = self
+	camera_strategy.c_camera = self
 	
 func _update(_delta: float):
-	strategy._strategy(_delta)
+	camera_source._strategy(_delta)

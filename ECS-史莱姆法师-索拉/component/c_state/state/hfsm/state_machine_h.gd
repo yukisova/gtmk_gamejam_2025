@@ -16,7 +16,11 @@ signal state_transition_finished
 		if value.get_name_count() != 1:
 			push_error("目标节点必须是直接子节点！")
 			return
-			
+		
+		if Engine.is_editor_hint():
+			if value == self.get_path_to(self):
+				push_error("尝试将自身作为初始化节点！")
+				return
 		init_state = value
 	get:
 		

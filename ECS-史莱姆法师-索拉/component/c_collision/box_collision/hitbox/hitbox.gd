@@ -7,8 +7,9 @@ extends BoxCollision
 @export var status: C_Status
 var collision: CollisionShape2D
 
+## FIXME 不知所谓的_ready代码写法，需要修正
 func _ready() -> void:
-	position = Vector2(0,0)
+	position = Vector2.ZERO
 	var _collision = area_box.get_child(0) as CollisionShape2D
 	_collision.disabled = true
 	collision = _collision

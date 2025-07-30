@@ -7,12 +7,13 @@
 class_name C_Status
 extends IComponent
 
+## StatusInfo见底
 signal status_overred(type: SoraConstant.StatusEnum)
 
-
-@export_subgroup("初始状态")
+## 初始的状态信息, 没有被明确记录的初始状态默认为零
 @export var basic_info: Dictionary[SoraConstant.StatusEnum, float]
 
+## 状态信息, 
 class StatusInfo:
 	signal status_overed(status_enum: SoraConstant.StatusEnum)
 	signal status_changed(status: StatusInfo)
@@ -38,6 +39,7 @@ class StatusInfo:
 		max_value = _max_value
 		value = _value
 
+## 数值信息
 class NumInfo:
 	var status_enum: SoraConstant.StatusEnum
 	var value: int
@@ -48,11 +50,12 @@ class NumInfo:
 var status_list: Dictionary[SoraConstant.StatusEnum, StatusInfo] = {} ## 血量，耐力等需要频繁变动的状态信息
 var numinfo_list: Dictionary[SoraConstant.StatusEnum, NumInfo] = {} ## 攻击力，防御力等基础数值信息
 
-var status_extension: Dictionary[String, StatusExtension] = {} ## 
+var status_extension: Dictionary[String, StatusExtension] = {} ## 扩展状态, 如buff之类
 
 func _enter_tree() -> void:
 	component_name = ComponentName.c_status
 
+## 初始化: 记录扩展状态与基础状态信息
 func _initialize(_owner: Entity):
 	super._initialize(_owner)
 	

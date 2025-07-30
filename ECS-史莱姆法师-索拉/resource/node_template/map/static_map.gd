@@ -3,15 +3,17 @@
 class_name StaticMap
 extends Node
 
-@export var player_spawn: PlayerSpawn
-@export var levels: Node2D
-@export var autoload_cutscene: Node
-@export var cutscene_ref: Dictionary[String, Variant]
+@export var player_spawn: PlayerSpawn ## 可选的玩家出生地
+@export var levels: Node2D ## 层级集
+@export var autoload_cutscene: Node ## 自动加载的过场事件
+@export var cutscene_ref: Dictionary[String, Variant] ## 自动加载过场事件所能用到的参数
 
+## 用于统计用的层级数
 var level_count: int = 0
 var level_loaded_count :int = 0
 var level_initialized_count : int = 0
 
+## _ready: 当游戏数据完全加载完毕后（发出game_data_loaded_compelete信号），如果存在过场剧情逻辑, 则立刻执行
 func _ready() -> void:
 	for level in levels.get_children():
 		if level is Level:

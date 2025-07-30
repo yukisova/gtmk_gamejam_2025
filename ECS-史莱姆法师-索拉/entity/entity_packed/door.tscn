@@ -5,7 +5,7 @@
 [ext_resource type="SpriteFrames" uid="uid://juk64jqqoe7u" path="res://resource/resource_template/sprite/animated_sprite/door_frame.tres" id="3_hamwh"]
 [ext_resource type="PackedScene" uid="uid://bvjy63fua1sx2" path="res://component/c_texture/c_texture.tscn" id="3_sx8k0"]
 [ext_resource type="PackedScene" uid="uid://dbswip03t13sy" path="res://component/c_interaction/c_interactable.tscn" id="4_n0v2i"]
-[ext_resource type="Script" uid="uid://bhqscuure4fnf" path="res://component/c_interaction/interaction/interaction_door.gd" id="5_k8mo1"]
+[ext_resource type="Script" uid="uid://bhqscuure4fnf" path="res://component/c_interaction/interaction/initiative_interaction/interaction_door.gd" id="5_k8mo1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sx8k0"]
 size = Vector2(16, 32)

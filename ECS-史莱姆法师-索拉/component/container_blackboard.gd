@@ -1,5 +1,6 @@
 ## @editing: Sora [br]
 ## @describe: 针对components容器的黑板变量，在entity被代码自动创建时，用来确定entity的基本信息
+## FIXME 这是一个很重要的类，但是没有时间进行完善了,在此进行记录
 class_name ContainerBlackboard
 extends Node
 

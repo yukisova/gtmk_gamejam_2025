@@ -23,12 +23,12 @@ enum InteractCollisionSource{
 		notify_property_list_changed()
 
 @export var area_is_passive: bool ## 在交互碰撞体为Area2D的情况下确定交互碰撞体是主动触发还是被动触发
-@export var interaction: Interaction ## 交互所关联的目标逻辑组件
-
+@export var interaction: PassiveInteraction ## 交互所关联的目标逻辑组件
 
 func _enter_tree() -> void:
 	component_name = ComponentName.c_interaction
 
+## 初始化: 绑定交互的目标
 func _initialize(_owner: Entity):
 	super._initialize(_owner)
 	

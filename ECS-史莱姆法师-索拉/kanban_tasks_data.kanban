@@ -182,7 +182,7 @@
 		},
 		{
 			"uuid": "37860484-34dd-4fb9-a668-a0b783da511f",
-			"title": "小目标-28-29",
+			"title": "小目标-30-31",
 			"description": "完善敌人的逻辑,\n\n",
 			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
 			"steps": [
@@ -201,6 +201,10 @@
 				{
 					"details": "4. pda状态机单独代替hfsm的效果并不好，可能是理解方面出现了问题，最好完善一下",
 					"done": true
+				},
+				{
+					"details": "5. 完善UI的框架，尤其是UiDialogue，并且要求完善Object_pool_global",
+					"done": false
 				}
 			]
 		}
