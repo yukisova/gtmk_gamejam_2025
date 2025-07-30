@@ -14,7 +14,6 @@ var body: CollisionObject2D:
 		return get_child(0) 
 
 var list_base_components: Dictionary[int, IComponent] = {} ## 基础组件组
-var list_interface_components: Dictionary[int, IComponent] = {} ## 接口组件组, 批量更新非原生
 
 ## 代码内创建的实体，设定初始信息
 func _init_data_binding(context: Dictionary):
@@ -48,14 +47,16 @@ func _initialize(need_disconnect: bool = false):
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-	for base in list_base_components.values():
-		base._update(delta)
+	if SGameState.state_machine._get_leaf_state() is GamingStateNormal:
+		for base in list_base_components.values():
+			base._update(delta)
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-	for base in list_base_components.values():
-		base._fixed_update(delta)
+	if SGameState.state_machine._get_leaf_state() is GamingStateNormal:
+		for base in list_base_components.values():
+			base._fixed_update(delta)
 
 ## TODO 存档文件
 func _info_to_dict() -> Dictionary:

@@ -13,7 +13,6 @@ static var player_static: Entity
 func _setup():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	
-	
 	player_located.connect(_on_player_located)
 
 func _on_player_located(target_level: Level, target_position:Vector2):

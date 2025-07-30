@@ -18,4 +18,4 @@ func _initialize(_owner: Entity):
 	camera_strategy.c_camera = self
 	
 func _update(_delta: float):
-	camera_source._strategy(_delta)
+	camera_strategy._strategy(_delta)

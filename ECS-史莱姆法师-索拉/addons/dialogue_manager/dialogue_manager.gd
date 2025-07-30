@@ -464,7 +464,8 @@ func static_id_to_line_ids(resource: DialogueResource, static_id: String) -> Pac
 
 # Call "start" on the given balloon.
 func _start_balloon(balloon: Node, resource: DialogueResource, title: String, extra_game_states: Array) -> void:
-	get_current_scene.call().add_child(balloon)
+	## HACK 这里我将以下逻辑删除, 因为他的存在导致我无法设计这个对话所在的地方
+	#get_current_scene.call().add_child(balloon)
 
 	if balloon.has_method(&"start"):
 		balloon.start(resource, title, extra_game_states)

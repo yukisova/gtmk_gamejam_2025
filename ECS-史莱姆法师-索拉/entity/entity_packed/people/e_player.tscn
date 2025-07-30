@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://chcm2vu8h6bs1"]
+[gd_scene load_steps=34 format=3 uid="uid://chcm2vu8h6bs1"]
 
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_wwb3p"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_074rv"]
@@ -22,6 +22,9 @@
 [ext_resource type="Script" uid="uid://drtm0lb4o8s8v" path="res://component/c_action/action/skill/splat_slime.gd" id="20_xmg63"]
 [ext_resource type="PackedScene" uid="uid://n4p12hxn4c4n" path="res://entity/entity_packed/temp/projectile/e_projectile.tscn" id="21_eh130"]
 [ext_resource type="Script" uid="uid://c67a8nhbdrtlh" path="res://component/c_action/action/skill/charge_magic.gd" id="22_qiuk5"]
+[ext_resource type="Script" uid="uid://brdkhewfuhc0w" path="res://component/c_action/action/test_dialogue_action.gd" id="23_074rv"]
+[ext_resource type="PackedScene" uid="uid://shdn4eldwjpu" path="res://ui/ui/ui_dialogue/ui_dialogue.tscn" id="24_xcrqq"]
+[ext_resource type="Resource" uid="uid://dj7funx2bqofn" path="res://resource/plugins_resource/dialogue/test_dialogue.dialogue" id="25_vx1gj"]
 
 [sub_resource type="Gradient" id="Gradient_whce7"]
 offsets = PackedFloat32Array(0.8551282, 1)
@@ -69,8 +72,8 @@ component_container = NodePath("CharacterBody/ComponentContainer")
 [node name="CharacterBody" parent="." index="0" groups=["player"] instance=ExtResource("2_074rv")]
 y_sort_enabled = true
 
-[node name="CCamera" parent="CharacterBody/ComponentContainer" index="0" node_paths=PackedStringArray("strategy") instance=ExtResource("3_xcrqq")]
-strategy = NodePath("MouseFollow")
+[node name="CCamera" parent="CharacterBody/ComponentContainer" index="0" node_paths=PackedStringArray("camera_strategy") instance=ExtResource("3_xcrqq")]
+camera_strategy = NodePath("MouseFollow")
 
 [node name="MouseFollow" type="Node" parent="CharacterBody/ComponentContainer/CCamera" index="1"]
 script = ExtResource("4_vx1gj")
@@ -146,9 +149,10 @@ status = NodePath("../../CStatus")
 shape = SubResource("CircleShape2D_bu1qv")
 debug_color = Color(0.6880525, 0.33171237, 0.93363196, 0.41960785)
 
-[node name="CInputReactor" parent="CharacterBody/ComponentContainer" index="6" node_paths=PackedStringArray("aim_texture", "weapon_texture") instance=ExtResource("18_ed540")]
+[node name="CInputReactor" parent="CharacterBody/ComponentContainer" index="6" node_paths=PackedStringArray("aim_texture", "weapon_texture", "test_dialogue_action") instance=ExtResource("18_ed540")]
 aim_texture = NodePath("../CTexture/AimingTexture")
 weapon_texture = NodePath("../CTexture/WeaponTexture")
+test_dialogue_action = NodePath("../CAction/TestDialogue")
 
 [node name="CAction" parent="CharacterBody/ComponentContainer" index="7" instance=ExtResource("19_ocpjo")]
 
@@ -159,6 +163,12 @@ spend_magic = 1.0
 
 [node name="ChargeMagic" type="Node2D" parent="CharacterBody/ComponentContainer/CAction" index="1"]
 script = ExtResource("22_qiuk5")
+
+[node name="TestDialogue" type="Node2D" parent="CharacterBody/ComponentContainer/CAction" index="2"]
+script = ExtResource("23_074rv")
+test_dialogue_ui = ExtResource("24_xcrqq")
+test_dialogue = ExtResource("25_vx1gj")
+test_dialogue_label = &"start"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody" index="1"]
 position = Vector2(0, 6)

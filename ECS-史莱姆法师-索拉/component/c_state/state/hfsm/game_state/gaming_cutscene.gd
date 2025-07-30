@@ -4,3 +4,10 @@
 class_name GamingStateCutscene
 extends StateHfsm
 	
+signal game_retryed
+
+func _enter_tree() -> void:
+	game_retryed.connect(func():
+		await get_tree().process_frame
+		state_transition.emit(get_transition_state())
+		)

@@ -20,8 +20,9 @@ func _enter_tree() -> void:
 func _initialize(_owner: Entity):
 	super._initialize(_owner)
 	
-	for i: StatePda in pda_states.get_children():
-		pda_state_dict[i.keyword] = i
+	for i in pda_states.get_children():
+		if i is StatePda:
+			pda_state_dict[i.keyword] = i
 	
 	root_state_machine._setup()
 	root_state_machine._enter()

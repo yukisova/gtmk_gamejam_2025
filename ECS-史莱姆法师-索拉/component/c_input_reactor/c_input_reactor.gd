@@ -20,6 +20,10 @@ enum ControlMode{ just_pressed = 0, pressed, just_release }
 @export var aim_texture: Sprite2D
 @export var weapon_texture: Sprite2D
 
+
+## HACK 以下为测试对话气泡专用的代码逻辑，要记得删
+@export var test_dialogue_action: Action
+
 var input_vector_dict: Dictionary[String, Vector2] = {
 	"move" : Vector2.ZERO
 }
@@ -102,6 +106,10 @@ func _avaliable_in_gaming():
 	elif validate_control("interact", ControlMode.just_pressed):
 		if interact_obj != null:
 			interact_obj.interact_activated.emit()
+	
+	## HACK 以下为测试对话气泡专用的代码逻辑，要记得删
+	elif Input.is_key_pressed(KEY_0):
+		test_dialogue_action._effect()
 #endregion
 
 func _validate_property(property: Dictionary) -> void:
