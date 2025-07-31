@@ -38,4 +38,3 @@ func _listen():
 func _on_parser_begin():
 	if command_parser_editor.text.is_empty():
 		return
-	

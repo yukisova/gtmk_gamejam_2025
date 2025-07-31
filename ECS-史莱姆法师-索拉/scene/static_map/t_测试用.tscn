@@ -212,9 +212,6 @@ sources/5 = SubResource("TileSetAtlasSource_irqd6")
 
 [node name="t_测试用" node_paths=PackedStringArray("player_spawn") instance=ExtResource("1_ayb26")]
 player_spawn = NodePath("Levels/Level/PlayerSpawn")
-cutscene_ref = Dictionary[String, Variant]({
-"洞穴滤镜": NodePath("Levels/CanvasModulate")
-})
 
 [node name="Level" parent="Levels" index="0" instance=ExtResource("2_ifao7")]
 
@@ -230,9 +227,10 @@ position = Vector2(22, 85)
 
 [node name="EPeople2" parent="Levels/Level" index="4" instance=ExtResource("6_ayb26")]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="Levels" index="1"]
-
 [node name="苏醒_1" type="Node" parent="AutoLoadCutscene" index="0"]
 script = ExtResource("7_x31an")
+
+[node name="MapFilter" parent="." index="2"]
+color = Color(0.16470589, 0.047058824, 0.35686275, 1)
 
 [editable path="Levels/Level"]

@@ -8,6 +8,7 @@ signal map_info_registered(map: PackedScene)
 @export var test_start_map_scene: PackedScene ## 要加载的地图
 
 var current_level: Level
+var current_map: StaticMap
 
 func _enter_tree() -> void:
 	factor_added.connect(_on_factor_added)
@@ -20,6 +21,7 @@ func _setup():
 func _on_map_info_registered(map_scene: PackedScene):
 	await get_tree().process_frame
 	var map = map_scene.instantiate() as StaticMap
+	current_map = map
 	Main.game_view.add_child(map)
 	
 	## 当地图完成加载后，发送map_info_loaded信号，表明当前已经完成了所有地图信息的加载

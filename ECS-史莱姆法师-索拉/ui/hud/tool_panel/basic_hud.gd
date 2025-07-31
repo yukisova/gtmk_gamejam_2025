@@ -11,11 +11,13 @@ var binding_entity: Entity
 @export var time_info: Label
 
 var start_time: int
-var real_time: int
-var past_time: int:
+var past_time: int
+var real_time: int:
 	set(v):
-		past_time = v % 1440
-		time_info.text = time_to_str(past_time)
+		real_time = v % 1440
+		time_info.text = time_to_str(real_time)
+		SLoadAndSave.gaming_data_cache["basic_hud->real_time"] = real_time
+		SMapData.current_map.filter_changed.emit(real_time / 1440.0)
 
 func _refresh():
 	pass
@@ -28,13 +30,14 @@ func _initialize():
 	#endregion
 
 
+#region 时间系统的实现
 func _process(_delta: float) -> void:
 	@warning_ignore("integer_division")
 	var current_time = (Time.get_ticks_msec() - start_time) / 1000 % 1440
-	if current_time != real_time:
-		real_time = current_time
+	if current_time != past_time:
+		past_time = current_time
 		if SGameState.state_machine._get_leaf_state() is GamingStateNormal:
-			past_time += 1
+			real_time += 1
 		
 		
 func time_to_str(current_time: int):

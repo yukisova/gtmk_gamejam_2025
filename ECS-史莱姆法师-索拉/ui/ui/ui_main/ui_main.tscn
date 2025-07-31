@@ -54,7 +54,7 @@ script = ExtResource("3_3ko51")
 
 [node name="StartGame" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "开始游戏"
+text = "StartGame"
 script = ExtResource("3_3ko51")
 args = [ExtResource("4_mqo0q")]
 
@@ -74,5 +74,5 @@ g_scene_parent = NodePath("../../../..")
 
 [node name="QuitGame" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "退出游戏"
+text = "QuitGame"
 script = ExtResource("3_3ko51")
