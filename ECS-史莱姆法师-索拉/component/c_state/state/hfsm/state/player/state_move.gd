@@ -12,7 +12,7 @@ func _enter():
 	#c_texture.animation_player.get_animation("people_action/walking").loop_mode = Animation.LOOP_LINEAR
 	#c_texture.animation_player.play("people_action/walking")
 
-func _update(delta: float) -> void:
+func _update(_delta: float) -> void:
 	var vector = vector_move.move_vector as Vector2
 	if (vector.is_zero_approx()):
 		state_transition.emit(get_transition_state())

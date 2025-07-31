@@ -7,34 +7,38 @@ var binding_entity: Entity
 @onready var magic: ProgressBar = $Control/StatusPanel/VBoxContainer/Label2/ProgressBar2
 @onready var fitness: ProgressBar = $Control/StatusPanel/VBoxContainer/Label3/ProgressBar3
 
+@export_group("时间循环", "time_")
+@export var time_info: Label
+
+var start_time: int
+var real_time: int
+var past_time: int:
+	set(v):
+		past_time = v % 1440
+		time_info.text = time_to_str(past_time)
+
 func _refresh():
-	var status = binding_entity.list_base_components[IComponent.ComponentName.c_status] as C_Status
-	var health_status = status.status_list[SoraConstant.StatusEnum.Health]
-	var magic_status = status.status_list[SoraConstant.StatusEnum.Magic]
-	var fitness_status = status.status_list[SoraConstant.StatusEnum.Fitness]
-	
-	health.max_value = health_status.max_value
-	health.value = health_status.value
-	
-	magic.max_value = magic_status.max_value
-	magic.value = magic_status.value
-	
-	fitness.max_value = fitness_status.max_value
-	fitness.value = fitness_status.value
-	
+	pass
+
 func _initialize():
-	var status = binding_entity.list_base_components[IComponent.ComponentName.c_status] as C_Status
-	
-	status.status_list[SoraConstant.StatusEnum.Health].status_changed.connect(func(target_status:C_Status.StatusInfo):
-		health.max_value = target_status.max_value
-		health.value = target_status.value
-		)
-	status.status_list[SoraConstant.StatusEnum.Magic].status_changed.connect(func(target_status:C_Status.StatusInfo):
-		magic.max_value = target_status.max_value
-		magic.value = target_status.value
-		)
-	status.status_list[SoraConstant.StatusEnum.Fitness].status_changed.connect(func(target_status:C_Status.StatusInfo):
-		fitness.max_value = target_status.max_value
-		fitness.value = target_status.value
-		)
-	
+	#region 以下为时间系统的实现, 即使用Time单例类 
+	start_time = Time.get_ticks_msec()
+	past_time = 0
+	real_time = 0
+	#endregion
+
+
+func _process(_delta: float) -> void:
+	@warning_ignore("integer_division")
+	var current_time = (Time.get_ticks_msec() - start_time) / 1000 % 1440
+	if current_time != real_time:
+		real_time = current_time
+		if SGameState.state_machine._get_leaf_state() is GamingStateNormal:
+			past_time += 1
+		
+		
+func time_to_str(current_time: int):
+	@warning_ignore("integer_division")
+	var hour = str(current_time / 60).pad_zeros(2)
+	var minute = str(current_time % 60).pad_zeros(2)
+	return "%s: %s" % [hour, minute]

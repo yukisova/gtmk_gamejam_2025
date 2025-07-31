@@ -1,17 +1,20 @@
-## @editing: Sora [br]
-## @describe: 存档系统， 
+## SORA @editing: Sora [br]
+## @describe: 存档系统， 同时可以保存游戏运行时的全局共享数据，效果类似黑板
 extends ISystem
 
 ## 游戏保存
 signal saving_started
-
 ## 游戏加载开始——期间会等待所有的加载项加载完毕
 signal loading_started
-
 ## 游戏加载
 signal loading_refreshed(data: Dictionary)
 
 const SAVE_PATH := "user://data.sav"
+
+var gaming_data_cache: Dictionary = {}
+
+
+
 
 func _enter_tree() -> void:
 	

@@ -5,7 +5,7 @@ extends Node
 
 var binding_input_component : C_InputReactor = null
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if binding_input_component != null:
 		_listen()
 

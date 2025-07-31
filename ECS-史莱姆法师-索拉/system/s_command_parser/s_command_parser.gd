@@ -12,6 +12,7 @@ signal command_editor_inputed(text: String)
 @export var command_parser_editor: TextEdit
 
 func _enter_tree() -> void:
+	command_parser_canvas.hide()
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 func _setup():
