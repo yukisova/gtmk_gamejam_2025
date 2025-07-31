@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://csybxa4x4phq4"]
+[gd_scene load_steps=24 format=3 uid="uid://csybxa4x4phq4"]
 
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_p5gco"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_0w0mx"]
@@ -16,8 +16,9 @@
 [ext_resource type="Script" uid="uid://cpdkw72ahtbjj" path="res://component/c_state/transition_record.gd" id="14_ftmdb"]
 [ext_resource type="PackedScene" uid="uid://chj3kl8gl43h" path="res://component/c_collision/box_collision/interaction_box/interaction_box.tscn" id="14_qq6q3"]
 [ext_resource type="PackedScene" uid="uid://cps21xspaovit" path="res://component/c_collision/c_collision.tscn" id="16_sw3nw"]
-[ext_resource type="Script" uid="uid://brdkhewfuhc0w" path="res://component/c_action/action/decrepted/test_dialogue_action.gd" id="19_gtue6"]
+[ext_resource type="PackedScene" uid="uid://shdn4eldwjpu" path="res://ui/ui/ui_dialogue/ui_dialogue.tscn" id="19_17f23"]
 [ext_resource type="PackedScene" uid="uid://b3vbfhugiqyva" path="res://component/c_action/c_action.tscn" id="19_rt6go"]
+[ext_resource type="Resource" uid="uid://dj7funx2bqofn" path="res://resource/plugins_resource/dialogue/test_dialogue.dialogue" id="20_0ib14"]
 
 [sub_resource type="Resource" id="Resource_qq6q3"]
 script = ExtResource("14_ftmdb")
@@ -41,13 +42,16 @@ component_container = NodePath("CharacterBody/ComponentContainer")
 [node name="CharacterBody" parent="." index="0" groups=["player"] instance=ExtResource("2_0w0mx")]
 y_sort_enabled = true
 
-[node name="CInteractable" parent="CharacterBody/ComponentContainer" index="0" node_paths=PackedStringArray("interact_object") instance=ExtResource("3_2xqoy")]
-interact_inherit_mode = 1
-interact_object = NodePath("../CCollision/InteractionBox/Area2D")
+[node name="CInteractable" parent="CharacterBody/ComponentContainer" index="0" node_paths=PackedStringArray("interact_object", "interaction") instance=ExtResource("3_2xqoy")]
+interact_setting = 2
+interact_object = NodePath("../CCollision/InteractionBox")
+interaction = NodePath("InteractionDialogue")
 
-[node name="InteractionDialogue" type="Node" parent="CharacterBody/ComponentContainer/CInteractable" index="0" node_paths=PackedStringArray("action_dialogue")]
+[node name="InteractionDialogue" type="Node" parent="CharacterBody/ComponentContainer/CInteractable" index="0"]
 script = ExtResource("4_qnw2d")
-action_dialogue = NodePath("../../CAction/ActionDialogue")
+test_dialogue_ui = ExtResource("19_17f23")
+test_dialogue = ExtResource("20_0ib14")
+test_dialogue_label = &"start"
 
 [node name="CTexture" parent="CharacterBody/ComponentContainer" index="1" instance=ExtResource("5_x5syu")]
 texture_path = NodePath("AnimatedSprite2D")
@@ -93,13 +97,10 @@ hfsm_state_transition = Dictionary[StringName, ExtResource("14_ftmdb")]({
 
 [node name="InteractionBox" parent="CharacterBody/ComponentContainer/CCollision" index="0" instance=ExtResource("14_qq6q3")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/ComponentContainer/CCollision/InteractionBox/Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/ComponentContainer/CCollision/InteractionBox" index="0"]
 shape = SubResource("RectangleShape2D_qq6q3")
 
 [node name="CAction" parent="CharacterBody/ComponentContainer" index="6" instance=ExtResource("19_rt6go")]
-
-[node name="ActionDialogue" type="Node" parent="CharacterBody/ComponentContainer/CAction" index="0"]
-script = ExtResource("19_gtue6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody" index="1"]
 position = Vector2(0, 6)

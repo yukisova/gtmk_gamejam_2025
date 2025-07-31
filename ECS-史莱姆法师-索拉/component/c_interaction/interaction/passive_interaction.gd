@@ -5,3 +5,5 @@ extends Node
 
 ## 允许进行交互(如果是被动交互的话，会直接)
 @abstract func _on_interact_activated(_component: IComponent)
+## 中止待触发的逻辑
+@abstract func _on_interact_deactivated(_component: IComponent)

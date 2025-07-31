@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://chcm2vu8h6bs1"]
+[gd_scene load_steps=24 format=3 uid="uid://chcm2vu8h6bs1"]
 
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_wwb3p"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_074rv"]
@@ -9,18 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_movement/c_movement.tscn" id="7_lci37"]
 [ext_resource type="Script" uid="uid://dwt0prmf31a5" path="res://component/c_movement/move_strategy/vector_move.gd" id="8_cdt1j"]
 [ext_resource type="PackedScene" uid="uid://caj56l0yail7q" path="res://component/c_status/c_status.tscn" id="9_4t03t"]
-[ext_resource type="PackedScene" uid="uid://bwirxc82f24gv" path="res://component/c_status/status_extension/equipment/equipment.tscn" id="10_1iw83"]
 [ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_state/c_state.tscn" id="11_35fhj"]
 [ext_resource type="Script" uid="uid://dnmlb5kw5y7u3" path="res://component/c_state/state/hfsm/state/player/sm_sora_root.gd" id="12_bwemg"]
 [ext_resource type="Script" uid="uid://b3dlfvhs4o6ii" path="res://component/c_state/state/hfsm/state/player/state_idle.gd" id="13_euvil"]
 [ext_resource type="Script" uid="uid://cpdkw72ahtbjj" path="res://component/c_state/transition_record.gd" id="14_e1v5r"]
 [ext_resource type="Script" uid="uid://dj1d6vr2iy6ds" path="res://component/c_state/state/hfsm/state/player/state_move.gd" id="15_dg0bx"]
 [ext_resource type="PackedScene" uid="uid://cps21xspaovit" path="res://component/c_collision/c_collision.tscn" id="16_hrp2a"]
-[ext_resource type="PackedScene" uid="uid://dgykredd3ey6r" path="res://component/c_collision/box_collision/hitbox/hitbox.tscn" id="17_simoh"]
 [ext_resource type="PackedScene" uid="uid://lu3gu1tfxdey" path="res://component/c_input_reactor/c_input_reactor.tscn" id="18_ed540"]
 [ext_resource type="PackedScene" uid="uid://culm6jk4g06ro" path="res://component/c_collision/box_collision/seek_box/seek_box.tscn" id="18_pvpin"]
+[ext_resource type="Script" uid="uid://dc4xbso7xmwvo" path="res://component/c_input_reactor/reactor_extension/e_player/mouse_focus.gd" id="19_ai50r"]
 [ext_resource type="PackedScene" uid="uid://b3vbfhugiqyva" path="res://component/c_action/c_action.tscn" id="19_ocpjo"]
-[ext_resource type="Script" uid="uid://drf0dqw0rkvyx" path="res://component/c_action/action/skill/action_seek.gd" id="20_ai50r"]
+[ext_resource type="Script" uid="uid://b12rb4ncy2q57" path="res://component/c_input_reactor/reactor_extension/e_player/seek_confirm.gd" id="19_pvpin"]
 
 [sub_resource type="Resource" id="Resource_whce7"]
 script = ExtResource("14_e1v5r")
@@ -31,9 +30,6 @@ metadata/_custom_type_script = "uid://cpdkw72ahtbjj"
 script = ExtResource("14_e1v5r")
 to_state = NodePath("../Idle")
 metadata/_custom_type_script = "uid://cpdkw72ahtbjj"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_bu1qv"]
-radius = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qcfhx"]
 size = Vector2(8, 4)
@@ -78,8 +74,6 @@ basic_info = Dictionary[int, float]({
 200: 1.0
 })
 
-[node name="Equipment" parent="CharacterBody/ComponentContainer/CStatus" index="0" instance=ExtResource("10_1iw83")]
-
 [node name="CState" parent="CharacterBody/ComponentContainer" index="4" node_paths=PackedStringArray("root_state_machine") instance=ExtResource("11_35fhj")]
 root_state_machine = NodePath("PlayerSM")
 
@@ -106,23 +100,19 @@ hfsm_state_transition = Dictionary[StringName, ExtResource("14_e1v5r")]({
 
 [node name="CCollision" parent="CharacterBody/ComponentContainer" index="5" instance=ExtResource("16_hrp2a")]
 
-[node name="Hitbox" parent="CharacterBody/ComponentContainer/CCollision" index="0" node_paths=PackedStringArray("equipment", "status") instance=ExtResource("17_simoh")]
-equipment = NodePath("../../CStatus/Equipment")
-status = NodePath("../../CStatus")
+[node name="SeekBox" parent="CharacterBody/ComponentContainer/CCollision" index="0" instance=ExtResource("18_pvpin")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/ComponentContainer/CCollision/Hitbox/Area2D" index="0"]
-shape = SubResource("CircleShape2D_bu1qv")
-debug_color = Color(0.6880525, 0.33171237, 0.93363196, 0.41960785)
+[node name="CInputReactor" parent="CharacterBody/ComponentContainer" index="6" instance=ExtResource("18_ed540")]
 
-[node name="SeekBox" parent="CharacterBody/ComponentContainer/CCollision" index="1" instance=ExtResource("18_pvpin")]
+[node name="SeekConfirm" type="Node" parent="CharacterBody/ComponentContainer/CInputReactor" index="0" node_paths=PackedStringArray("seek_box")]
+script = ExtResource("19_pvpin")
+seek_box = NodePath("../../CCollision/SeekBox")
 
-[node name="CInputReactor" parent="CharacterBody/ComponentContainer" index="6" node_paths=PackedStringArray("mouse_focus") instance=ExtResource("18_ed540")]
-mouse_focus = [NodePath("../CCollision/SeekBox")]
+[node name="MouseFocus" type="Node" parent="CharacterBody/ComponentContainer/CInputReactor" index="1" node_paths=PackedStringArray("mouse_focus")]
+script = ExtResource("19_ai50r")
+mouse_focus = [NodePath("../../CCollision/SeekBox")]
 
 [node name="CAction" parent="CharacterBody/ComponentContainer" index="7" instance=ExtResource("19_ocpjo")]
-
-[node name="Seek" type="Node2D" parent="CharacterBody/ComponentContainer/CAction" index="0"]
-script = ExtResource("20_ai50r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody" index="1"]
 position = Vector2(0, 6)
@@ -131,4 +121,3 @@ shape = SubResource("RectangleShape2D_qcfhx")
 [editable path="CharacterBody"]
 [editable path="CharacterBody/ComponentContainer/CCamera"]
 [editable path="CharacterBody/ComponentContainer/CState"]
-[editable path="CharacterBody/ComponentContainer/CCollision/Hitbox"]

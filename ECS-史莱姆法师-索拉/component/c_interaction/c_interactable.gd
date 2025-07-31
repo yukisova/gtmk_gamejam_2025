@@ -7,14 +7,10 @@ extends IComponent
 signal interact_activated ## 开始交互信号
 signal interact_deactivated ## 取消交互信号
 
-enum InteractCollisionSource{ 
-	依赖实体, ## 当前的交互组件碰撞体来自实体对象自身的ComponentBody
-	自定义碰撞体 ## 当前的交互组件碰撞体来自定义的引用
-}
 
-@export var interact_inherit_mode: InteractCollisionSource : ## 交互碰撞体来源
+@export_flags("禁用自定义碰撞体", "禁用body检测") var interact_setting: int:
 	set(v):
-		interact_inherit_mode = v
+		interact_setting = v
 		notify_property_list_changed()
 
 @export var interact_object: CollisionObject2D :## 自定义交互碰撞体
@@ -35,69 +31,49 @@ func _initialize(_owner: Entity):
 	interact_activated.connect(interaction._on_interact_activated.bind(self))
 	interact_deactivated.connect(interaction._on_interact_deactivated.bind(self))
 	
-	var final_body
-	
-	## 依赖实体的交互
-	if interact_inherit_mode == InteractCollisionSource.依赖实体:
-		final_body = component_body
-		if final_body is Area2D:
-			final_body.body_entered.connect(
-				func(_body: Node2D):
-					if _body.is_in_group("player"):
-						if area_is_passive:
-							interact_activated.emit()
-						else:
-							var entity = _body.owner as Entity
-							if entity.list_base_components.has(IComponent.ComponentName.c_input_reactor):
-								var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
-								c_input.interact_obj = self
-			)
-			final_body.body_exited.connect(
-				func(_body: Node2D):
-					if _body.is_in_group("player"):
-						interact_deactivated.emit()
-						if not area_is_passive:
-							var entity = _body.owner as Entity
-							if entity.list_base_components.has(IComponent.ComponentName.c_input_reactor):
-								var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
-								c_input.interact_obj = null
-			)
-	## 依赖自定义的交互
-	else:
-		final_body = interact_object
-		if final_body is Area2D:
-			final_body.body_entered.connect(
-				func(_body: Node2D):
-					if _body.is_in_group("player"):
-						if area_is_passive:
-							interact_activated.emit()
-						else:
-							var entity = _body.owner as Entity
-							if entity.list_base_components.has(IComponent.ComponentName.c_input_reactor):
-								var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
-								c_input.interact_obj = self
-			)
-			final_body.body_exited.connect(
-				func(_body: Node2D):
-					if _body.is_in_group("player"):
-						interact_deactivated.emit()
-						if not area_is_passive:
-							var entity = _body.owner as Entity
-							if entity.list_base_components.has(IComponent.ComponentName.c_input_reactor):
-								var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
-								c_input.interact_obj = null
-			)
+	register_inteactable_area()
 
 func _validate_property(property: Dictionary) -> void:
-	match interact_inherit_mode:
-		InteractCollisionSource.依赖实体:
-			var list_name = ["interact_object"]
-			if property.name in list_name:
-				property.usage = PROPERTY_USAGE_NO_EDITOR
+	if interact_setting & 0b001 == 1:
+		if property.name == "interact_object":
+			property.usage = PROPERTY_USAGE_NO_EDITOR
 			if component_body is not Area2D:
 				if property.name == "area_is_passive":
 					property.usage = PROPERTY_USAGE_NO_EDITOR
-		InteractCollisionSource.自定义碰撞体:
-			if interact_object is not Area2D:
-				if property.name == "area_is_passive":
-					property.usage = PROPERTY_USAGE_NO_EDITOR
+
+func register_inteactable_area():
+	var final_body: CollisionObject2D
+	if interact_setting & 0b001 == 0:
+		final_body = interact_object
+	else:
+		final_body = component_body
+	
+	if final_body is Area2D: ## 保留用
+		if interact_setting & 0b010 == 0: ## 未禁用body检测
+			final_body.body_entered.connect(func(_body: Node2D):
+				if _body.is_in_group("player"):
+					if area_is_passive:
+						interact_activated.emit()
+					else:
+						var entity = _body.owner as Entity
+						if entity.list_base_components.has(IComponent.ComponentName.c_input_reactor):
+							var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
+							c_input.interact_obj = self
+			)
+			final_body.body_exited.connect(func(_body: Node2D):
+				if _body.is_in_group("player"):
+					interact_deactivated.emit()
+					if not area_is_passive:
+						var entity = _body.owner as Entity
+						if entity.list_base_components.has(IComponent.ComponentName.c_input_reactor):
+							var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
+							c_input.interact_obj = null
+			)
+		final_body.area_entered.connect(func(_area: Area2D):
+			if _area is SeekBox:
+				_area.seek_target.append(self)
+			)
+		final_body.area_exited.connect(func(_area: Area2D):
+				if _area is SeekBox:
+					_area.seek_target.erase(self)
+				)

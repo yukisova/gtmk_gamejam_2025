@@ -15,8 +15,9 @@ func _enter_tree() -> void:
 func _initialize(_owner: Entity):
 	super._initialize(_owner)
 	
-	for box in get_children():
-		collision[box.name] = box
+	for i in get_children():
+		if i is BoxCollision:
+			collision[i.name] = i
 
 
 	

@@ -4,11 +4,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uexuo"]
 
-[node name="SeekBox" type="Node2D" node_paths=PackedStringArray("area_box")]
+[node name="SeekBox" type="Area2D"]
 script = ExtResource("1_uexuo")
-area_box = NodePath("Area2D")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uexuo")

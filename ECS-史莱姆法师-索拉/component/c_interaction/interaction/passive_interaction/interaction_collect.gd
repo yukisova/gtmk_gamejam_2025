@@ -1,6 +1,6 @@
 ## @editing: Sora [br]
 ## @describe: 拾取交互，之后会更加生动
-extends InitiativeInteraction
+extends PassiveInteraction
 
 func _on_interact_activated(_component: IComponent):
 	print("被收集了")

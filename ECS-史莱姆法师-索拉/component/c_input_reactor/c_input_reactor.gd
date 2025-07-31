@@ -11,17 +11,15 @@ enum ControlMode{ just_pressed = 0, pressed, just_release }
 ## 游戏的设置，游戏的退出等游戏外相关的设置菜单
 @export var pause_ui: PackedScene
 
-@export_flags("向量监听","主控", "鼠标聚焦") var disable_flag: int:
+@export_flags("向量监听","主控") var disable_flag: int:
 	set(v):
 		disable_flag = v
 		notify_property_list_changed()
 
-@export var mouse_focus: Array[Node2D]
-
-
 var input_vector_dict: Dictionary[String, Vector2] = {
 	"move" : Vector2.ZERO
 }
+var reactor_extension: Array[ReactorExtension] = []
 
 var interact_obj: C_Interactable = null:
 	set(v):
@@ -40,6 +38,11 @@ func _initialize(_owner: Entity):
 	if component_owner == SMainController.player_static:
 		SMainController.input_listener.binding_input_component = self
 		disable_flag |= 0b010
+	
+	for i in get_children():
+		if i is ReactorExtension:
+			reactor_extension.append(i)
+			
 
 func validate_control(key_string: StringName, control_mode: ControlMode = ControlMode.just_pressed) -> bool:
 	if (SGlobalConfig.is_initialized):
@@ -90,21 +93,21 @@ func _avaliable_in_gaming():
 	
 	input_vector_dict.move = _try_vector_control()
 	
-	
-	if disable_flag & 0b100 != 0:
-		for i in mouse_focus:
-			i.global_position = i.get_global_mouse_position()
-	
 	#weapon_texture.rotation = (Vector2.ZERO).direction_to(aim_texture.position).normalized().angle()
 	
 	if validate_control("brain_trigger", ControlMode.just_pressed):
 		SUiSpawner._spawn_ui(brain_ui)
 	elif validate_control("pause_game", ControlMode.just_pressed):
 		SUiSpawner._spawn_ui(pause_ui)
-
-	elif validate_control("interact", ControlMode.just_pressed):
-		if interact_obj != null:
-			interact_obj.interact_activated.emit()
+	
+	for i in reactor_extension:
+		i._listen()
+	
+	 
+	#elif validate_control("interact", ControlMode.just_pressed):
+		#if interact_obj != null:
+			#interact_obj.interact_activated.emit()
+		
 #endregion
 
 func _validate_property(property: Dictionary) -> void:

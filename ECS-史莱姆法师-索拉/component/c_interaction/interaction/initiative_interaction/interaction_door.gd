@@ -1,6 +1,6 @@
 ## @editing: Sora [br]
 ## @describe: 门的交互逻辑，分为开门和关门，测试用
-extends InitiativeInteraction 
+extends PassiveInteraction 
 
 @export var c_animation_ez : IComponent
 @export var collision_shape: CollisionShape2D
