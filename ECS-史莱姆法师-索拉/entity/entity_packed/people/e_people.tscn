@@ -1,9 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://csybxa4x4phq4"]
+[gd_scene load_steps=23 format=3 uid="uid://csybxa4x4phq4"]
 
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_p5gco"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_0w0mx"]
+[ext_resource type="PackedScene" uid="uid://dbswip03t13sy" path="res://component/c_interaction/c_interactable.tscn" id="3_2xqoy"]
+[ext_resource type="Script" uid="uid://djglhr34yxc4x" path="res://component/c_interaction/interaction/initiative_interaction/interaction_dialogue.gd" id="4_qnw2d"]
+[ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/resource_template/sprite/animated_sprite/player_frame.tres" id="4_qq6q3"]
 [ext_resource type="PackedScene" uid="uid://bvjy63fua1sx2" path="res://component/c_texture/c_texture.tscn" id="5_x5syu"]
-[ext_resource type="PackedScene" uid="uid://c8qkh4g5avew" path="res://component/c_texture/packed_texture/people/packed_sprite_people.tscn" id="6_q5rng"]
 [ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_movement/c_movement.tscn" id="7_60uk1"]
 [ext_resource type="Script" uid="uid://dwt0prmf31a5" path="res://component/c_movement/move_strategy/vector_move.gd" id="8_4pbbd"]
 [ext_resource type="PackedScene" uid="uid://caj56l0yail7q" path="res://component/c_status/c_status.tscn" id="9_8sysp"]
@@ -12,8 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_state/c_state.tscn" id="11_iet4j"]
 [ext_resource type="Script" uid="uid://dt3joxgcst884" path="res://component/c_state/state/hfsm/state/people/people_patrol.gd" id="11_qq6q3"]
 [ext_resource type="Script" uid="uid://cpdkw72ahtbjj" path="res://component/c_state/transition_record.gd" id="14_ftmdb"]
+[ext_resource type="PackedScene" uid="uid://chj3kl8gl43h" path="res://component/c_collision/box_collision/interaction_box/interaction_box.tscn" id="14_qq6q3"]
 [ext_resource type="PackedScene" uid="uid://cps21xspaovit" path="res://component/c_collision/c_collision.tscn" id="16_sw3nw"]
-[ext_resource type="PackedScene" uid="uid://dgykredd3ey6r" path="res://component/c_collision/box_collision/hitbox/hitbox.tscn" id="17_t6dx6"]
+[ext_resource type="Script" uid="uid://brdkhewfuhc0w" path="res://component/c_action/action/decrepted/test_dialogue_action.gd" id="19_gtue6"]
 [ext_resource type="PackedScene" uid="uid://b3vbfhugiqyva" path="res://component/c_action/c_action.tscn" id="19_rt6go"]
 
 [sub_resource type="Resource" id="Resource_qq6q3"]
@@ -26,8 +29,7 @@ script = ExtResource("14_ftmdb")
 to_state = NodePath("../Idle")
 metadata/_custom_type_script = "uid://cpdkw72ahtbjj"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bu1qv"]
-radius = 3.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq6q3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qcfhx"]
 size = Vector2(8, 4)
@@ -39,13 +41,21 @@ component_container = NodePath("CharacterBody/ComponentContainer")
 [node name="CharacterBody" parent="." index="0" groups=["player"] instance=ExtResource("2_0w0mx")]
 y_sort_enabled = true
 
-[node name="CTexture" parent="CharacterBody/ComponentContainer" index="0" node_paths=PackedStringArray("animation_player") instance=ExtResource("5_x5syu")]
-texture_path = NodePath("PackedSpritePeople")
-animation_player = NodePath("PackedSpritePeople/ActionAnimation")
+[node name="CInteractable" parent="CharacterBody/ComponentContainer" index="0" node_paths=PackedStringArray("interact_object") instance=ExtResource("3_2xqoy")]
+interact_inherit_mode = 1
+interact_object = NodePath("../CCollision/InteractionBox/Area2D")
 
-[node name="PackedSpritePeople" parent="CharacterBody/ComponentContainer/CTexture" index="0" instance=ExtResource("6_q5rng")]
+[node name="InteractionDialogue" type="Node" parent="CharacterBody/ComponentContainer/CInteractable" index="0" node_paths=PackedStringArray("action_dialogue")]
+script = ExtResource("4_qnw2d")
+action_dialogue = NodePath("../../CAction/ActionDialogue")
 
-[node name="CMovement" parent="CharacterBody/ComponentContainer" index="1" node_paths=PackedStringArray("move_strategy") instance=ExtResource("7_60uk1")]
+[node name="CTexture" parent="CharacterBody/ComponentContainer" index="1" instance=ExtResource("5_x5syu")]
+texture_path = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody/ComponentContainer/CTexture" index="0"]
+sprite_frames = ExtResource("4_qq6q3")
+
+[node name="CMovement" parent="CharacterBody/ComponentContainer" index="2" node_paths=PackedStringArray("move_strategy") instance=ExtResource("7_60uk1")]
 move_strategy = NodePath("VectorMove")
 
 [node name="VectorMove" type="Node" parent="CharacterBody/ComponentContainer/CMovement" index="0" node_paths=PackedStringArray("blackboard")]
@@ -53,13 +63,13 @@ script = ExtResource("8_4pbbd")
 move_speed = 1000.0
 blackboard = NodePath("../..")
 
-[node name="CStatus" parent="CharacterBody/ComponentContainer" index="2" instance=ExtResource("9_8sysp")]
+[node name="CStatus" parent="CharacterBody/ComponentContainer" index="3" instance=ExtResource("9_8sysp")]
 basic_info = Dictionary[int, float]({
 0: 100.0,
 2: 100.0
 })
 
-[node name="CState" parent="CharacterBody/ComponentContainer" index="3" node_paths=PackedStringArray("root_state_machine") instance=ExtResource("11_iet4j")]
+[node name="CState" parent="CharacterBody/ComponentContainer" index="4" node_paths=PackedStringArray("root_state_machine") instance=ExtResource("11_iet4j")]
 root_state_machine = NodePath("StateMachineHfsm")
 
 [node name="StateMachineHfsm" type="Node" parent="CharacterBody/ComponentContainer/CState" index="0"]
@@ -79,24 +89,22 @@ hfsm_state_transition = Dictionary[StringName, ExtResource("14_ftmdb")]({
 &"": SubResource("Resource_2xqoy")
 })
 
-[node name="MeleeAttacking" type="Node" parent="CharacterBody/ComponentContainer/CState/PdaStates" index="0"]
+[node name="CCollision" parent="CharacterBody/ComponentContainer" index="5" instance=ExtResource("16_sw3nw")]
 
-[node name="CCollision" parent="CharacterBody/ComponentContainer" index="4" instance=ExtResource("16_sw3nw")]
+[node name="InteractionBox" parent="CharacterBody/ComponentContainer/CCollision" index="0" instance=ExtResource("14_qq6q3")]
 
-[node name="Hitbox" parent="CharacterBody/ComponentContainer/CCollision" index="0" node_paths=PackedStringArray("status") instance=ExtResource("17_t6dx6")]
-status = NodePath("../../CStatus")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/ComponentContainer/CCollision/InteractionBox/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_qq6q3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody/ComponentContainer/CCollision/Hitbox/Area2D" index="0"]
-shape = SubResource("CircleShape2D_bu1qv")
-debug_color = Color(0.6880525, 0.33171237, 0.93363196, 0.41960785)
+[node name="CAction" parent="CharacterBody/ComponentContainer" index="6" instance=ExtResource("19_rt6go")]
 
-[node name="CAction" parent="CharacterBody/ComponentContainer" index="5" instance=ExtResource("19_rt6go")]
+[node name="ActionDialogue" type="Node" parent="CharacterBody/ComponentContainer/CAction" index="0"]
+script = ExtResource("19_gtue6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody" index="1"]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_qcfhx")
 
 [editable path="CharacterBody"]
-[editable path="CharacterBody/ComponentContainer/CTexture/PackedSpritePeople"]
 [editable path="CharacterBody/ComponentContainer/CState"]
-[editable path="CharacterBody/ComponentContainer/CCollision/Hitbox"]
+[editable path="CharacterBody/ComponentContainer/CCollision/InteractionBox"]

@@ -1,4 +1,4 @@
-## @editing: Sora [br]
+## SORA @editing: Sora [br]
 ## @describe: 交互组件，可以实现基于被动或主动的交互
 @tool
 class_name C_Interactable
@@ -37,6 +37,7 @@ func _initialize(_owner: Entity):
 	
 	var final_body
 	
+	## 依赖实体的交互
 	if interact_inherit_mode == InteractCollisionSource.依赖实体:
 		final_body = component_body
 		if final_body is Area2D:
@@ -61,6 +62,7 @@ func _initialize(_owner: Entity):
 								var c_input = entity.list_base_components[IComponent.ComponentName.c_input_reactor]
 								c_input.interact_obj = null
 			)
+	## 依赖自定义的交互
 	else:
 		final_body = interact_object
 		if final_body is Area2D:

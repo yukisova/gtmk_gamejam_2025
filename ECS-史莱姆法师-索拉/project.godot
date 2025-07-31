@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="史莱姆法师"
+config/name="昨日之影"
 config/tags=PackedStringArray("gmtk_2025")
 run/main_scene="uid://qvegob1cp74r"
 config/features=PackedStringArray("4.5", "Forward Plus")

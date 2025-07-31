@@ -3,14 +3,10 @@
 ##			HACK 谈话的对话框希望在ui_view中
 extends InitiativeInteraction
 
-@export var dialogue: DialogueResource
-@export var dialogue_label: String
-
-const ui_dialogue_scene: PackedScene = preload("res://ui/ui/ui_dialogue/ui_dialogue.tscn")
+@export var action_dialogue: Action
 
 func _on_interact_activated(_component: IComponent):
-	var ui_dialogue = ui_dialogue_scene.instantiate()
-	DialogueManager._start_balloon(ui_dialogue, dialogue, dialogue_label, [])
+	pass
 	
 func _on_interact_deactivated(_component: IComponent):
 	pass

@@ -1,9 +1,8 @@
-## @editing: Sora [br]
+## SORA @editing: Sora [br]
 ## @describe: 可控制组件，拥有该组件的实体可以被操控，但细节层面可以进行优化
 @tool
 class_name C_InputReactor
 extends IComponent
-
 
 enum ControlMode{ just_pressed = 0, pressed, just_release }
 @export_enum("横版", "四向", "八向", "全向") var award_mode: String = "四向"
@@ -12,17 +11,13 @@ enum ControlMode{ just_pressed = 0, pressed, just_release }
 ## 游戏的设置，游戏的退出等游戏外相关的设置菜单
 @export var pause_ui: PackedScene
 
-@export_flags("向量监听","主控") var disable_flag: int:
+@export_flags("向量监听","主控", "鼠标聚焦") var disable_flag: int:
 	set(v):
 		disable_flag = v
 		notify_property_list_changed()
 
-@export var aim_texture: Sprite2D
-@export var weapon_texture: Sprite2D
+@export var mouse_focus: Array[Node2D]
 
-
-## HACK 以下为测试对话气泡专用的代码逻辑，要记得删
-@export var test_dialogue_action: Action
 
 var input_vector_dict: Dictionary[String, Vector2] = {
 	"move" : Vector2.ZERO
@@ -95,8 +90,12 @@ func _avaliable_in_gaming():
 	
 	input_vector_dict.move = _try_vector_control()
 	
-	aim_texture.global_position = aim_texture.get_global_mouse_position()
-	weapon_texture.rotation = (Vector2.ZERO).direction_to(aim_texture.position).normalized().angle()
+	
+	if disable_flag & 0b100 != 0:
+		for i in mouse_focus:
+			i.global_position = i.get_global_mouse_position()
+	
+	#weapon_texture.rotation = (Vector2.ZERO).direction_to(aim_texture.position).normalized().angle()
 	
 	if validate_control("brain_trigger", ControlMode.just_pressed):
 		SUiSpawner._spawn_ui(brain_ui)
@@ -106,10 +105,6 @@ func _avaliable_in_gaming():
 	elif validate_control("interact", ControlMode.just_pressed):
 		if interact_obj != null:
 			interact_obj.interact_activated.emit()
-	
-	## HACK 以下为测试对话气泡专用的代码逻辑，要记得删
-	elif Input.is_key_pressed(KEY_0):
-		test_dialogue_action._effect()
 #endregion
 
 func _validate_property(property: Dictionary) -> void:

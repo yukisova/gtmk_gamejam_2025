@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://nuqhnptuuok4" path="res://component/c_state/state/pda/state/basic_state_pda.gd" id="10_60pi2"]
 [ext_resource type="Script" uid="uid://cyd4hgubqwemc" path="res://component/c_state/state/pda/state/goblin/state_patrol_p.gd" id="11_32dqp"]
 [ext_resource type="PackedScene" uid="uid://cps21xspaovit" path="res://component/c_collision/c_collision.tscn" id="11_rixq5"]
-[ext_resource type="PackedScene" uid="uid://7mixsvyk4krp" path="res://component/c_collision/box_collision/sightbox/sightbox.tscn" id="12_4fd4g"]
+[ext_resource type="PackedScene" uid="uid://7mixsvyk4krp" path="res://component/c_collision/box_collision/sight_box/sight_box.tscn" id="12_4fd4g"]
 [ext_resource type="Script" uid="uid://bp3cu4t7nd36p" path="res://component/c_state/state/pda/state/goblin/state_warning_p.gd" id="12_4w453"]
 [ext_resource type="Script" uid="uid://bd6dtrpx3dapx" path="res://component/c_state/state/pda/state/goblin/state_search_p.gd" id="13_14ba7"]
 [ext_resource type="Script" uid="uid://cevkcstd1aowi" path="res://component/c_state/state/pda/state/goblin/state_chase_p.gd" id="14_ljida"]

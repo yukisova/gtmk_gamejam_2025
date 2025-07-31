@@ -1,11 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://chcm2vu8h6bs1"]
+[gd_scene load_steps=26 format=3 uid="uid://chcm2vu8h6bs1"]
 
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_wwb3p"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_074rv"]
 [ext_resource type="PackedScene" uid="uid://bo5de2ow6bqjo" path="res://component/c_camera/c_camera.tscn" id="3_xcrqq"]
 [ext_resource type="Script" uid="uid://b1kgwv70jiajt" path="res://component/c_camera/follow_strategy/cfs_mouse_follow.gd" id="4_vx1gj"]
 [ext_resource type="PackedScene" uid="uid://bvjy63fua1sx2" path="res://component/c_texture/c_texture.tscn" id="5_3b607"]
-[ext_resource type="PackedScene" uid="uid://c8qkh4g5avew" path="res://component/c_texture/packed_texture/people/packed_sprite_people.tscn" id="6_aqmhw"]
+[ext_resource type="SpriteFrames" uid="uid://cb2ighg7hr4uk" path="res://resource/resource_template/sprite/animated_sprite/player_frame.tres" id="6_blmga"]
 [ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_movement/c_movement.tscn" id="7_lci37"]
 [ext_resource type="Script" uid="uid://dwt0prmf31a5" path="res://component/c_movement/move_strategy/vector_move.gd" id="8_cdt1j"]
 [ext_resource type="PackedScene" uid="uid://caj56l0yail7q" path="res://component/c_status/c_status.tscn" id="9_4t03t"]
@@ -18,36 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://cps21xspaovit" path="res://component/c_collision/c_collision.tscn" id="16_hrp2a"]
 [ext_resource type="PackedScene" uid="uid://dgykredd3ey6r" path="res://component/c_collision/box_collision/hitbox/hitbox.tscn" id="17_simoh"]
 [ext_resource type="PackedScene" uid="uid://lu3gu1tfxdey" path="res://component/c_input_reactor/c_input_reactor.tscn" id="18_ed540"]
+[ext_resource type="PackedScene" uid="uid://culm6jk4g06ro" path="res://component/c_collision/box_collision/seek_box/seek_box.tscn" id="18_pvpin"]
 [ext_resource type="PackedScene" uid="uid://b3vbfhugiqyva" path="res://component/c_action/c_action.tscn" id="19_ocpjo"]
-[ext_resource type="Script" uid="uid://drtm0lb4o8s8v" path="res://component/c_action/action/skill/splat_slime.gd" id="20_xmg63"]
-[ext_resource type="PackedScene" uid="uid://n4p12hxn4c4n" path="res://entity/entity_packed/temp/projectile/e_projectile.tscn" id="21_eh130"]
-[ext_resource type="Script" uid="uid://c67a8nhbdrtlh" path="res://component/c_action/action/skill/charge_magic.gd" id="22_qiuk5"]
-[ext_resource type="Script" uid="uid://brdkhewfuhc0w" path="res://component/c_action/action/test_dialogue_action.gd" id="23_074rv"]
-[ext_resource type="PackedScene" uid="uid://shdn4eldwjpu" path="res://ui/ui/ui_dialogue/ui_dialogue.tscn" id="24_xcrqq"]
-[ext_resource type="Resource" uid="uid://dj7funx2bqofn" path="res://resource/plugins_resource/dialogue/test_dialogue.dialogue" id="25_vx1gj"]
-
-[sub_resource type="Gradient" id="Gradient_whce7"]
-offsets = PackedFloat32Array(0.8551282, 1)
-colors = PackedColorArray(0.9764706, 0.019607844, 0.019607844, 1, 0.9764706, 0.019607844, 0.019607844, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_osnnt"]
-gradient = SubResource("Gradient_whce7")
-height = 32
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-metadata/_snap_enabled = true
-
-[sub_resource type="Gradient" id="Gradient_osnnt"]
-offsets = PackedFloat32Array(0.63846153, 0.9358974, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fd2kr"]
-gradient = SubResource("Gradient_osnnt")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.8, 0.2)
-metadata/_snap_enabled = true
+[ext_resource type="Script" uid="uid://drf0dqw0rkvyx" path="res://component/c_action/action/skill/action_seek.gd" id="20_ai50r"]
 
 [sub_resource type="Resource" id="Resource_whce7"]
 script = ExtResource("14_e1v5r")
@@ -75,22 +48,18 @@ y_sort_enabled = true
 [node name="CCamera" parent="CharacterBody/ComponentContainer" index="0" node_paths=PackedStringArray("camera_strategy") instance=ExtResource("3_xcrqq")]
 camera_strategy = NodePath("MouseFollow")
 
+[node name="Camera2D" parent="CharacterBody/ComponentContainer/CCamera" index="0"]
+zoom = Vector2(4, 4)
+
 [node name="MouseFollow" type="Node" parent="CharacterBody/ComponentContainer/CCamera" index="1"]
 script = ExtResource("4_vx1gj")
 smoothing = null
 
-[node name="CTexture" parent="CharacterBody/ComponentContainer" index="1" node_paths=PackedStringArray("animation_player") instance=ExtResource("5_3b607")]
-texture_path = NodePath("PackedSpritePeople")
-animation_player = NodePath("PackedSpritePeople/ActionAnimation")
+[node name="CTexture" parent="CharacterBody/ComponentContainer" index="1" instance=ExtResource("5_3b607")]
+texture_path = NodePath("AnimatedSprite2D")
 
-[node name="PackedSpritePeople" parent="CharacterBody/ComponentContainer/CTexture" index="0" instance=ExtResource("6_aqmhw")]
-
-[node name="WeaponTexture" type="Sprite2D" parent="CharacterBody/ComponentContainer/CTexture" index="1"]
-texture = SubResource("GradientTexture2D_osnnt")
-offset = Vector2(32, 0)
-
-[node name="AimingTexture" type="Sprite2D" parent="CharacterBody/ComponentContainer/CTexture" index="2"]
-texture = SubResource("GradientTexture2D_fd2kr")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody/ComponentContainer/CTexture" index="0"]
+sprite_frames = ExtResource("6_blmga")
 
 [node name="CMovement" parent="CharacterBody/ComponentContainer" index="2" node_paths=PackedStringArray("move_strategy") instance=ExtResource("7_lci37")]
 move_strategy = NodePath("VectorMove")
@@ -114,10 +83,8 @@ basic_info = Dictionary[int, float]({
 [node name="CState" parent="CharacterBody/ComponentContainer" index="4" node_paths=PackedStringArray("root_state_machine") instance=ExtResource("11_35fhj")]
 root_state_machine = NodePath("PlayerSM")
 
-[node name="PlayerSM" type="Node" parent="CharacterBody/ComponentContainer/CState" index="0" node_paths=PackedStringArray("splat", "charge")]
+[node name="PlayerSM" type="Node" parent="CharacterBody/ComponentContainer/CState" index="0"]
 script = ExtResource("12_bwemg")
-splat = NodePath("../../CAction/SplatSlime")
-charge = NodePath("../../CAction/ChargeMagic")
 init_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://b5ywitjyd2ccg"
 
@@ -137,8 +104,6 @@ hfsm_state_transition = Dictionary[StringName, ExtResource("14_e1v5r")]({
 &"": SubResource("Resource_osnnt")
 })
 
-[node name="MeleeAttacking" type="Node" parent="CharacterBody/ComponentContainer/CState/PdaStates" index="0"]
-
 [node name="CCollision" parent="CharacterBody/ComponentContainer" index="5" instance=ExtResource("16_hrp2a")]
 
 [node name="Hitbox" parent="CharacterBody/ComponentContainer/CCollision" index="0" node_paths=PackedStringArray("equipment", "status") instance=ExtResource("17_simoh")]
@@ -149,32 +114,21 @@ status = NodePath("../../CStatus")
 shape = SubResource("CircleShape2D_bu1qv")
 debug_color = Color(0.6880525, 0.33171237, 0.93363196, 0.41960785)
 
-[node name="CInputReactor" parent="CharacterBody/ComponentContainer" index="6" node_paths=PackedStringArray("aim_texture", "weapon_texture", "test_dialogue_action") instance=ExtResource("18_ed540")]
-aim_texture = NodePath("../CTexture/AimingTexture")
-weapon_texture = NodePath("../CTexture/WeaponTexture")
-test_dialogue_action = NodePath("../CAction/TestDialogue")
+[node name="SeekBox" parent="CharacterBody/ComponentContainer/CCollision" index="1" instance=ExtResource("18_pvpin")]
+
+[node name="CInputReactor" parent="CharacterBody/ComponentContainer" index="6" node_paths=PackedStringArray("mouse_focus") instance=ExtResource("18_ed540")]
+mouse_focus = [NodePath("../CCollision/SeekBox")]
 
 [node name="CAction" parent="CharacterBody/ComponentContainer" index="7" instance=ExtResource("19_ocpjo")]
 
-[node name="SplatSlime" type="Node2D" parent="CharacterBody/ComponentContainer/CAction" index="0"]
-script = ExtResource("20_xmg63")
-projectile_scene = ExtResource("21_eh130")
-spend_magic = 1.0
-
-[node name="ChargeMagic" type="Node2D" parent="CharacterBody/ComponentContainer/CAction" index="1"]
-script = ExtResource("22_qiuk5")
-
-[node name="TestDialogue" type="Node2D" parent="CharacterBody/ComponentContainer/CAction" index="2"]
-script = ExtResource("23_074rv")
-test_dialogue_ui = ExtResource("24_xcrqq")
-test_dialogue = ExtResource("25_vx1gj")
-test_dialogue_label = &"start"
+[node name="Seek" type="Node2D" parent="CharacterBody/ComponentContainer/CAction" index="0"]
+script = ExtResource("20_ai50r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody" index="1"]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_qcfhx")
 
 [editable path="CharacterBody"]
-[editable path="CharacterBody/ComponentContainer/CTexture/PackedSpritePeople"]
+[editable path="CharacterBody/ComponentContainer/CCamera"]
 [editable path="CharacterBody/ComponentContainer/CState"]
 [editable path="CharacterBody/ComponentContainer/CCollision/Hitbox"]

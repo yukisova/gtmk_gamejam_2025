@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://7mixsvyk4krp"]
 
-[ext_resource type="Script" uid="uid://dv2hokmyuu03y" path="res://component/c_collision/box_collision/sightbox/sightbox.gd" id="1_8vqma"]
+[ext_resource type="Script" uid="uid://dv2hokmyuu03y" path="res://component/c_collision/box_collision/sight_box/sight_box.gd" id="1_8vqma"]
 
 [node name="Sightbox" type="Node2D" node_paths=PackedStringArray("area_box")]
 script = ExtResource("1_8vqma")

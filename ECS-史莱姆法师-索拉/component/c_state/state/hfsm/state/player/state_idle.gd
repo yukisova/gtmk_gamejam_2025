@@ -13,6 +13,6 @@ func _enter():
 func _update(_delta: float) -> void:
 	super._update(_delta)
 	
-	var vector = vector_move.get("move_vector") as Vector2
+	var vector = vector_move.move_vector as Vector2
 	if (!vector.is_zero_approx()):
 		state_transition.emit(get_transition_state())
