@@ -85,7 +85,10 @@ func _notification(what: int) -> void:
 ## Start some dialogue
 func start(dialogue_resource: DialogueResource, title: String, extra_game_states: Array = []) -> void:
 	## HACK 个人写的修改部分, 旨在将该节点放入ui_view中
-	reparent(Main.ui_view)
+	if Main.ui_view != null:
+		reparent(Main.ui_view)
+	#else:
+		#reparent(get_tree().current_scene)
 	
 	temporary_game_states = [self] + extra_game_states
 	is_waiting_for_input = false

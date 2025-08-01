@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://tchbnx2hwx8n"]
+
+[ext_resource type="Script" uid="uid://cpq243e8lv5ol" path="res://system/s_sub_system_manager/s_sub_system_manager.gd" id="1_c40g4"]
+[ext_resource type="Script" uid="uid://fidlw0yv63sq" path="res://system/s_sub_system_manager/sub_system/ss_time_loop/ss_time_loop.gd" id="2_iso6r"]
+
+[node name="SSubSystemManager" type="Node"]
+script = ExtResource("1_c40g4")
+
+[node name="SSTimeLoop" type="Node" parent="."]
+script = ExtResource("2_iso6r")

@@ -10,36 +10,18 @@ var binding_entity: Entity
 @export_group("时间循环", "time_")
 @export var time_info: Label
 
-var start_time: int
-var past_time: int
-var real_time: int:
-	set(v):
-		real_time = v % 1440
-		time_info.text = time_to_str(real_time)
-		SLoadAndSave.gaming_data_cache["basic_hud->real_time"] = real_time
-		SMapData.current_map.filter_changed.emit(real_time / 1440.0)
+
+func _initialize():
+	var timeloop = SSubSystemManager.sub_systems[&"time_loop"] as SSTimeLoop
+	timeloop.time_updated.connect(func(v: int):
+		time_info.text = time_to_str(v)
+		)
+	time_info.text = time_to_str(timeloop.real_time)
+	
 
 func _refresh():
 	pass
 
-func _initialize():
-	#region 以下为时间系统的实现, 即使用Time单例类 
-	start_time = Time.get_ticks_msec()
-	past_time = 0
-	real_time = 0
-	#endregion
-
-
-#region 时间系统的实现
-func _process(_delta: float) -> void:
-	@warning_ignore("integer_division")
-	var current_time = (Time.get_ticks_msec() - start_time) / 1000 % 1440
-	if current_time != past_time:
-		past_time = current_time
-		if SGameState.state_machine._get_leaf_state() is GamingStateNormal:
-			real_time += 1
-		
-		
 func time_to_str(current_time: int):
 	@warning_ignore("integer_division")
 	var hour = str(current_time / 60).pad_zeros(2)

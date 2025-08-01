@@ -65,9 +65,8 @@ text = "加载游戏"
 script = ExtResource("3_3ko51")
 
 [node name="GameSetting" type="Button" parent="Control/MarginContainer/VBoxContainer" node_paths=PackedStringArray("g_scene_parent")]
-visible = false
 layout_mode = 2
-text = "游戏设置"
+text = "GameSetting"
 script = ExtResource("5_63x8v")
 generator_scene = ExtResource("6_8k5ru")
 g_scene_parent = NodePath("../../../..")

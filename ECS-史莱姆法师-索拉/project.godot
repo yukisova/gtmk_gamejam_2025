@@ -35,10 +35,12 @@ SUiSpawner="*res://system/s_ui_spawner/s_ui_spawner_global.tscn"
 SGlobalConfig="*res://system/s_global_config/s_global_config_global.tscn"
 SObjectPool="*res://system/s_object_pool/s_object_pool_global.tscn"
 SCommandParser="*res://system/s_command_parser/s_command_parser.tscn"
+SSubSystemManager="*res://system/s_sub_system_manager/s_sub_system_manager.tscn"
 
 [dialogue_manager]
 
 runtime/balloon_path="res://ui/ui/ui_dialogue/ui_dialogue.tscn"
+editor/translations/default_csv_locale="zh"
 
 [display]
 
@@ -63,7 +65,7 @@ breakable=""
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://resource/translation/Translation.en.translation", "res://resource/translation/Translation.es.translation", "res://resource/translation/Translation.ja.translation", "res://resource/translation/Translation.zh_CN.translation")
+locale/translations=PackedStringArray("res://resource/translation/Translation.en.translation", "res://resource/translation/Translation.es.translation", "res://resource/translation/Translation.ja.translation", "res://resource/translation/Translation.zh_CN.translation", "res://resource/translation/test_dialogue.en.translation", "res://resource/translation/test_dialogue.zh.translation")
 locale/translations_pot_files=PackedStringArray("res://resource/plugins_resource/dialogue/test_dialogue.dialogue")
 
 [layer_names]

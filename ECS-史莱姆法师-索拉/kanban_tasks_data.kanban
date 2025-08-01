@@ -16,7 +16,6 @@
 			"uuid": "eeee1522-ac5a-41f1-8ede-014b54231f02",
 			"title": "Todo",
 			"tasks": [
-				"45909323-166f-46da-84d4-28118804e021",
 				"22224e51-43ab-4855-81ad-454d2430dde4",
 				"a9533bad-1d20-4cfc-93d8-5a8c3de80acb",
 				"95d02c9b-db71-457d-b812-28e1439a6783"
@@ -25,14 +24,14 @@
 		{
 			"uuid": "31ae34de-c661-4e46-a361-c1297d43704b",
 			"title": "Doing",
-			"tasks": [
-				"018b1dfb-4044-434d-8a75-c3105bc602c4"
-			]
+			"tasks": []
 		},
 		{
 			"uuid": "9ff9bbb5-3736-4663-8148-b5dcac0be5f2",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"45909323-166f-46da-84d4-28118804e021"
+			]
 		},
 		{
 			"uuid": "0b6f42c5-6a14-4f92-bb45-1a01d25a59c2",
@@ -68,22 +67,6 @@
 			"steps": []
 		},
 		{
-			"uuid": "018b1dfb-4044-434d-8a75-c3105bc602c4",
-			"title": "已经修改的场景SORA",
-			"description": "",
-			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
-			"steps": [
-				{
-					"details": "e_player.tscn",
-					"done": false
-				},
-				{
-					"details": "e_people.tscn",
-					"done": false
-				}
-			]
-		},
-		{
 			"uuid": "45909323-166f-46da-84d4-28118804e021",
 			"title": "多语言设置",
 			"description": "",
@@ -93,15 +76,11 @@
 		{
 			"uuid": "22224e51-43ab-4855-81ad-454d2430dde4",
 			"title": "时间系统",
-			"description": "时间系统是可破坏场景",
+			"description": "是游戏当中的一个重要的全局数据，但并不适合初始化加载",
 			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
 			"steps": [
 				{
-					"details": "时间系统",
-					"done": true
-				},
-				{
-					"details": "UI在什么情况下可被破坏？？？？？？？",
+					"details": "设计只在游戏运行时才会正常运行的子系统sub_s",
 					"done": false
 				}
 			]
@@ -109,14 +88,14 @@
 		{
 			"uuid": "a9533bad-1d20-4cfc-93d8-5a8c3de80acb",
 			"title": "可以交互的Hud",
-			"description": "",
+			"description": "可以拖动的日记，背包，以及最后可以被破坏的钟表UI\n",
 			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
 			"steps": []
 		},
 		{
 			"uuid": "95d02c9b-db71-457d-b812-28e1439a6783",
 			"title": "时间板系统",
-			"description": "",
+			"description": "时间一到，自动触发某个行为逻辑，并前往目标位置",
 			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
 			"steps": []
 		}

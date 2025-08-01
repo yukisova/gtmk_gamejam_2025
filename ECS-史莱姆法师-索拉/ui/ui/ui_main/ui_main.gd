@@ -15,9 +15,6 @@ func _ready() -> void:
 	## 播放主菜单音乐
 	SAudioMaster.play_music(bgm)
 	
-	TranslationServer.set_locale("en")
-	
-	
 	## 淡入主菜单
 	var control = get_child(0) as Control
 	control.modulate.a = 0

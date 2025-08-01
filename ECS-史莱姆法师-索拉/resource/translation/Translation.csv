@@ -1,7 +1,6 @@
-keys,en,es,zh_CN,ja
-Greet,"Hello, friend!","Hola, amigo!",你好啊,こんにちは
-Ask,How are you?,Cómo está?,过得如何,元気ですか
-Bye,Goodbye,Adiós,再见,さようなら
-Quote,"""Hello"" said the man.","""Hola"" dijo el hombre.",这个男人说你好,「こんにちは」男は言いました
-StartGame,Game Start,Start!!!,开始游戏,ab
-QuitGame,Game Quit,Quit!!!,退出游戏,bc
+keys,en,zh_CN
+StartGame,Game Start,开始游戏
+QuitGame,Game Quit,退出游戏
+GameSetting,Game Setting,游戏设置
+Windowed,Windowed,窗口化
+Fullscreen,Fullscreen,全屏

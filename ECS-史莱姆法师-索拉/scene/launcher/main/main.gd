@@ -24,6 +24,7 @@ func _ready() -> void:
 
 ## 游戏系统注册
 func register_system():
+	SSubSystemManager._setup()
 	SSignalBus._setup()
 	SGameState._setup()
 	SGlobalConfig._setup()
