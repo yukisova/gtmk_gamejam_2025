@@ -18,7 +18,8 @@ enum ComponentName {
 	c_state, ## 见[C_State]
 	c_status, ## 见[C_Status]
 	c_navigation, ## 见[C_Navigation]
-	c_composite ## 见[C_Composite]
+	c_composite, ## 见[C_Composite]
+	c_event_trigger, ## 见[C_EventTrigger]
 }
 
 var component_owner: Entity ## 组件的拥有者, 即实体

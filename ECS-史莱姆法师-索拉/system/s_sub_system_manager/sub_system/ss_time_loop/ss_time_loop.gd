@@ -2,7 +2,7 @@ class_name SSTimeLoop
 extends SubSystem
 
 signal time_updated(time: int)
-signal time_important_coming(record: TimeRecord)
+signal time_important_coming(record_keyword: String)
 
 var start_time: int
 var past_time: int
@@ -15,6 +15,8 @@ var real_time: int:
 
 @export var time_record: Array[TimeRecord]
 
+@export_range(0, 1440) var test_start_time: int
+
 func _enter_tree() -> void:
 	keyword = &"time_loop"
 
@@ -24,13 +26,13 @@ func compare_time_record(current_time: int):
 		@warning_ignore("integer_division")
 		if record.target_hour == current_time / 60:
 			if record.target_minute == current_time % 60:
-				time_important_coming.emit(time_record)
+				time_important_coming.emit(record.target_event_keyword)
 
 #region 时间系统的实现
 func _setup():
 	start_time = Time.get_ticks_msec()
 	past_time = 0
-	real_time = 0
+	real_time = test_start_time
 
 func _update(_delta: float) -> void:
 	@warning_ignore("integer_division")

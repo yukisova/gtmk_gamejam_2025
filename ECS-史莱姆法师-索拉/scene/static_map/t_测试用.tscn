@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b3jw5cwybn4cn"]
+[gd_scene load_steps=14 format=4 uid="uid://b3jw5cwybn4cn"]
 
 [ext_resource type="PackedScene" uid="uid://dx8lfcn7h43ea" path="res://resource/node_template/map/static_map.tscn" id="1_ayb26"]
 [ext_resource type="PackedScene" uid="uid://6dpqakv78nkp" path="res://resource/node_template/map/level.tscn" id="2_ifao7"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://06g8pn34r7sq" path="res://asset/tile_set/factor_tile/Basic_Furniture.png" id="6_4rqku"]
 [ext_resource type="PackedScene" uid="uid://csybxa4x4phq4" path="res://entity/entity_packed/people/e_people.tscn" id="6_ayb26"]
 [ext_resource type="Script" uid="uid://dmt6bwi1q78e4" path="res://cutscene/cu_000_游戏开场.gd" id="7_x31an"]
+[ext_resource type="PackedScene" uid="uid://bquf41erw1xpe" path="res://component/c_event_queue/c_event_trigger.tscn" id="8_egqec"]
+[ext_resource type="Script" uid="uid://bahkkc7pcytsi" path="res://component/c_event_queue/event_queue/t_测试用_event/test_event.gd" id="9_vxp72"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6g1cg"]
 texture = ExtResource("5_ifao7")
@@ -226,6 +228,14 @@ tile_set = SubResource("TileSet_egqec")
 position = Vector2(22, 85)
 
 [node name="EPeople2" parent="Levels/Level" index="4" instance=ExtResource("6_ayb26")]
+
+[node name="CEventTrigger" parent="Levels/Level/EPeople2" index="1" node_paths=PackedStringArray("avaiable_events") instance=ExtResource("8_egqec")]
+avaiable_events = {
+"abc": NodePath("TestEvent")
+}
+
+[node name="TestEvent" type="Node" parent="Levels/Level/EPeople2/CEventTrigger" index="0"]
+script = ExtResource("9_vxp72")
 
 [node name="苏醒_1" type="Node" parent="AutoLoadCutscene" index="0"]
 script = ExtResource("7_x31an")

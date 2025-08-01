@@ -41,6 +41,7 @@ offset_top = -33.5
 offset_bottom = 33.5
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("2_1q3r7")
 theme_override_constants/margin_right = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
@@ -48,11 +49,13 @@ layout_mode = 2
 
 [node name="ContinueGame" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
-text = "继续游戏"
+text = "ContinueGame"
 script = ExtResource("3_3ko51")
 
 [node name="StartGame" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 text = "StartGame"
 script = ExtResource("3_3ko51")
@@ -60,11 +63,14 @@ args = [ExtResource("4_mqo0q")]
 
 [node name="LoadGame" type="Button" parent="Control/MarginContainer/VBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
-text = "加载游戏"
+text = "LoadGame"
 script = ExtResource("3_3ko51")
+args = [ExtResource("4_mqo0q")]
 
 [node name="GameSetting" type="Button" parent="Control/MarginContainer/VBoxContainer" node_paths=PackedStringArray("g_scene_parent")]
+custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 text = "GameSetting"
 script = ExtResource("5_63x8v")
@@ -72,6 +78,7 @@ generator_scene = ExtResource("6_8k5ru")
 g_scene_parent = NodePath("../../../..")
 
 [node name="QuitGame" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 text = "QuitGame"
 script = ExtResource("3_3ko51")

@@ -1,10 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://tchbnx2hwx8n"]
+[gd_scene load_steps=5 format=3 uid="uid://tchbnx2hwx8n"]
 
 [ext_resource type="Script" uid="uid://cpq243e8lv5ol" path="res://system/s_sub_system_manager/s_sub_system_manager.gd" id="1_c40g4"]
 [ext_resource type="Script" uid="uid://fidlw0yv63sq" path="res://system/s_sub_system_manager/sub_system/ss_time_loop/ss_time_loop.gd" id="2_iso6r"]
+[ext_resource type="Script" uid="uid://do4tqekxfbcbq" path="res://system/s_sub_system_manager/sub_system/ss_time_loop/time_record.gd" id="3_o335d"]
+
+[sub_resource type="Resource" id="Resource_1kceg"]
+script = ExtResource("3_o335d")
+target_minute = 10
+target_event_keyword = "abc"
+metadata/_custom_type_script = "uid://do4tqekxfbcbq"
 
 [node name="SSubSystemManager" type="Node"]
 script = ExtResource("1_c40g4")
 
 [node name="SSTimeLoop" type="Node" parent="."]
 script = ExtResource("2_iso6r")
+time_record = Array[ExtResource("3_o335d")]([SubResource("Resource_1kceg")])
+test_start_time = 1000

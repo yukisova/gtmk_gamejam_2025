@@ -10,11 +10,15 @@ extends StateMachineHfsm
 
 var update_trigger = false
 
+func _enter():
+	super()
+	SSubSystemManager.sub_systems_setup_start.emit()
+
 func _update(_delta: float) -> void:
 	super._update(_delta)
 	if update_trigger:
 		state_transition.emit(get_transition_state())
 
 func _exit():
-	super._exit()
+	super()
 	update_trigger = false
