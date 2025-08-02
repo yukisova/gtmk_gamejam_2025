@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://chcm2vu8h6bs1"]
+[gd_scene load_steps=25 format=3 uid="uid://chcm2vu8h6bs1"]
 
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_wwb3p"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_074rv"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://cpdkw72ahtbjj" path="res://component/c_state/transition_record.gd" id="14_e1v5r"]
 [ext_resource type="Script" uid="uid://dj1d6vr2iy6ds" path="res://component/c_state/state/hfsm/state/player/state_move.gd" id="15_dg0bx"]
 [ext_resource type="PackedScene" uid="uid://cps21xspaovit" path="res://component/c_collision/c_collision.tscn" id="16_hrp2a"]
+[ext_resource type="PackedScene" uid="uid://dyxr8eofrj3pw" path="res://ui/ui/ui_pause/ui_pause.tscn" id="18_8bkxy"]
 [ext_resource type="PackedScene" uid="uid://lu3gu1tfxdey" path="res://component/c_input_reactor/c_input_reactor.tscn" id="18_ed540"]
 [ext_resource type="PackedScene" uid="uid://culm6jk4g06ro" path="res://component/c_collision/box_collision/seek_box/seek_box.tscn" id="18_pvpin"]
 [ext_resource type="Script" uid="uid://dc4xbso7xmwvo" path="res://component/c_input_reactor/reactor_extension/e_player/mouse_focus.gd" id="19_ai50r"]
@@ -103,6 +104,7 @@ hfsm_state_transition = Dictionary[StringName, ExtResource("14_e1v5r")]({
 [node name="SeekBox" parent="CharacterBody/ComponentContainer/CCollision" index="0" instance=ExtResource("18_pvpin")]
 
 [node name="CInputReactor" parent="CharacterBody/ComponentContainer" index="6" instance=ExtResource("18_ed540")]
+pause_ui = ExtResource("18_8bkxy")
 
 [node name="SeekConfirm" type="Node" parent="CharacterBody/ComponentContainer/CInputReactor" index="0" node_paths=PackedStringArray("seek_box")]
 script = ExtResource("19_pvpin")

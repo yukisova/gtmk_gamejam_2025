@@ -16,21 +16,23 @@
 			"uuid": "eeee1522-ac5a-41f1-8ede-014b54231f02",
 			"title": "Todo",
 			"tasks": [
-				"22224e51-43ab-4855-81ad-454d2430dde4",
-				"a9533bad-1d20-4cfc-93d8-5a8c3de80acb",
-				"95d02c9b-db71-457d-b812-28e1439a6783"
+				"a9533bad-1d20-4cfc-93d8-5a8c3de80acb"
 			]
 		},
 		{
 			"uuid": "31ae34de-c661-4e46-a361-c1297d43704b",
 			"title": "Doing",
-			"tasks": []
+			"tasks": [
+				"d8393eef-0a5e-4bdc-9af9-7c7b2c4e6c83"
+			]
 		},
 		{
 			"uuid": "9ff9bbb5-3736-4663-8148-b5dcac0be5f2",
 			"title": "Done",
 			"tasks": [
-				"45909323-166f-46da-84d4-28118804e021"
+				"45909323-166f-46da-84d4-28118804e021",
+				"22224e51-43ab-4855-81ad-454d2430dde4",
+				"95d02c9b-db71-457d-b812-28e1439a6783"
 			]
 		},
 		{
@@ -74,6 +76,20 @@
 			"steps": []
 		},
 		{
+			"uuid": "a9533bad-1d20-4cfc-93d8-5a8c3de80acb",
+			"title": "可以交互的Hud",
+			"description": "背包，以及最后可以被破坏的钟表UI\n",
+			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
+			"steps": []
+		},
+		{
+			"uuid": "95d02c9b-db71-457d-b812-28e1439a6783",
+			"title": "时间板系统",
+			"description": "时间一到，自动触发某个行为逻辑，并前往目标位置",
+			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
+			"steps": []
+		},
+		{
 			"uuid": "22224e51-43ab-4855-81ad-454d2430dde4",
 			"title": "时间系统",
 			"description": "是游戏当中的一个重要的全局数据，但并不适合初始化加载",
@@ -86,18 +102,24 @@
 			]
 		},
 		{
-			"uuid": "a9533bad-1d20-4cfc-93d8-5a8c3de80acb",
-			"title": "可以交互的Hud",
-			"description": "可以拖动的日记，背包，以及最后可以被破坏的钟表UI\n",
+			"uuid": "d8393eef-0a5e-4bdc-9af9-7c7b2c4e6c83",
+			"title": "可以放进目前的背包的物品",
+			"description": "",
 			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
-			"steps": []
-		},
-		{
-			"uuid": "95d02c9b-db71-457d-b812-28e1439a6783",
-			"title": "时间板系统",
-			"description": "时间一到，自动触发某个行为逻辑，并前往目标位置",
-			"category": "c78c7d53-12cd-4ef8-8ef7-0f68d675ba1a",
-			"steps": []
+			"steps": [
+				{
+					"details": "seek会触发观察时对话，需要设计对应的文本。",
+					"done": false
+				},
+				{
+					"details": "靠近时使用按键进行交互可以将可以捡起的物品捡起放入背包。",
+					"done": false
+				},
+				{
+					"details": "最简单的合成系统(两个物品合并，等于合成)",
+					"done": false
+				}
+			]
 		}
 	],
 	"layout": {

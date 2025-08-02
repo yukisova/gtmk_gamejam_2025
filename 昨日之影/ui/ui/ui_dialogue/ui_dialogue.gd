@@ -35,7 +35,7 @@ var dialogue_line: DialogueLine:
 		else:
 			## 此处文件结束, 为了匹配目标的
 			# queue_free()
-			unspawned.emit(self)
+			unspawn()
 	get:
 		return dialogue_line
 

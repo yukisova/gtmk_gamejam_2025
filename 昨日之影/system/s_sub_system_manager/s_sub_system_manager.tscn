@@ -16,4 +16,3 @@ script = ExtResource("1_c40g4")
 [node name="SSTimeLoop" type="Node" parent="."]
 script = ExtResource("2_iso6r")
 time_record = Array[ExtResource("3_o335d")]([SubResource("Resource_1kceg")])
-test_start_time = 1000

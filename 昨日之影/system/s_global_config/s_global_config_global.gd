@@ -20,6 +20,14 @@ func _enter_tree() -> void:
 	var config = _config_return()
 	preloading_started.emit.call_deferred(config)
 
+## 感觉以后用得上
+func _setup():
+	pass
+
+## 暂时没有需要严格保存的数据
+func _resetup():
+	pass
+
 #region 键位设置
 static func update_action(action_name: String, key):
 	if (!InputMap.has_action(action_name)):

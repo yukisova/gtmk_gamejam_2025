@@ -1,9 +1,6 @@
 ##@editing:	Sora
 ##@describe:	设置界面(子canvas)
-extends Control
-
-signal window_closed
-
+extends CreationCanvas
 
 @export_group("容器")
 @export var keymap_container: VBoxContainer

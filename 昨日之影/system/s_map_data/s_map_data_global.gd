@@ -17,6 +17,10 @@ func _enter_tree() -> void:
 func _setup():
 	pass
 
+func _resetup():
+	current_level = null
+	current_map.queue_free()
+
 ## 地图场景重加载
 func _on_map_info_registered(map_scene: PackedScene):
 	await get_tree().process_frame

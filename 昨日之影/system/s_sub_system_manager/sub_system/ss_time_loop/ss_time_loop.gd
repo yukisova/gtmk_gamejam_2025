@@ -1,10 +1,11 @@
+## @editing: Sora [br]
+## @describe: 时间子系统
 class_name SSTimeLoop
 extends SubSystem
 
 signal time_updated(time: int)
 signal time_important_coming(record_keyword: String)
 
-var start_time: int
 var past_time: int
 var real_time: int:
 	set(v):
@@ -15,7 +16,7 @@ var real_time: int:
 
 @export var time_record: Array[TimeRecord]
 
-@export_range(0, 1440) var test_start_time: int
+@export_range(0, 1440) var start_time: int
 
 func _enter_tree() -> void:
 	keyword = &"time_loop"
@@ -30,13 +31,13 @@ func compare_time_record(current_time: int):
 
 #region 时间系统的实现
 func _setup():
-	start_time = Time.get_ticks_msec()
-	past_time = 0
-	real_time = test_start_time
+	@warning_ignore("integer_division")
+	past_time = Time.get_ticks_msec() / 1000
+	real_time = start_time
 
 func _update(_delta: float) -> void:
 	@warning_ignore("integer_division")
-	var current_time = (Time.get_ticks_msec() - start_time) / 1000 % 1440
+	var current_time = Time.get_ticks_msec() / 1000
 	if current_time != past_time:
 		past_time = current_time
 		if SGameState.state_machine._get_leaf_state() is GamingStateNormal:

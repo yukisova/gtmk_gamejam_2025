@@ -6,6 +6,8 @@ signal map_info_loaded ## 游戏已经完成了地图数据信息的加载，下
 signal entity_initialize_started ## 玩家角色成功放入地图，可以正式开始初始化所有的实体
 signal game_data_loaded_compelete ## 实体初始化完毕，已经可以正常开始游戏
 
+signal ui_main_returned ## 因为游戏失败或通过暂停界面结束游戏时，所进入的状态
+
 ## 系统启动
 func _setup():
 	game_data_loaded_compelete.connect(func():

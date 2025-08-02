@@ -11,15 +11,17 @@ signal loading_refreshed(data: Dictionary)
 
 const SAVE_PATH := "user://data.sav"
 
+## 游戏运行时的缓存信息，存放着当前的任务(方便全局共享，相当于一个黑板)
 var gaming_data_cache: Dictionary = {}
-
-
 
 
 func _enter_tree() -> void:
 	
 	saving_started.connect(_data_saving)
 	loading_started.connect(_data_loading)
+
+func _resetup():
+	gaming_data_cache.clear()
 
 func _data_saving():
 	# var scene := get_tree().current_scene ## 获取场景信息

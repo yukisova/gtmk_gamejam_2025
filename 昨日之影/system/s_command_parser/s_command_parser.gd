@@ -20,6 +20,9 @@ func _setup():
 	command_editor_closed.connect(_on_editor_closed)
 	command_editor_inputed.connect(_on_parser_begin)
 
+func _resetup():
+	_on_editor_closed()
+
 func _on_editor_opened():
 	command_parser_canvas.show()
 	process_mode = Node.PROCESS_MODE_INHERIT
@@ -35,6 +38,7 @@ func _listen():
 	if Input.is_action_just_pressed("ui_accept"):
 		command_editor_inputed.emit()
 
+## HACK 没决定好怎么做，保留用
 func _on_parser_begin():
 	if command_parser_editor.text.is_empty():
 		return

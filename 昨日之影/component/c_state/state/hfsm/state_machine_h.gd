@@ -58,6 +58,10 @@ func _enter():
 	current_state = get_node(init_state)
 	current_state._enter()
 
+func _exit():
+	current_state._exit()
+	current_state = null
+
 func _fixed_update(delta: float) -> void:
 	current_state._f_u(delta)
 
