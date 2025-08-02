@@ -1,17 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://7bn4a56gypuj"]
+[gd_scene load_steps=6 format=3 uid="uid://7bn4a56gypuj"]
 
 [ext_resource type="Script" uid="uid://c8pkw2hs14qni" path="res://ui/hud/tool_panel/basic_hud.gd" id="1_m0gie"]
 [ext_resource type="Shader" uid="uid://dh7nyq424iyhg" path="res://resource/shader/测试用圆形Shader.gdshader" id="2_nrqnx"]
+[ext_resource type="PackedScene" uid="uid://cbbuvqh1j86x0" path="res://ui/ui_composite/dragable_obj/item_in_bag/dragable_item.tscn" id="3_m0gie"]
+[ext_resource type="Script" uid="uid://chg08yn3wtvta" path="res://ui/ui_composite/dragable_obj/drag_slot.gd" id="4_ceok6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0gie"]
 shader = ExtResource("2_nrqnx")
 
-[node name="BasicHud" type="CanvasLayer" node_paths=PackedStringArray("hour_pointer", "minute_pointer", "bag_button", "bag_slot")]
+[node name="BasicHud" type="CanvasLayer" node_paths=PackedStringArray("hour_pointer", "minute_pointer", "bag_button", "bag_slot_container", "bag_slot_prototype", "bag_dragable_item_prototype")]
 script = ExtResource("1_m0gie")
 hour_pointer = NodePath("TheCircleTimer/MarginContainer/ColorRect/Node2D/HourPointer")
 minute_pointer = NodePath("TheCircleTimer/MarginContainer/ColorRect/Node2D/MinutePointer")
 bag_button = NodePath("Control/MarginContainer/Button")
-bag_slot = NodePath("Control2/HBoxContainer")
+bag_slot_container = NodePath("BagPanelControl/HBoxContainer")
+bag_slot_prototype = NodePath("Control3/BagSlotPrototype")
+bag_dragable_item_prototype = NodePath("Control3/DragableItemPrototype")
 
 [node name="TheCircleTimer" type="Control" parent="."]
 layout_mode = 3
@@ -97,7 +101,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 toggle_mode = true
 
-[node name="Control2" type="Control" parent="."]
+[node name="BagPanelControl" type="Control" parent="."]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -108,29 +112,30 @@ offset_right = 125.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BagPanelControl"]
 clip_contents = true
 layout_mode = 0
-offset_left = -516.0
-offset_top = 16.0
-offset_bottom = 116.0
+offset_right = 308.0
+offset_bottom = 100.0
 
-[node name="Button" type="Button" parent="Control2/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
+[node name="Control3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Button2" type="Button" parent="Control2/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
+[node name="DragableItemPrototype" parent="Control3" instance=ExtResource("3_m0gie")]
+visible = false
+layout_mode = 0
+offset_left = 125.0
+offset_right = 225.0
+offset_bottom = 100.0
 
-[node name="Button3" type="Button" parent="Control2/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button4" type="Button" parent="Control2/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button5" type="Button" parent="Control2/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
+[node name="BagSlotPrototype" type="PanelContainer" parent="Control3"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 125.0
+offset_right = 225.0
+offset_bottom = 100.0
+script = ExtResource("4_ceok6")

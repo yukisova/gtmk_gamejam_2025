@@ -4,3 +4,9 @@
 extends StatusExtension
 
 var current_buff: Dictionary
+
+func _initialize():
+	pass
+
+func _effect():
+	pass

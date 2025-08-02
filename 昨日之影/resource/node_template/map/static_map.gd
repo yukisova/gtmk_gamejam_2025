@@ -16,6 +16,7 @@ signal filter_changed(point: float)
 @export var map_filter: CanvasModulate
 @export var filter_gradient: GradientTexture1D
 
+
 ## 用于统计用的层级数
 var level_count: int = 0
 var level_loaded_count :int = 0
@@ -27,7 +28,6 @@ func _ready() -> void:
 		return
 	
 	filter_changed.connect(time_change_filter) ## 当信号变动, 是游戏中的时间出现了变动 FIXME 但感觉这种写法有一定隐患，之后要想办法进行修改
-	
 	
 	
 	for level in levels.get_children():

@@ -50,7 +50,7 @@ class NumInfo:
 var status_list: Dictionary[SoraConstant.StatusEnum, StatusInfo] = {} ## 血量，耐力等需要频繁变动的状态信息
 var numinfo_list: Dictionary[SoraConstant.StatusEnum, NumInfo] = {} ## 攻击力，防御力等基础数值信息
 
-var status_extension: Dictionary[String, StatusExtension] = {} ## 扩展状态, 如buff之类
+var status_extension: Dictionary[StatusExtension.ExtensionType, StatusExtension] = {} ## 扩展状态, 如buff之类
 
 func _enter_tree() -> void:
 	component_name = ComponentName.c_status
@@ -61,7 +61,8 @@ func _initialize(_owner: Entity):
 	
 	for extension in get_children():
 		if extension is StatusExtension:
-			status_extension[extension.name] = extension
+			status_extension[extension.extention_type] = extension
+			extension._initialize()
 	
 	for key in basic_info.keys():
 		var info = basic_info[key]

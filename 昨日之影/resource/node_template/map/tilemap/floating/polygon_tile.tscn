@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cem5m18341qx1" path="res://resource/node_template/map/tilemap/floating/polygon_tile.gd" id="1_33ctl"]
 
 [node name="PolygonTile" type="Sprite2D" node_paths=PackedStringArray("terrain_polygon", "static_body")]
+y_sort_enabled = true
 script = ExtResource("1_33ctl")
 terrain_polygon = NodePath("TerrainPolygon")
 static_body = NodePath("StaticBody2D")

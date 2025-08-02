@@ -42,6 +42,7 @@ func _initialize(_owner: Entity):
 	for i in get_children():
 		if i is ReactorExtension:
 			reactor_extension.append(i)
+			i.binding_entity = component_owner
 			
 
 func validate_control(key_string: StringName, control_mode: ControlMode = ControlMode.just_pressed) -> bool:

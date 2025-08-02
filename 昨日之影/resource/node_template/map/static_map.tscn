@@ -5,7 +5,6 @@
 
 [node name="StaticMap" type="Node" node_paths=PackedStringArray("levels", "autoload_cutscene", "map_filter")]
 script = ExtResource("1_fy625")
-time = 0.0
 levels = NodePath("Levels")
 autoload_cutscene = NodePath("AutoLoadCutscene")
 map_filter = NodePath("MapFilter")

@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=3 uid="uid://2knob287omci"]
+
+[ext_resource type="PackedScene" uid="uid://dx8lfcn7h43ea" path="res://resource/node_template/map/static_map.tscn" id="1_aifur"]
+[ext_resource type="PackedScene" uid="uid://6dpqakv78nkp" path="res://resource/node_template/map/level.tscn" id="2_kfm30"]
+[ext_resource type="PackedScene" uid="uid://bbnna2mfww3if" path="res://resource/node_template/map/tilemap/floating/polygon_tile.tscn" id="3_moptm"]
+[ext_resource type="PackedScene" uid="uid://de3o6pll5kxdx" path="res://resource/node_template/map/player_spawn.tscn" id="3_yipkp"]
+[ext_resource type="Texture2D" uid="uid://xqqaudauuyut" path="res://asset/tile_set/客厅.png" id="4_yipkp"]
+[ext_resource type="PackedScene" uid="uid://d0x40ltb8cncp" path="res://entity/entity_packed/static/furniture.tscn" id="5_j75lj"]
+[ext_resource type="Texture2D" uid="uid://cjeyfk6mro340" path="res://asset/tile_set/家具_客厅.png" id="6_moptm"]
+[ext_resource type="PackedScene" uid="uid://csybxa4x4phq4" path="res://entity/entity_packed/people/e_people.tscn" id="6_ntglp"]
+[ext_resource type="Texture2D" uid="uid://b877s0662gsaa" path="res://resource/resource_template/sprite/atlas_texture/家具_客厅_a.tres" id="7_yipkp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j75lj"]
+atlas = ExtResource("6_moptm")
+region = Rect2(1642, 1285, 580, 376)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntglp"]
+atlas = ExtResource("6_moptm")
+region = Rect2(2551, 974, 778, 774)
+
+[node name="t_测试客厅" node_paths=PackedStringArray("player_spawn") instance=ExtResource("1_aifur")]
+player_spawn = NodePath("Levels/Level/PlayerSpawn")
+
+[node name="Level" parent="Levels" index="0" instance=ExtResource("2_kfm30")]
+
+[node name="PlayerSpawn" parent="Levels/Level" index="0" instance=ExtResource("3_yipkp")]
+position = Vector2(-585, 17)
+
+[node name="CameraLimit" parent="Levels/Level" index="1"]
+offset_left = -1925.0
+offset_top = -868.0
+offset_right = 1927.0
+offset_bottom = 871.0
+
+[node name="PolygonTile" parent="Levels/Level" index="2" instance=ExtResource("3_moptm")]
+z_index = -1
+y_sort_enabled = false
+texture = ExtResource("4_yipkp")
+
+[node name="TerrainPolygon" parent="Levels/Level/PolygonTile" index="0"]
+visible = false
+polygon = PackedVector2Array(-672, -150, -702, -97, -800, -91, -866, 12, -986, 13, -1155, 292, -1031, 289, -1132, 445, -1246, 447, -1496, 822, -1367, 827, -1416, 875, 1254, 873, 754, -148, 712, -150, 701, -95, 342, -88, 312, -155, -654, -150)
+
+[node name="Furniture" parent="Levels/Level" index="3" instance=ExtResource("5_j75lj")]
+
+[node name="ComponentContainer" parent="Levels/Level/Furniture/StaticBody" index="0"]
+y_sort_enabled = true
+
+[node name="CTexture" parent="Levels/Level/Furniture/StaticBody/ComponentContainer" index="0"]
+y_sort_enabled = true
+
+[node name="Sprite2D" parent="Levels/Level/Furniture/StaticBody/ComponentContainer/CTexture" index="0"]
+y_sort_enabled = true
+position = Vector2(15, 297)
+texture = ExtResource("7_yipkp")
+offset = Vector2(0, -200)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Levels/Level/Furniture/StaticBody" index="1"]
+position = Vector2(-1, -1)
+polygon = PackedVector2Array(-385, 262, -238, 270, -242, 300, -213, 313, -69, 320, -64, 397, 68, 394, 74, 321, 230, 317, 229, 275, 408, 266, 397, 175, 234, 169, 234, 146, -235, 146, -239, 169, -348, 168)
+
+[node name="Furniture2" parent="Levels/Level" index="4" instance=ExtResource("5_j75lj")]
+position = Vector2(29, 505)
+
+[node name="ComponentContainer" parent="Levels/Level/Furniture2/StaticBody" index="0"]
+y_sort_enabled = true
+
+[node name="CTexture" parent="Levels/Level/Furniture2/StaticBody/ComponentContainer" index="0"]
+y_sort_enabled = true
+
+[node name="Sprite2D" parent="Levels/Level/Furniture2/StaticBody/ComponentContainer/CTexture" index="0"]
+y_sort_enabled = true
+position = Vector2(-27, 108)
+texture = SubResource("AtlasTexture_j75lj")
+offset = Vector2(10, -14)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Levels/Level/Furniture2/StaticBody" index="1"]
+polygon = PackedVector2Array(-282, 272, -280, 98, 226, 95, 230, 270)
+
+[node name="Furniture3" parent="Levels/Level" index="5" instance=ExtResource("5_j75lj")]
+position = Vector2(923, 386)
+
+[node name="ComponentContainer" parent="Levels/Level/Furniture3/StaticBody" index="0"]
+y_sort_enabled = true
+
+[node name="CTexture" parent="Levels/Level/Furniture3/StaticBody/ComponentContainer" index="0"]
+y_sort_enabled = true
+
+[node name="Sprite2D" parent="Levels/Level/Furniture3/StaticBody/ComponentContainer/CTexture" index="0"]
+y_sort_enabled = true
+position = Vector2(3, 45)
+texture = SubResource("AtlasTexture_ntglp")
+offset = Vector2(93, 55)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Levels/Level/Furniture3/StaticBody" index="1"]
+polygon = PackedVector2Array(-291, 44, -112, 483, 410, 489, 132, 38)
+
+[node name="EPeople" parent="Levels/Level" index="6" instance=ExtResource("6_ntglp")]
+position = Vector2(-623, 491)
+
+[editable path="Levels/Level"]
+[editable path="Levels/Level/PolygonTile"]
+[editable path="Levels/Level/Furniture"]
+[editable path="Levels/Level/Furniture/StaticBody"]
+[editable path="Levels/Level/Furniture2"]
+[editable path="Levels/Level/Furniture2/StaticBody"]
+[editable path="Levels/Level/Furniture3"]
+[editable path="Levels/Level/Furniture3/StaticBody"]
