@@ -34,7 +34,7 @@ to_state = NodePath("../Idle")
 metadata/_custom_type_script = "uid://cpdkw72ahtbjj"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qcfhx"]
-size = Vector2(240, 40)
+size = Vector2(180, 40)
 
 [node name="EPlayer" node_paths=PackedStringArray("main_control", "component_container") instance=ExtResource("1_wwb3p")]
 main_control = NodePath("CharacterBody")
@@ -121,7 +121,7 @@ mouse_focus = [NodePath("../../CCollision/SeekBox")]
 [node name="CAction" parent="CharacterBody/ComponentContainer" index="7" instance=ExtResource("19_ocpjo")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody" index="1"]
-position = Vector2(7.5, 260.5)
+position = Vector2(6, 180)
 shape = SubResource("RectangleShape2D_qcfhx")
 
 [editable path="CharacterBody"]

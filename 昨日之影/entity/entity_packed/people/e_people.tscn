@@ -57,7 +57,7 @@ metadata/_custom_type_script = "uid://cpdkw72ahtbjj"
 size = Vector2(400, 400)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5gco"]
-size = Vector2(250, 40)
+size = Vector2(180, 40)
 
 [node name="EPeople" node_paths=PackedStringArray("main_control", "component_container") instance=ExtResource("1_p5gco")]
 main_control = NodePath("CharacterBody")
@@ -131,7 +131,7 @@ shape = SubResource("RectangleShape2D_qq6q3")
 [node name="CAction" parent="CharacterBody/ComponentContainer" index="6" instance=ExtResource("19_rt6go")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody" index="1"]
-position = Vector2(7.5, 260.5)
+position = Vector2(6, 180)
 shape = SubResource("RectangleShape2D_p5gco")
 
 [editable path="CharacterBody"]
