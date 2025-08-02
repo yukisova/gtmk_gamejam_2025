@@ -16,6 +16,9 @@ func _initialize(_owner: Entity):
 	super(_owner)
 	
 	camera_strategy.c_camera = self
+	
+	## 根匹
+	
 	camera_source.limit_top = SLoadAndSave.gaming_data_cache.get("camera_top")
 	camera_source.limit_bottom = SLoadAndSave.gaming_data_cache.get("camera_bottom")
 	camera_source.limit_left = SLoadAndSave.gaming_data_cache.get("camera_left")

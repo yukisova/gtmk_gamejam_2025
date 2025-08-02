@@ -12,7 +12,7 @@ var binding_entity: Entity
 @export var bag_button: Button
 @export var bag_slot_container: HBoxContainer
 @export var bag_slot_prototype: PanelContainer
-@export var bag_dragable_item_prototype: CenterContainer
+@export var bag_dragable_item_prototype: DragableItem
 
 var inventory_in_player: InventoryExtension
 
@@ -52,7 +52,7 @@ func _initialize():
 			bag_dragable_item.origin_position = bag_slot.global_position
 			bag_dragable_item.show()
 	
-	bag_slot_container.global_position = Vector2(-bag_slot_container.size.x,16)
+	bag_slot_container.position = Vector2(-bag_slot_container.size.x,16)
 
 func _refresh():
 	pass
@@ -102,16 +102,16 @@ func drawer_off():
 
 func _on_add_inventory(item: Item, index: int):
 	var bag_dragable_item = bag_dragable_item_prototype.duplicate() as DragableItem
-	var bag_slot = bag_slot_container.get_child(index+1)
+	var bag_slot = bag_slot_container.get_child(index)
 	
 	bag_slot.add_child(bag_dragable_item)
 	bag_dragable_item.binding_item = item
-	bag_dragable_item.texture_rect.texture = item.item_texture
+	bag_dragable_item.texture = item.item_texture
 	bag_dragable_item.origin_position = bag_slot.global_position
 	bag_dragable_item.show()
 
 func _on_remove_inventory(index: int):
-	var target_bag_slot = bag_slot_container.get_child(index+1)
+	var target_bag_slot = bag_slot_container.get_child(index)
 	target_bag_slot.get_children().map(func(v): return v.queue_free())
 
 #endregion

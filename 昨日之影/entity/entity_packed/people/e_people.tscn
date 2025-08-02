@@ -24,9 +24,9 @@
 
 [sub_resource type="Gradient" id="Gradient_28de3"]
 offsets = PackedFloat32Array(0.67820513, 0.701282)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2kqko"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ib14"]
 gradient = SubResource("Gradient_28de3")
 width = 80
 height = 80
@@ -37,9 +37,10 @@ metadata/_snap_enabled = true
 
 [sub_resource type="Resource" id="Resource_p5gco"]
 script = ExtResource("8_0ib14")
+item_nick_name = "white"
 item_name = "测试用物品"
 item_description = "一个没有任何意义的圆圈，只是为了对大家证明他的存在"
-item_texture = SubResource("GradientTexture2D_2kqko")
+item_texture = SubResource("GradientTexture2D_0ib14")
 metadata/_custom_type_script = "uid://0y58wickfubb"
 
 [sub_resource type="Resource" id="Resource_qq6q3"]

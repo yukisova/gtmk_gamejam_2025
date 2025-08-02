@@ -3,6 +3,7 @@
 class_name Item
 extends Resource
 
+@export var item_nick_name: String
 @export var item_name: String
 @export_multiline var item_description: String
 @export var item_texture: Texture2D

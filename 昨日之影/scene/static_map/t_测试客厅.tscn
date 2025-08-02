@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2knob287omci"]
+[gd_scene load_steps=19 format=3 uid="uid://2knob287omci"]
 
 [ext_resource type="PackedScene" uid="uid://dx8lfcn7h43ea" path="res://resource/node_template/map/static_map.tscn" id="1_aifur"]
 [ext_resource type="PackedScene" uid="uid://6dpqakv78nkp" path="res://resource/node_template/map/level.tscn" id="2_kfm30"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cjeyfk6mro340" path="res://asset/tile_set/家具_客厅.png" id="6_moptm"]
 [ext_resource type="PackedScene" uid="uid://csybxa4x4phq4" path="res://entity/entity_packed/people/e_people.tscn" id="6_ntglp"]
 [ext_resource type="Texture2D" uid="uid://b877s0662gsaa" path="res://resource/resource_template/sprite/atlas_texture/家具_客厅_a.tres" id="7_yipkp"]
+[ext_resource type="Script" uid="uid://0y58wickfubb" path="res://resource/custom_resource/item/item.gd" id="10_ntglp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j75lj"]
 atlas = ExtResource("6_moptm")
@@ -17,6 +18,48 @@ region = Rect2(1642, 1285, 580, 376)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ntglp"]
 atlas = ExtResource("6_moptm")
 region = Rect2(2551, 974, 778, 774)
+
+[sub_resource type="Gradient" id="Gradient_ntglp"]
+offsets = PackedFloat32Array(0.67820513, 0.701282)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7vgy7"]
+gradient = SubResource("Gradient_ntglp")
+width = 80
+height = 80
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Resource" id="Resource_yvi13"]
+script = ExtResource("10_ntglp")
+item_nick_name = "white"
+item_name = "测试用物品"
+item_description = "一个没有任何意义的圆圈，只是为了对大家证明他的存在"
+item_texture = SubResource("GradientTexture2D_7vgy7")
+metadata/_custom_type_script = "uid://0y58wickfubb"
+
+[sub_resource type="Gradient" id="Gradient_7vgy7"]
+offsets = PackedFloat32Array(0.67820513, 0.701282)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yvi13"]
+gradient = SubResource("Gradient_7vgy7")
+width = 80
+height = 80
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Resource" id="Resource_crlot"]
+script = ExtResource("10_ntglp")
+item_nick_name = "red"
+item_name = "红色测试用物品"
+item_description = "一个没有任何意义的圆圈，只是为了对大家证明他的存在"
+item_texture = SubResource("GradientTexture2D_yvi13")
+metadata/_custom_type_script = "uid://0y58wickfubb"
 
 [node name="t_测试客厅" node_paths=PackedStringArray("player_spawn") instance=ExtResource("1_aifur")]
 player_spawn = NodePath("Levels/Level/PlayerSpawn")
@@ -98,6 +141,18 @@ polygon = PackedVector2Array(-291, 44, -112, 483, 410, 489, 132, 38)
 [node name="EPeople" parent="Levels/Level" index="6" instance=ExtResource("6_ntglp")]
 position = Vector2(-623, 491)
 
+[node name="InteractionCollect" parent="Levels/Level/EPeople/CharacterBody/ComponentContainer/CInteractable" index="1"]
+binding_item = SubResource("Resource_yvi13")
+
+[node name="EPeople2" parent="Levels/Level" index="7" instance=ExtResource("6_ntglp")]
+position = Vector2(-623, 491)
+
+[node name="CharacterBody" parent="Levels/Level/EPeople2" index="0"]
+position = Vector2(1283, -604)
+
+[node name="InteractionCollect" parent="Levels/Level/EPeople2/CharacterBody/ComponentContainer/CInteractable" index="1"]
+binding_item = SubResource("Resource_crlot")
+
 [editable path="Levels/Level"]
 [editable path="Levels/Level/PolygonTile"]
 [editable path="Levels/Level/Furniture"]
@@ -106,3 +161,11 @@ position = Vector2(-623, 491)
 [editable path="Levels/Level/Furniture2/StaticBody"]
 [editable path="Levels/Level/Furniture3"]
 [editable path="Levels/Level/Furniture3/StaticBody"]
+[editable path="Levels/Level/EPeople"]
+[editable path="Levels/Level/EPeople/CharacterBody"]
+[editable path="Levels/Level/EPeople/CharacterBody/ComponentContainer/CState"]
+[editable path="Levels/Level/EPeople/CharacterBody/ComponentContainer/CCollision/InteractionBox"]
+[editable path="Levels/Level/EPeople2"]
+[editable path="Levels/Level/EPeople2/CharacterBody"]
+[editable path="Levels/Level/EPeople2/CharacterBody/ComponentContainer/CState"]
+[editable path="Levels/Level/EPeople2/CharacterBody/ComponentContainer/CCollision/InteractionBox"]

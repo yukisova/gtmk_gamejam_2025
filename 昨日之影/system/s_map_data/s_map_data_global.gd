@@ -26,6 +26,7 @@ func _on_map_info_registered(map_scene: PackedScene):
 	await get_tree().process_frame
 	var map = map_scene.instantiate() as StaticMap
 	current_map = map
+	
 	Main.game_view.add_child(map)
 	
 	## 当地图完成加载后，发送map_info_loaded信号，表明当前已经完成了所有地图信息的加载
@@ -36,6 +37,8 @@ func _on_map_info_registered(map_scene: PackedScene):
 		current_level = spawn.current_level
 		SMainController.player_located.emit.call_deferred(spawn.current_level , spawn.global_position)
 		spawn.queue_free()
+	else:
+		push_warning("没有检测到角色出生点，最好再检查一下")
 
 ## 地图元素新建
 func _on_factor_added(new_factor: Entity, start_position: Vector2):

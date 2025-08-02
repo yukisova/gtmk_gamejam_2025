@@ -115,8 +115,9 @@ grow_vertical = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="BagPanelControl"]
 clip_contents = true
 layout_mode = 0
-offset_right = 308.0
-offset_bottom = 100.0
+offset_top = 16.0
+offset_bottom = 16.0
+alignment = 2
 
 [node name="Control3" type="Control" parent="."]
 layout_mode = 3
