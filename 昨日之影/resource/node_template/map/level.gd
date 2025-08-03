@@ -45,12 +45,12 @@ func _check_all_entity_initialize():
 	if entity_loaded_count == entity_count:
 		level_entity_fully_initialize.emit()
 
-func get_camera_limit():
+
+func get_camera_limit() -> Dictionary:
 	var limit_dict = {}
 	var rect = camera_limit.get_global_rect()
 	limit_dict["camera_top"] = rect.position.y
 	limit_dict["camera_left"] = rect.position.x
 	limit_dict["camera_right"] = rect.end.x
 	limit_dict["camera_bottom"] = rect.end.y
-	
-	SLoadAndSave.gaming_data_cache.merge(limit_dict,true)
+	return limit_dict

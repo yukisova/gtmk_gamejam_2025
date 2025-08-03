@@ -4,7 +4,7 @@ extends ISystem
 
 signal factor_added(new_factor: Entity, start_position: Vector2)
 signal map_info_registered(map: PackedScene)
-signal level_changed(new_level: Level)
+signal level_changed(operate_entity: Entity,new_level: Level)
 
 @export var test_start_map_scene: PackedScene ## 要加载的地图
 
@@ -23,7 +23,7 @@ func _resetup():
 	current_level = null
 	current_map.queue_free()
 
-## 地图场景重加载
+## 地图场景加载
 func _on_map_info_registered(map_scene: PackedScene):
 	await get_tree().process_frame
 	var map = map_scene.instantiate() as StaticMap
@@ -36,7 +36,14 @@ func _on_map_info_registered(map_scene: PackedScene):
 	
 	var spawn = map.player_spawn
 	if (spawn != null):
+		for i:Node in map.levels.get_children():
+			i.process_mode = Node.PROCESS_MODE_DISABLED
+			i.hide()
+		
 		current_level = spawn.current_level
+		current_level.process_mode = Node.PROCESS_MODE_INHERIT
+		current_level.show()
+			
 		SMainController.player_located.emit.call_deferred(spawn.current_level , spawn.global_position)
 		spawn.queue_free()
 	else:
@@ -50,7 +57,13 @@ func _on_factor_added(new_factor: Entity, start_position: Vector2):
 
 ## 切换层级
 func _on_level_changed(operate_entity: Entity,new_level: Level):
-	if operate_entity == SMainController.player_static:
+	if operate_entity.main_control.is_in_group("player"):
 		current_level.hide()
+		current_level.process_mode = Node.PROCESS_MODE_DISABLED
+		var camera = operate_entity.list_base_components.get(IComponent.ComponentName.c_camera) as C_Camera
+		camera.set_camera_limit(new_level.get_camera_limit())
 		new_level.show()
+		new_level.process_mode = Node.PROCESS_MODE_INHERIT
+		current_level = new_level
+		
 	operate_entity.reparent(new_level)

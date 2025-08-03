@@ -100,14 +100,14 @@ func _avaliable_in_gaming():
 		SUiSpawner._spawn_ui(brain_ui)
 	elif validate_control("pause_game", ControlMode.just_pressed):
 		SUiSpawner._spawn_ui(pause_ui)
+	elif validate_control("interact", ControlMode.just_pressed):
+		if interact_obj != null:
+			interact_obj.interact_activated.emit(component_owner)
 	
 	for i in reactor_extension:
 		i._listen()
 	
 	 
-	#elif validate_control("interact", ControlMode.just_pressed):
-		#if interact_obj != null:
-			#interact_obj.interact_activated.emit()
 		
 #endregion
 

@@ -4,6 +4,8 @@
 @abstract class_name Cutscene
 extends Node
 
+@export var dict: Dictionary
+
 signal cutscene_started ## 过场剧情开始执行信号
 signal cutscene_ended(return_context: Dictionary) ## 过场剧情结束信号
 

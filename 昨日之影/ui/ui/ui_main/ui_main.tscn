@@ -1,11 +1,13 @@
-[gd_scene load_steps=22 format=4 uid="uid://dtbox62ysxhqs"]
+[gd_scene load_steps=28 format=4 uid="uid://dtbox62ysxhqs"]
 
 [ext_resource type="Script" uid="uid://fqkh2lkuaxp4" path="res://ui/ui/ui_main/ui_main.gd" id="1_8moro"]
 [ext_resource type="Theme" uid="uid://cbvflgkah1pwb" path="res://resource/resource_template/basic_theme.tres" id="2_1q3r7"]
+[ext_resource type="AudioStream" uid="uid://ddgaoskrp2fxv" path="res://asset/audio_bgm/昨日之影.ogg" id="2_423s1"]
 [ext_resource type="Script" uid="uid://b77vti74tgrbe" path="res://ui/ui_composite/func_button.gd" id="3_3ko51"]
-[ext_resource type="Texture2D" uid="uid://bqikffvup8eqf" path="res://asset/tile_set/游戏封面.png" id="3_lfc38"]
-[ext_resource type="PackedScene" uid="uid://2knob287omci" path="res://scene/static_map/t_测试客厅.tscn" id="4_weorj"]
+[ext_resource type="Texture2D" uid="uid://cd1y0w8hj11n3" path="res://asset/ui_theme/157D1F57E25E97B1E4A946A4BF68193A.png" id="3_lfc38"]
+[ext_resource type="PackedScene" uid="uid://2knob287omci" path="res://scene/static_map/t_正式场景.tscn" id="4_weorj"]
 [ext_resource type="Script" uid="uid://22228lam2w6p" path="res://ui/ui_composite/link_button.gd" id="5_63x8v"]
+[ext_resource type="Texture2D" uid="uid://dpnxv8hcpg6pb" path="res://asset/ui_theme/3EA1640D290D74F8A1E787FCEF071C71.png" id="5_conc8"]
 [ext_resource type="PackedScene" uid="uid://dx8lfcn7h43ea" path="res://resource/node_template/map/static_map.tscn" id="5_lfc38"]
 [ext_resource type="PackedScene" uid="uid://ckmbalibndnve" path="res://ui/ui_composite/canvas/setting_panel/setting_panel.tscn" id="6_8k5ru"]
 [ext_resource type="PackedScene" uid="uid://6dpqakv78nkp" path="res://resource/node_template/map/level.tscn" id="6_conc8"]
@@ -17,6 +19,10 @@
 [ext_resource type="PackedScene" uid="uid://bquf41erw1xpe" path="res://component/c_event_queue/c_event_trigger.tscn" id="12_i1l07"]
 [ext_resource type="Script" uid="uid://bahkkc7pcytsi" path="res://component/c_event_queue/event_queue/t_测试用_event/test_event.gd" id="13_yyhm4"]
 [ext_resource type="Script" uid="uid://dmt6bwi1q78e4" path="res://cutscene/cu_000_游戏开场.gd" id="14_b8u6j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_423s1"]
+atlas = ExtResource("5_conc8")
+region = Rect2(2901, 1078, 582, 267)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6g1cg"]
 texture = ExtResource("9_1t7f1")
@@ -235,8 +241,20 @@ _bundled = {
 "version": 3
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5kqp"]
+atlas = ExtResource("5_conc8")
+region = Rect2(2901, 1729, 582, 267)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1t7f1"]
+load_path = "res://.godot/imported/3EA1640D290D74F8A1E787FCEF071C71.png-584218b0f72b3e5992ec28790e69d49e.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw6d5"]
+atlas = SubResource("CompressedTexture2D_1t7f1")
+region = Rect2(2901, 1404, 582, 267)
+
 [node name="UiMain" type="CanvasLayer" node_paths=PackedStringArray("continue_game_button", "start_game_button", "load_game_button", "game_setting_button", "quit_game_button")]
 script = ExtResource("1_8moro")
+bgm = ExtResource("2_423s1")
 continue_game_button = NodePath("Control/MarginContainer/VBoxContainer/ContinueGame")
 start_game_button = NodePath("Control/MarginContainer/VBoxContainer/StartGame")
 load_game_button = NodePath("Control/MarginContainer/VBoxContainer/LoadGame")
@@ -269,11 +287,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -72.0
-offset_top = -33.5
-offset_bottom = 33.5
+offset_left = -282.0
+offset_top = -50.0
+offset_right = 400.0
+offset_bottom = 759.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.4, 0.4)
 theme = ExtResource("2_1q3r7")
 theme_override_constants/margin_right = 100
 
@@ -287,10 +307,10 @@ layout_mode = 2
 text = "ContinueGame"
 script = ExtResource("3_3ko51")
 
-[node name="StartGame" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+[node name="StartGame" type="TextureButton" parent="Control/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
-text = "StartGame"
+texture_normal = SubResource("AtlasTexture_423s1")
 script = ExtResource("3_3ko51")
 args = [ExtResource("4_weorj")]
 
@@ -302,16 +322,16 @@ text = "LoadGame"
 script = ExtResource("3_3ko51")
 args = [SubResource("PackedScene_fk8vh")]
 
-[node name="GameSetting" type="Button" parent="Control/MarginContainer/VBoxContainer" node_paths=PackedStringArray("g_scene_parent")]
+[node name="GameSetting" type="TextureButton" parent="Control/MarginContainer/VBoxContainer" node_paths=PackedStringArray("g_scene_parent")]
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
-text = "GameSetting"
+texture_normal = SubResource("AtlasTexture_m5kqp")
 script = ExtResource("5_63x8v")
 generator_scene = ExtResource("6_8k5ru")
 g_scene_parent = NodePath("../../../..")
 
-[node name="QuitGame" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+[node name="QuitGame" type="TextureButton" parent="Control/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
-text = "QuitGame"
+texture_normal = SubResource("AtlasTexture_nw6d5")
 script = ExtResource("3_3ko51")

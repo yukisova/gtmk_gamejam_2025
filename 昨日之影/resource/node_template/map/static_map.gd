@@ -7,7 +7,6 @@ extends Node
 signal filter_changed(point: float)
 
 @export var player_spawn: PlayerSpawn ## 可选的玩家出生地
-@export var cutscene_ref: Dictionary[String, Variant] ## 自动加载过场事件所能用到的参数
 @export_range(0,1) var time: float
 
 @export_subgroup("依赖")
@@ -37,7 +36,7 @@ func _ready() -> void:
 			level_count += 1
 	
 	for cutscene in autoload_cutscene.get_children():
-		SSignalBus.game_data_loaded_compelete.connect(cutscene._start.bind(cutscene_ref))
+		SSignalBus.game_data_loaded_compelete.connect(cutscene._start)
 
 func _on_level_fully_loaded():
 	level_loaded_count += 1

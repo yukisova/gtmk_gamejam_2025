@@ -39,7 +39,7 @@ func _spawn_ui(scene: PackedScene, context: Dictionary = {}) -> IUi:
 		canvas.queue_free()
 		return null
 
-func _hide_hud(except_hud_name: Array[StringName]):
+func _hide_hud(except_hud_name: Array):
 	for hud_name in current_hud.keys():
 		if except_hud_name.has(hud_name):
 			current_hud[hud_name].show()

@@ -65,8 +65,8 @@ breakable=""
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://resource/translation/Translation.en.translation", "res://resource/translation/Translation.es.translation", "res://resource/translation/Translation.ja.translation", "res://resource/translation/Translation.zh_CN.translation", "res://resource/translation/test_dialogue.en.translation", "res://resource/translation/test_dialogue.zh.translation")
-locale/translations_pot_files=PackedStringArray("res://resource/plugins_resource/dialogue/test_dialogue.dialogue")
+locale/translations=PackedStringArray("res://resource/translation/Translation.en.translation", "res://resource/translation/Translation.es.translation", "res://resource/translation/Translation.ja.translation", "res://resource/translation/Translation.zh_CN.translation", "res://resource/translation/act_1.en.translation", "res://resource/translation/act_1.zh.translation")
+locale/translations_pot_files=PackedStringArray("res://resource/plugins_resource/dialogue/item_seek_dialogue.dialogue", "res://resource/plugins_resource/dialogue/act_1.dialogue")
 
 [layer_names]
 

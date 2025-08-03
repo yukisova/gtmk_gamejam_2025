@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://csybxa4x4phq4"]
+[gd_scene load_steps=28 format=3 uid="uid://csybxa4x4phq4"]
 
 [ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_p5gco"]
 [ext_resource type="PackedScene" uid="uid://cq0u8u1qie88t" path="res://entity/entity_template/character_body.tscn" id="2_0w0mx"]
 [ext_resource type="PackedScene" uid="uid://dbswip03t13sy" path="res://component/c_interaction/c_interactable.tscn" id="3_2xqoy"]
 [ext_resource type="Script" uid="uid://djglhr34yxc4x" path="res://component/c_interaction/interaction/initiative_interaction/interaction_dialogue.gd" id="4_qnw2d"]
+[ext_resource type="Resource" uid="uid://dc1i7o7tqqs7j" path="res://resource/plugins_resource/dialogue/act_1.dialogue" id="5_gtue6"]
 [ext_resource type="PackedScene" uid="uid://bvjy63fua1sx2" path="res://component/c_texture/c_texture.tscn" id="5_x5syu"]
 [ext_resource type="Script" uid="uid://dyicjmjyi8vve" path="res://component/c_interaction/interaction/passive_interaction/interaction_collect.gd" id="7_17f23"]
 [ext_resource type="PackedScene" uid="uid://dvrvdiy0pquiq" path="res://component/c_movement/c_movement.tscn" id="7_60uk1"]
@@ -11,16 +12,14 @@
 [ext_resource type="Script" uid="uid://dwt0prmf31a5" path="res://component/c_movement/move_strategy/vector_move.gd" id="8_4pbbd"]
 [ext_resource type="PackedScene" uid="uid://caj56l0yail7q" path="res://component/c_status/c_status.tscn" id="9_8sysp"]
 [ext_resource type="Script" uid="uid://b5ywitjyd2ccg" path="res://component/c_state/state/hfsm/state_machine_h.gd" id="9_mrk7k"]
-[ext_resource type="Texture2D" uid="uid://bektt86rjg2xj" path="res://asset/char_set/player/玛格丽特_D.png" id="10_0ib14"]
 [ext_resource type="Script" uid="uid://k430skixaj3e" path="res://component/c_state/state/hfsm/state/people/people_idle.gd" id="10_vwa58"]
 [ext_resource type="PackedScene" uid="uid://ca1hb1m2dinl2" path="res://component/c_state/c_state.tscn" id="11_iet4j"]
 [ext_resource type="Script" uid="uid://dt3joxgcst884" path="res://component/c_state/state/hfsm/state/people/people_patrol.gd" id="11_qq6q3"]
 [ext_resource type="Script" uid="uid://cpdkw72ahtbjj" path="res://component/c_state/transition_record.gd" id="14_ftmdb"]
-[ext_resource type="PackedScene" uid="uid://chj3kl8gl43h" path="res://component/c_collision/box_collision/interaction_box/interaction_box.tscn" id="14_qq6q3"]
+[ext_resource type="PackedScene" uid="uid://chj3kl8gl43h" path="res://component/c_collision/box_collision/interaction_box/interact_box.tscn" id="14_qq6q3"]
 [ext_resource type="PackedScene" uid="uid://cps21xspaovit" path="res://component/c_collision/c_collision.tscn" id="16_sw3nw"]
 [ext_resource type="PackedScene" uid="uid://shdn4eldwjpu" path="res://ui/ui/ui_dialogue/ui_dialogue.tscn" id="19_17f23"]
 [ext_resource type="PackedScene" uid="uid://b3vbfhugiqyva" path="res://component/c_action/c_action.tscn" id="19_rt6go"]
-[ext_resource type="Resource" uid="uid://dj7funx2bqofn" path="res://resource/plugins_resource/dialogue/test_dialogue.dialogue" id="20_0ib14"]
 
 [sub_resource type="Gradient" id="Gradient_28de3"]
 offsets = PackedFloat32Array(0.67820513, 0.701282)
@@ -66,15 +65,12 @@ component_container = NodePath("CharacterBody/ComponentContainer")
 [node name="CharacterBody" parent="." index="0" groups=["player"] instance=ExtResource("2_0w0mx")]
 y_sort_enabled = true
 
-[node name="CInteractable" parent="CharacterBody/ComponentContainer" index="0" node_paths=PackedStringArray("interact_object", "interaction") instance=ExtResource("3_2xqoy")]
-interact_setting = 2
-interact_object = NodePath("../CCollision/InteractionBox")
-interaction = NodePath("InteractionCollect")
+[node name="CInteractable" parent="CharacterBody/ComponentContainer" index="0" instance=ExtResource("3_2xqoy")]
 
 [node name="InteractionDialogue" type="Node" parent="CharacterBody/ComponentContainer/CInteractable" index="0"]
 script = ExtResource("4_qnw2d")
 test_dialogue_ui = ExtResource("19_17f23")
-test_dialogue = ExtResource("20_0ib14")
+test_dialogue = ExtResource("5_gtue6")
 test_dialogue_label = &"start"
 
 [node name="InteractionCollect" type="Node" parent="CharacterBody/ComponentContainer/CInteractable" index="1"]
@@ -82,10 +78,9 @@ script = ExtResource("7_17f23")
 binding_item = SubResource("Resource_p5gco")
 
 [node name="CTexture" parent="CharacterBody/ComponentContainer" index="1" instance=ExtResource("5_x5syu")]
+texture_path = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody/ComponentContainer/CTexture" index="0"]
-y_sort_enabled = true
-texture = ExtResource("10_0ib14")
 
 [node name="CMovement" parent="CharacterBody/ComponentContainer" index="2" node_paths=PackedStringArray("move_strategy") instance=ExtResource("7_60uk1")]
 move_strategy = NodePath("VectorMove")

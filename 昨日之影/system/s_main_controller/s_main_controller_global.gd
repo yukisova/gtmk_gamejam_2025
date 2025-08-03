@@ -8,7 +8,7 @@ signal player_located(target_level: Level, target_position: Vector2)
 @export_subgroup("依赖")
 @export var input_listener: InputListener
 
-static var player_static: Entity
+var player_static: Entity
 
 func _setup():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)

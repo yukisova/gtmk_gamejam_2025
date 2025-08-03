@@ -16,7 +16,11 @@ signal initialize_complete
 
 var body: CollisionObject2D:
 	get:
-		return get_child(0) 
+		for i in get_children():
+			if i is CollisionObject2D:
+				return i
+		push_error("实体没有发现碰撞体？？？")
+		return null
 
 var list_base_components: Dictionary[int, IComponent] = {} ## 基础组件组
 var list_interface_components: Dictionary[int, IComponent] = {} ## 插件组件组

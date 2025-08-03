@@ -3,6 +3,8 @@
 @abstract class_name PassiveInteraction
 extends Node
 
+var binding_entity
+
 ## 允许进行交互(如果是被动交互的话，会直接)
 @abstract func _on_interact_activated(target_entity: Entity, _component: IComponent)
 

@@ -14,15 +14,16 @@ func _enter_tree() -> void:
 
 func _initialize(_owner: Entity):
 	super(_owner)
-	
 	camera_strategy.c_camera = self
 	
-	## 根匹
-	
-	camera_source.limit_top = SLoadAndSave.gaming_data_cache.get("camera_top")
-	camera_source.limit_bottom = SLoadAndSave.gaming_data_cache.get("camera_bottom")
-	camera_source.limit_left = SLoadAndSave.gaming_data_cache.get("camera_left")
-	camera_source.limit_right = SLoadAndSave.gaming_data_cache.get("camera_right")
+	set_camera_limit(SMapData.current_level.get_camera_limit())
+
+
+func set_camera_limit(limit_dict: Dictionary):
+	camera_source.limit_top = limit_dict.get("camera_top")
+	camera_source.limit_bottom = limit_dict.get("camera_bottom")
+	camera_source.limit_left = limit_dict.get("camera_left")
+	camera_source.limit_right = limit_dict.get("camera_right")
 	
 func _update(_delta: float):
 	camera_strategy._strategy(_delta)
