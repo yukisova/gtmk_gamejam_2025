@@ -38,7 +38,6 @@ func _on_entity_initialize():
 
 func _check_all_layers_loaded():
 	if layers_loaded_count == layers_count:
-		set_camera_limit()
 		level_fully_loaded.emit()
 
 
@@ -46,7 +45,7 @@ func _check_all_entity_initialize():
 	if entity_loaded_count == entity_count:
 		level_entity_fully_initialize.emit()
 
-func set_camera_limit():
+func get_camera_limit():
 	var limit_dict = {}
 	var rect = camera_limit.get_global_rect()
 	limit_dict["camera_top"] = rect.position.y

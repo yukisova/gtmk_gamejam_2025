@@ -4,6 +4,7 @@ extends ISystem
 
 signal factor_added(new_factor: Entity, start_position: Vector2)
 signal map_info_registered(map: PackedScene)
+signal level_changed(new_level: Level)
 
 @export var test_start_map_scene: PackedScene ## 要加载的地图
 
@@ -13,6 +14,7 @@ var current_map: StaticMap
 func _enter_tree() -> void:
 	factor_added.connect(_on_factor_added)
 	map_info_registered.connect(_on_map_info_registered)
+	level_changed.connect(_on_level_changed)
 
 func _setup():
 	pass
@@ -45,3 +47,10 @@ func _on_factor_added(new_factor: Entity, start_position: Vector2):
 	current_level.add_child.call_deferred(new_factor)
 	new_factor.main_control.global_position = start_position
 	new_factor._initialize()
+
+## 切换层级
+func _on_level_changed(operate_entity: Entity,new_level: Level):
+	if operate_entity == SMainController.player_static:
+		current_level.hide()
+		new_level.show()
+	operate_entity.reparent(new_level)

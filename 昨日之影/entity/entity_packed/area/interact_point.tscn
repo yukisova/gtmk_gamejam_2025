@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c62q8c0uk4qec"]
+
+[ext_resource type="PackedScene" uid="uid://6jpwo3n27sj2" path="res://entity/entity.tscn" id="1_elhxf"]
+[ext_resource type="PackedScene" uid="uid://bc4cqx2abvb8t" path="res://entity/entity_template/area.tscn" id="2_fd42x"]
+
+[node name="InteractPoint" instance=ExtResource("1_elhxf")]
+
+[node name="Area" parent="." index="0" instance=ExtResource("2_fd42x")]
