@@ -13,7 +13,7 @@ config_version=5
 config/name="昨日之影"
 config/tags=PackedStringArray("gmtk_2025")
 run/main_scene="uid://qvegob1cp74r"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/image="uid://dsf31wp70qvtx"
 config/icon="res://icon.svg"
@@ -41,6 +41,7 @@ SSubSystemManager="*res://system/s_sub_system_manager/s_sub_system_manager.tscn"
 
 runtime/balloon_path="res://ui/ui/ui_dialogue/ui_dialogue.tscn"
 editor/translations/default_csv_locale="zh"
+runtime/advanced/uses_dotnet=true
 
 [display]
 
